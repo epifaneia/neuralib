@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Add Review</h1>
+
+    <form method="get" action="{% url 'add_review' %}">
+        {% csrf_token %}
+        <input type="text" name="query" placeholder="Search">
+        <select name="field">
+            <option value="title">Title</option>
+            <option value="writer">Writer</option>
+            <option value="genre">Genre</option>
+            <option value="editorial">Editorial</option>
+            <option value="isbn">ISBN</option>            
+        </select>
+        <input type="submit" value="Search">
+    </form>
+    <div class="book-list">
+        {% for book in books %}
+        <div class="book-item">
+            <button class="select-book" data-book-id="{{ book.id }}" data-book-title="{{ book.title }}">
+                {{ book.title }}
+            </button>
+            <div id="details-{{ forloop.counter0 }}" style="display:none">
+
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-books">
+            There are no books available.
+        </div>
+        {% endfor %}
+    </div>
+    
+        <div class="pagination">
+            <span class="step-links">
+                {% if books.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ books.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ books.number }} of {{ books.paginator.num_pages }}.
+                </span>
+        
+                {% if books.has_next %}
+                <a href="?page={{ books.next_page_number }}">next</a>
+                <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+        {% if not selected_book %}
+            <!-- Form for selecting a book -->
+            <form method="post">
+                {% csrf_token %}
+                {{ select_book_form }}
+                <button type="submit">Select Book</button>
+            </form>
+        {% else %}
+            <!-- Form for adding a review -->
+            <h2>Selected Book: {{ selected_book.title }}</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ review_form }}
+                <button type="submit">Submit Review</button>
+            </form>
+        {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.select-book');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const bookId = e.target.getAttribute('data-book-id');
+                    const bookTitle = e.target.getAttribute('data-book-title');
+
+                    document.getElementById('book_title').value = bookId;
+                    
+
+                });
+            });
+        });
+
+
+        function toggleDetails(index) {
+            var detailsTable = document.getElementById('details-' + index);
+            if (detailsTable.style.display === 'none' || detailsTable.style.display === '') {
+                detailsTable.style.display = 'table';
+            } else {
+                detailsTable.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>

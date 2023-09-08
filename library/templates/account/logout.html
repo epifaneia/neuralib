@@ -1,0 +1,60 @@
+{% extends "library/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+<style>
+  /* Custom styles for this page */
+  .container {
+      font-family: Arial, sans-serif;
+  }
+  .col-md-8 {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  h3 {
+      color: #333;
+  }
+  .link {
+      color: #007bff;
+      text-decoration: none;
+  }
+  .link:hover {
+      text-decoration: underline;
+  }
+  .btn-signup {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+  }
+
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h3>{% trans "Sign Out" %}</h3>
+
+            <p>{% trans 'Are you sure you want to sign out?' %}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-signup right" type="submit">{% trans 'Sign Out' %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

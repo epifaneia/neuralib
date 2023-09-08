@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Reviews</h2>
+    <form method="get" action="{% url 'reviews' %}">
+        {% csrf_token %}
+        <input type="text" name="query" placeholder="Search">
+        <select name="field">
+            <option value="title">Title</option>
+            <option value="book">Book</option>
+            <option value="date">Date of submission</option>
+            <option value="user">User</option>            
+        </select>
+        <input type="submit" value="Search">
+    </form>
+
+    <table>
+        {% for review in page_reviews %}  <!-- Changed 'reviews' to 'page_reviews' -->
+        <tr>
+            <td>
+                <button class="toggle-details" onclick="toggleReviewDetails({{ forloop.counter0 }})"> {{ review.title }}
+                </button>
+                <table id="review-details-{{ forloop.counter0 }}" style="display:none">
+                    <tr>
+                        <td>Username:</td>
+                        <td>{{ review.user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td>Book:</td>
+                        <td>{{ review.book.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Timestamp:</td>
+                        <td>{{ review.timestamp }}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>There are no reviews available.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_reviews.has_previous %}  <!-- Changed 'reviews' to 'page_reviews' -->
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_reviews.previous_page_number }}">previous</a>  <!-- Changed 'reviews' to 'page_reviews' -->
+            {% endif %}
+    
+            <span class="current">
+                Page {{ users.number }} of {{ users.paginator.num_pages }}.
+            </span>
+    
+            {% if page_reviews.has_next %}  <!-- Changed 'reviews' to 'page_reviews' -->
+                <a href="?page={{ page_reviews.next_page_number }}">next</a>  <!-- Changed 'reviews' to 'page_reviews' -->
+                <a href="?page={{ page_reviews.paginator.num_pages }}">last &raquo;</a>  <!-- Changed 'reviews' to 'page_reviews' -->
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

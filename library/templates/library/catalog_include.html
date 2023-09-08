@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Books</h2>
+<form method="get" action="{% url 'catalog' %}">
+    {% csrf_token %}
+    {{ form.query.label_tag }} {{ form.query }}
+    {{ form.field }}
+    <input type="submit" value="Search">
+</form>
+
+<table>
+    {% for book in books %}
+    <tr>
+        <td>
+            <button class="toggle-details" onclick="toggleDetails({{ forloop.counter0 }})"> {{ book.title }}
+            </button>
+            <table id="details-{{ forloop.counter0 }}" style="display:none">
+                <tr>
+                    <td>Description:</td>
+                    <td>{{ book.description }}</td>
+                </tr>
+                <tr>
+                    <td>Genre:</td>
+                    <td>{{ book.get_genre_display }}</td>
+                </tr>
+                <tr>
+                    <td>Pages:</td>
+                    <td>{{ book.num_pages }}</td>
+                </tr>
+                <tr>
+                    <td>Editorial:</td>
+                    <td>{{ book.editorial }}</td>
+                </tr>
+                <tr>
+                    <td>Year:</td>
+                    <td>{{ book.year_edition }}</td>
+                </tr>
+                <tr>
+                    <td>Writer:</td>
+                    <td>{{ book.writer }}</td>
+                </tr>
+                <tr>
+                    <td>Image:</td>
+                    <td><a href="{{ book.image_url }}" target="_blank">{{ book.image_url }}</a></td>
+                </tr>
+                <tr>
+                    <td>Read online:</td>
+                    <td><a href="{{ book.read_online }}" target="_blank">{{ book.read_online}}</a></td>
+                </tr>
+                <tr>
+                    <td>Download:</td>
+                    <td><a href="{{ book.download_link }}" target="_blank">{{ book.download_link }}</a></td>                    
+                </tr>
+                
+            </table>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td>There are no books available.</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if books.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ books.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ books.number }} of {{ books.paginator.num_pages }}.
+        </span>
+
+        {% if books.has_next %}
+        <a href="?page={{ books.next_page_number }}">next</a>
+        <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<script>
+    function bookSelected(bookId, bookTitle) {
+    localStorage.setItem('selectedBookId', bookId);
+    localStorage.setItem('selectedBookTitle', bookTitle);
+}
+</script>
+
+
+</body>
+</html>
