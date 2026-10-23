@@ -1,96 +1,72 @@
+import csv
+
+from django.contrib import admin, messages
+from django.core.exceptions import ValidationError
+from django.shortcuts import redirect, render
+from django.urls import path
+
 from .forms import CSVImportForm
 from .models import Book, Review
-from django.shortcuts import render, redirect
-from django.urls import path
-from django.contrib import admin
-import csv
-import sys
-from datetime import datetime
-from django.contrib import messages
-from django import forms
+
+# CSV columns, in order. ISBN is optional (older files have 10 columns).
+CSV_COLUMNS = ["title", "description", "genre", "num_pages", "editorial", "year_edition",
+               "writer", "image_url", "read_online", "download_link", "isbn"]
 
 
-print("Python Paths:", sys.path)
+def import_books(text):
+    """Create books from CSV text (header row first). Returns (created, errors)."""
+    rows = csv.reader(text.splitlines())
+    next(rows, None)
+    created, errors = 0, []
+    for line, row in enumerate(rows, start=2):
+        if len(row) not in (len(CSV_COLUMNS) - 1, len(CSV_COLUMNS)):
+            errors.append(f"Line {line}: expected {len(CSV_COLUMNS) - 1} or {len(CSV_COLUMNS)} columns, got {len(row)}.")
+            continue
+        data = dict(zip(CSV_COLUMNS, (cell.strip() for cell in row)))
+        for url_field in ("image_url", "read_online", "download_link"):
+            data[url_field] = data[url_field] or None
+        try:
+            book = Book(**data)
+            book.full_clean()
+        except (ValidationError, ValueError) as error:
+            errors.append(f"Line {line}: {error}")
+            continue
+        book.save()
+        created += 1
+    return created, errors
 
 
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'timestamp')  # Display review summary and timestamp
-    list_filter = ('user__username', 'book__title', 'timestamp')  # Filters by username, book title, and timestamp
-    search_fields = ('user__username', 'book__title', 'content')  # Searchable by username, book title, and content
-    readonly_fields = ('timestamp',)  # Making timestamp read-only as it's auto-generated
-    
-    # If you want to use custom forms
-    # form = YourCustomReviewForm
-    
-    def __str__(self):
-        return f"Review Admin"
-
-
-# Register it with the model
-admin.site.register(Review, ReviewAdmin)
-
-
+@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    change_list_template = 'admin/book_changelist.html'
+    change_list_template = "admin/book_changelist.html"
+    list_display = ("title", "writer", "genre", "year_edition", "isbn")
+    list_filter = ("genre",)
+    search_fields = ("title", "writer", "editorial", "isbn")
 
     def get_urls(self):
-        urls = super().get_urls()
-        my_urls = [
-            path('import-csv/', self.import_csv),
-        ]
-        return my_urls + urls
-
-
+        custom = [path("import-csv/", self.admin_site.admin_view(self.import_csv), name="library_book_import_csv")]
+        return custom + super().get_urls()
 
     def import_csv(self, request):
-        if request.method == "POST":
-            csv_file = request.FILES["csv_file"]
-
-            # Attempt to decode the file as UTF-8
+        form = CSVImportForm(request.POST or None, request.FILES or None)
+        if request.method == "POST" and form.is_valid():
             try:
-                file_content = csv_file.read().decode('utf-8')
+                text = form.cleaned_data["csv_file"].read().decode("utf-8")
             except UnicodeDecodeError:
-                messages.error(request, "The file is not in UTF-8 format")
-                return redirect("..")
-
-            reader = csv.reader(file_content.splitlines())
-            next(reader)  # Skip the header row
-
-            expected_columns = 10  # Expected number of columns
-
-            for row in reader:
-                if len(row) != expected_columns:
-                    messages.error(
-                        request, f"Row with incorrect number of columns: {row}")
-                    continue  # Skip this row and continue with the next one
-
-                try:
-
-                    book = Book(
-                        title=row[0],
-                        description=row[1],
-                        genre=row[2],
-                        num_pages=int(row[3]),
-                        editorial=row[4],
-                        year_edition=int(row[5]),
-                        writer=row[6],
-                        image_url=row[7],
-                        read_online=row[8],
-                        download_link=row[9]
-
-                    )
-                    book.save()
-                except ValueError as e:
-                    messages.error(
-                        request, f"Error processing the row {row}: {e}")
-                    continue  # Skip this row and continue with the next one
-
-            messages.success(request, "CSV file has been imported")
-            return redirect("..")
-
-        form = CSVImportForm()
-        payload = {"form": form}
-        return render(request, "admin/csv_form.html", payload)
+                messages.error(request, "The file is not in UTF-8 format.")
+                return redirect("admin:library_book_changelist")
+            created, errors = import_books(text)
+            for error in errors:
+                messages.error(request, error)
+            messages.success(request, f"{created} book(s) imported.")
+            return redirect("admin:library_book_changelist")
+        context = {**self.admin_site.each_context(request), "form": form, "title": "Import books from CSV"}
+        return render(request, "admin/csv_form.html", context)
 
 
-admin.site.register(Book, BookAdmin)
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ("__str__", "rating", "timestamp")
+    list_filter = ("rating", "timestamp")
+    search_fields = ("user__username", "book__title", "title", "content")
+    readonly_fields = ("timestamp",)

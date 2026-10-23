@@ -1,54 +1,57 @@
 from django import forms
-from .models import Book, Review
+
+from .models import Review
 
 
-class BaseSearchForm(forms.Form):
-    query = forms.CharField(label='Search:', required=True)
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['field'] = forms.ChoiceField(choices=self.SEARCH_FIELDS)
+class SearchForm(forms.Form):
+    """Catalog search: one text query over one chosen field."""
 
-class SearchForm(BaseSearchForm):
-    SEARCH_FIELDS = (
-        ('title', 'Title'),
-        ('writer', 'Writer'),
-        ('genre', 'Genre'),
-        ('editorial', 'Editorial'),
-        ('isbn', 'ISBN'),
+    FIELDS = (
+        ("title", "Title"),
+        ("writer", "Writer"),
+        ("genre", "Genre"),
+        ("editorial", "Editorial"),
+        ("isbn", "ISBN"),
     )
-    field = forms.ChoiceField(choices=SEARCH_FIELDS)
+    query = forms.CharField(label="Search", max_length=200)
+    field = forms.ChoiceField(choices=FIELDS)
 
-class UserSearchForm(BaseSearchForm):
-    SEARCH_FIELDS = (
-        ('username', 'User Name'),
-        ('reviews', 'Reviews'),
-        ('ratings', 'Ratings'),
+
+class ReviewSearchForm(forms.Form):
+    FIELDS = (
+        ("title", "Review title"),
+        ("book", "Book"),
+        ("user", "Reader"),
     )
-    field = forms.ChoiceField(choices=SEARCH_FIELDS)
+    query = forms.CharField(label="Search", max_length=200)
+    field = forms.ChoiceField(choices=FIELDS)
 
-class ReviewForm(BaseSearchForm):
-    SEARCH_FIELDS = (
-        ('username', 'User Name'),
-        ('title', 'Title'),
-        ('book'), 'Book'
+
+class UserSearchForm(forms.Form):
+    query = forms.CharField(label="Search readers", max_length=150)
+
+
+class ReviewForm(forms.ModelForm):
+    rating = forms.TypedChoiceField(
+        choices=[(i, f"{i} / 5") for i in range(1, 6)],
+        coerce=int,
+        widget=forms.Select(attrs={"class": "form-select"}),
     )
-    field = forms.ChoiceField(choices=SEARCH_FIELDS)
 
+    class Meta:
+        model = Review
+        fields = ["title", "rating", "content"]
+        widgets = {
+            "title": forms.TextInput(attrs={"class": "form-control"}),
+            "content": forms.Textarea(attrs={"class": "form-control", "rows": 6}),
+        }
 
 
 class CSVImportForm(forms.Form):
-    csv_file = forms.FileField()
+    csv_file = forms.FileField(label="CSV file")
 
     def clean_csv_file(self):
-        file = self.cleaned_data.get('csv_file')
-        if file:
-            if not file.name.endswith('.csv'):
-                raise forms.ValidationError("File must be a CSV file.")
+        file = self.cleaned_data["csv_file"]
+        if not file.name.lower().endswith(".csv"):
+            raise forms.ValidationError("File must be a CSV file.")
         return file
-
-class SelectBookForm(forms.ModelForm):
-    class Meta:
-        model = Book
-        fields = ['title']
-

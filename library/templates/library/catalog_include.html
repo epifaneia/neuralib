@@ -1,97 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Books</h2>
-<form method="get" action="{% url 'catalog' %}">
-    {% csrf_token %}
-    {{ form.query.label_tag }} {{ form.query }}
-    {{ form.field }}
-    <input type="submit" value="Search">
+{# Book search + paginated list. Needs: form, books, query. Optional: review_links (True on the "write a review" page). #}
+<form method="get" class="row g-2 align-items-end mb-3">
+    <div class="col-sm-6">
+        <label class="form-label" for="{{ form.query.id_for_label }}">{{ form.query.label }}</label>
+        <input type="text" name="query" id="{{ form.query.id_for_label }}" value="{{ query }}" class="form-control" required>
+    </div>
+    <div class="col-sm-3">
+        <label class="form-label" for="{{ form.field.id_for_label }}">In</label>
+        <select name="field" id="{{ form.field.id_for_label }}" class="form-select">
+            {% for value, label in form.field.field.choices %}
+                <option value="{{ value }}" {% if form.field.value == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-sm-3 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% if query %}<a href="?" class="btn btn-link">Clear</a>{% endif %}
+    </div>
 </form>
 
-<table>
+<div class="list-group mb-3">
     {% for book in books %}
-    <tr>
-        <td>
-            <button class="toggle-details" onclick="toggleDetails({{ forloop.counter0 }})"> {{ book.title }}
-            </button>
-            <table id="details-{{ forloop.counter0 }}" style="display:none">
-                <tr>
-                    <td>Description:</td>
-                    <td>{{ book.description }}</td>
-                </tr>
-                <tr>
-                    <td>Genre:</td>
-                    <td>{{ book.get_genre_display }}</td>
-                </tr>
-                <tr>
-                    <td>Pages:</td>
-                    <td>{{ book.num_pages }}</td>
-                </tr>
-                <tr>
-                    <td>Editorial:</td>
-                    <td>{{ book.editorial }}</td>
-                </tr>
-                <tr>
-                    <td>Year:</td>
-                    <td>{{ book.year_edition }}</td>
-                </tr>
-                <tr>
-                    <td>Writer:</td>
-                    <td>{{ book.writer }}</td>
-                </tr>
-                <tr>
-                    <td>Image:</td>
-                    <td><a href="{{ book.image_url }}" target="_blank">{{ book.image_url }}</a></td>
-                </tr>
-                <tr>
-                    <td>Read online:</td>
-                    <td><a href="{{ book.read_online }}" target="_blank">{{ book.read_online}}</a></td>
-                </tr>
-                <tr>
-                    <td>Download:</td>
-                    <td><a href="{{ book.download_link }}" target="_blank">{{ book.download_link }}</a></td>                    
-                </tr>
-                
-            </table>
-        </td>
-    </tr>
+        <div class="list-group-item">
+            <details>
+                <summary class="fw-semibold">{{ book.title }} <span class="text-muted fw-normal">· {{ book.writer }}</span></summary>
+                <div class="row mt-2">
+                    {% if book.image_url %}
+                        <div class="col-sm-2"><img src="{{ book.image_url }}" alt="Cover of {{ book.title }}" class="img-fluid"></div>
+                    {% endif %}
+                    <div class="col">
+                        <p>{{ book.description }}</p>
+                        <dl class="row small mb-0">
+                            <dt class="col-sm-3">Genre</dt><dd class="col-sm-9">{{ book.get_genre_display }}</dd>
+                            <dt class="col-sm-3">Pages</dt><dd class="col-sm-9">{{ book.num_pages }}</dd>
+                            <dt class="col-sm-3">Editorial</dt><dd class="col-sm-9">{{ book.editorial }} ({{ book.year_edition }})</dd>
+                            {% if book.isbn %}<dt class="col-sm-3">ISBN</dt><dd class="col-sm-9">{{ book.isbn }}</dd>{% endif %}
+                            {% if book.read_online %}<dt class="col-sm-3">Read online</dt><dd class="col-sm-9"><a href="{{ book.read_online }}" target="_blank" rel="noopener">Open</a></dd>{% endif %}
+                            {% if book.download_link %}<dt class="col-sm-3">Download</dt><dd class="col-sm-9"><a href="{{ book.download_link }}" target="_blank" rel="noopener">Download</a></dd>{% endif %}
+                        </dl>
+                    </div>
+                </div>
+            </details>
+            {% if review_links %}
+                <a href="{% url 'review_book' book.id %}" class="btn btn-sm btn-outline-primary mt-2">Review this book</a>
+            {% endif %}
+        </div>
     {% empty %}
-    <tr>
-        <td>There are no books available.</td>
-    </tr>
+        <div class="list-group-item text-muted">No books found.</div>
     {% endfor %}
-</table>
-<div class="pagination">
-    <span class="step-links">
-        {% if books.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ books.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ books.number }} of {{ books.paginator.num_pages }}.
-        </span>
-
-        {% if books.has_next %}
-        <a href="?page={{ books.next_page_number }}">next</a>
-        <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
 </div>
-<script>
-    function bookSelected(bookId, bookTitle) {
-    localStorage.setItem('selectedBookId', bookId);
-    localStorage.setItem('selectedBookTitle', bookTitle);
-}
-</script>
 
-
-</body>
-</html>
+{% include "library/pagination.html" with page=books %}

@@ -1,70 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Reviews</h2>
-    <form method="get" action="{% url 'reviews' %}">
-        {% csrf_token %}
-        <input type="text" name="query" placeholder="Search">
-        <select name="field">
-            <option value="title">Title</option>
-            <option value="book">Book</option>
-            <option value="date">Date of submission</option>
-            <option value="user">User</option>            
-        </select>
-        <input type="submit" value="Search">
-    </form>
-
-    <table>
-        {% for review in page_reviews %}  <!-- Changed 'reviews' to 'page_reviews' -->
-        <tr>
-            <td>
-                <button class="toggle-details" onclick="toggleReviewDetails({{ forloop.counter0 }})"> {{ review.title }}
-                </button>
-                <table id="review-details-{{ forloop.counter0 }}" style="display:none">
-                    <tr>
-                        <td>Username:</td>
-                        <td>{{ review.user.username }}</td>
-                    </tr>
-                    <tr>
-                        <td>Book:</td>
-                        <td>{{ review.book.title }}</td>
-                    </tr>
-                    <tr>
-                        <td>Timestamp:</td>
-                        <td>{{ review.timestamp }}</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td>There are no reviews available.</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <div class="pagination">
-        <span class="step-links">
-            {% if page_reviews.has_previous %}  <!-- Changed 'reviews' to 'page_reviews' -->
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_reviews.previous_page_number }}">previous</a>  <!-- Changed 'reviews' to 'page_reviews' -->
-            {% endif %}
-    
-            <span class="current">
-                Page {{ users.number }} of {{ users.paginator.num_pages }}.
-            </span>
-    
-            {% if page_reviews.has_next %}  <!-- Changed 'reviews' to 'page_reviews' -->
-                <a href="?page={{ page_reviews.next_page_number }}">next</a>  <!-- Changed 'reviews' to 'page_reviews' -->
-                <a href="?page={{ page_reviews.paginator.num_pages }}">last &raquo;</a>  <!-- Changed 'reviews' to 'page_reviews' -->
-            {% endif %}
-        </span>
+{# Review search + paginated list. Needs: form, reviews, query. #}
+<form method="get" class="row g-2 align-items-end mb-3">
+    <div class="col-sm-6">
+        <label class="form-label" for="{{ form.query.id_for_label }}">{{ form.query.label }}</label>
+        <input type="text" name="query" id="{{ form.query.id_for_label }}" value="{{ query }}" class="form-control" required>
     </div>
-</body>
-</html>
+    <div class="col-sm-3">
+        <label class="form-label" for="{{ form.field.id_for_label }}">In</label>
+        <select name="field" id="{{ form.field.id_for_label }}" class="form-select">
+            {% for value, label in form.field.field.choices %}
+                <option value="{{ value }}" {% if form.field.value == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-sm-3 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% if query %}<a href="?" class="btn btn-link">Clear</a>{% endif %}
+    </div>
+</form>
+
+<div class="list-group mb-3">
+    {% for review in reviews %}
+        <div class="list-group-item">
+            <details>
+                <summary><strong>{{ review.title }}</strong> <span class="text-muted">· {{ review.book.title }} · {{ review.rating }}/5</span></summary>
+                <p class="mt-2 mb-1">{{ review.content|linebreaksbr }}</p>
+                <p class="small text-muted mb-0">{{ review.user.username }} · {{ review.timestamp|date:"j M Y" }}</p>
+            </details>
+        </div>
+    {% empty %}
+        <div class="list-group-item text-muted">No reviews found.</div>
+    {% endfor %}
+</div>
+
+{% include "library/pagination.html" with page=reviews %}

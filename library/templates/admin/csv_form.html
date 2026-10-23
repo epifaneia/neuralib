@@ -1,9 +1,12 @@
 {% extends "admin/base_site.html" %}
 {% block content %}
-    <h1>Import CSV</h1>
+    <h1>Import books from CSV</h1>
+    <p>UTF-8 file with a header row and these columns, in order: title, description, genre, num_pages, editorial,
+       year_edition, writer, image_url, read_online, download_link and, optionally, isbn. Genre must be one of the
+       codes of the catalog (for example <code>fantasy_magic</code>).</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Upload</button>
+        <button type="submit" class="button default">Upload</button>
     </form>
 {% endblock %}

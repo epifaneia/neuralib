@@ -1,9 +1,13 @@
-core.Microsoft*
-core.mongo*
-core.python*
-env.py
+# Python
 __pycache__/
 *.py[cod]
-node_modules/
-.github/
-cloudinary_python.txt
+.venv/
+
+# Local settings and data
+.env
+db.sqlite3
+
+# Build and test output
+staticfiles/
+.coverage
+htmlcov/

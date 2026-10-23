@@ -1,66 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Users</h2>
-    <form method="get" action="{% url 'users' %}">
-        {% csrf_token %}
-        {{ form.query.label_tag }} {{ form.query }}
-        {{ form.field.label_tag }} {{ form.field }}
-        <input type="submit" value="Search">
-    </form>
+{# Reader search + paginated list. Needs: form, users, query. Only usernames and review counts are shown. #}
+<form method="get" class="row g-2 align-items-end mb-3">
+    <div class="col-sm-8">
+        <label class="form-label" for="{{ form.query.id_for_label }}">{{ form.query.label }}</label>
+        <input type="text" name="query" id="{{ form.query.id_for_label }}" value="{{ query }}" class="form-control" required>
+    </div>
+    <div class="col-sm-4 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% if query %}<a href="?" class="btn btn-link">Clear</a>{% endif %}
+    </div>
+</form>
 
-<table>
-    {% for user in users %}
-    <tr>
-        <td>
-            <button class="toggle-details" onclick="toggleDetails({{ forloop.counter0 }})"> {{ user.username }}
-            </button>
-            <table id="details-{{ forloop.counter0 }}" style="display:none">
-                <tr>
-                    <td>Reviews:</td>
-                    <td> <!-- Placeholder for future functionality --> </td>
-                </tr>
-                <tr>
-                    <td>Ratings:</td>
-                    <td> <!-- Placeholder for future functionality --> </td>
-                </tr>
-                <tr>
-                    <td>Private Comments:</td>
-                    <td> <!-- Placeholder for future functionality --> </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
+<ul class="list-group mb-3">
+    {% for reader in users %}
+        <li class="list-group-item d-flex justify-content-between">
+            <span>{{ reader.username }}</span>
+            <span class="text-muted">{{ reader.num_reviews }} review{{ reader.num_reviews|pluralize }}</span>
+        </li>
     {% empty %}
-    <tr>
-        <td>There are no users available.</td>
-    </tr>
+        <li class="list-group-item text-muted">No readers found.</li>
     {% endfor %}
-</table>
+</ul>
 
-<div class="pagination">
-    <span class="step-links">
-        {% if users.has_previous %}
-        <a href="?page=1">&laquo; first</a>
-        <a href="?page={{ users.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ users.number }} of {{ users.paginator.num_pages }}.
-        </span>
-
-        {% if users.has_next %}
-        <a href="?page={{ users.next_page_number }}">next</a>
-        <a href="?page={{ users.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
-
-</body>
-</html>
+{% include "library/pagination.html" with page=users %}
