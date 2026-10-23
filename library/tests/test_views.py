@@ -96,6 +96,11 @@ class AccountTests(TestCase):
             with self.subTest(page=name):
                 self.assertTemplateUsed(self.client.get(reverse(name)), "library/base.html")
 
+    def test_login_page_has_no_dead_reset_link(self):
+        response = self.client.get(reverse("account_login"))
+        self.assertNotContains(response, "Forgot your password?")
+        self.assertContains(response, "Ask the site administrator")
+
     def test_sign_up_with_username_only(self):
         response = self.client.post(reverse("account_signup"), {
             "username": "newreader",
