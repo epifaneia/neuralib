@@ -89,6 +89,11 @@ EMBEDDING_MODEL = "gemini-embedding-001"
 # Each search spends one call of the free quota; these caps keep the demo inside it.
 SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY", "30"))
 SEMANTIC_SEARCHES_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_DAY", "500"))
+# The librarian. With GEMINI_API_KEY set it answers with the site's key, within these caps;
+# without it, each reader brings their own key, which stays in their browser.
+LIBRARIAN_MODEL = "gemini-3.5-flash-lite"
+LIBRARIAN_QUESTIONS_PER_READER_PER_DAY = int(os.environ.get("LIBRARIAN_QUESTIONS_PER_READER_PER_DAY", "10"))
+LIBRARIAN_QUESTIONS_PER_DAY = int(os.environ.get("LIBRARIAN_QUESTIONS_PER_DAY", "200"))
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

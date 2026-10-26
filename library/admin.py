@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.urls import path
 
 from .forms import CSVImportForm
-from .models import Book, Review
+from .models import Book, LibrarianAnswer, Review
 
 # CSV columns, in order. ISBN is optional (older files have 10 columns).
 CSV_COLUMNS = ["title", "description", "genre", "num_pages", "editorial", "year_edition",
@@ -62,6 +62,21 @@ class BookAdmin(admin.ModelAdmin):
             return redirect("admin:library_book_changelist")
         context = {**self.admin_site.each_context(request), "form": form, "title": "Import books from CSV"}
         return render(request, "admin/csv_form.html", context)
+
+
+@admin.register(LibrarianAnswer)
+class LibrarianAnswerAdmin(admin.ModelAdmin):
+    """The log of the librarian's answers: read-only, it is a record."""
+
+    list_display = ("created", "question", "picks", "dropped", "key", "model")
+    list_filter = ("key", "model")
+    search_fields = ("question",)
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(Review)

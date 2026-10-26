@@ -1,0 +1,21 @@
+{# The librarian's checked answer. Needs: picks ((book, reason) pairs), dropped, question. #}
+{% if picks %}
+    <div class="list-group mb-2">
+        {% for book, reason in picks %}
+            <div class="list-group-item d-flex gap-3">
+                {% if book.image_url %}<img src="{{ book.image_url }}" alt="" width="64" class="flex-shrink-0 align-self-start">{% endif %}
+                <div>
+                    <h2 class="h6 mb-1">{{ book.title }} <span class="text-muted fw-normal">· {{ book.writer }}</span></h2>
+                    <p class="mb-1">{{ reason }}</p>
+                    <a href="{% url 'catalog' %}?query={{ book.title|urlencode }}&amp;field=title" class="small">In the catalog</a>
+                    {% if book.read_online %} · <a href="{{ book.read_online }}" target="_blank" rel="noopener" class="small">Read online</a>{% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-secondary">Nothing in the catalog fits that question. Try asking it another way.</div>
+{% endif %}
+{% if dropped %}
+    <p class="small text-muted">The check removed {{ dropped }} suggestion{{ dropped|pluralize }} that {{ dropped|pluralize:"was,were" }} not in the catalog list or came without a reason.</p>
+{% endif %}

@@ -1,14 +1,24 @@
+import json
+import secrets
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.core.paginator import Paginator
 from django.db.models import Count
+from django.http import HttpResponseBadRequest, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
+from django.views.decorators.http import require_POST
 
-from .embeddings import EmbeddingError
+from . import librarian
+from .embeddings import DIMENSIONS, cached_query_vector, query_vector
 from .forms import ReviewForm, ReviewSearchForm, SearchForm, UserSearchForm
-from .models import Book, Review
-from .search import SearchLimitReached, semantic_search
+from .gemini import GeminiError, call, generated_text
+from .models import Book, LibrarianAnswer, Review
+from .search import SearchLimitReached, semantic_search, spend_one
 
 PAGE_SIZE = 5
 
@@ -53,7 +63,7 @@ def _book_context(request):
             except SearchLimitReached:
                 messages.info(request, "Today's AI searches are used up, so these results match the title only.")
                 books = books.filter(title__icontains=query)
-            except EmbeddingError:
+            except GeminiError:
                 messages.warning(request, "AI search is not available right now, so these results match the title only.")
                 books = books.filter(title__icontains=query)
         else:
@@ -107,3 +117,87 @@ def review_book(request, book_id):
         messages.success(request, "Review updated." if existing else "Review published.")
         return redirect("reviews")
     return render(request, "library/review_book.html", {"form": form, "book": book, "editing": existing is not None})
+
+
+# The librarian. With the site's key the page posts its form here and the server calls Gemini.
+# With a reader's own key the page's script calls Gemini from the browser, so the key never
+# reaches this server, and uses the two JSON views below for the closed list and the check.
+
+def _log(question, picks, dropped, key):
+    LibrarianAnswer.objects.create(question=question, picks=[b.pk for b, _ in picks], dropped=dropped,
+                                   model=settings.LIBRARIAN_MODEL, key=key)
+
+
+@login_required
+def ask_librarian(request):
+    context = {"site_key": bool(settings.GEMINI_API_KEY), "question": "", "picks": None, "dropped": 0,
+               "embedding_model": settings.EMBEDDING_MODEL, "dimensions": DIMENSIONS,
+               "question_max": librarian.QUESTION_MAX}
+    if request.method == "POST":
+        if not settings.GEMINI_API_KEY:
+            return HttpResponseBadRequest("This site has no key of its own: add yours on the AI key page.")
+        question = request.POST.get("question", "").strip()[:librarian.QUESTION_MAX]
+        context["question"] = question
+        if question and not spend_one(request, "librarian", settings.LIBRARIAN_QUESTIONS_PER_READER_PER_DAY,
+                                      settings.LIBRARIAN_QUESTIONS_PER_DAY):
+            messages.info(request, "Today's questions to the librarian are used up. You can use your own key from the AI key page.")
+        elif question:
+            try:
+                books = librarian.candidates(cached_query_vector(question) or query_vector(question))
+                answer = call(settings.LIBRARIAN_MODEL, "generateContent", librarian.request_body(question, books))
+                picks, dropped = librarian.check_picks(generated_text(answer), books)
+            except GeminiError:
+                messages.warning(request, "The librarian cannot answer right now. Try again in a while.")
+            else:
+                _log(question, picks, dropped, "site")
+                context.update(picks=picks, dropped=dropped)
+    return render(request, "library/librarian.html", context)
+
+
+def _json_body(request):
+    try:
+        data = json.loads(request.body)
+    except ValueError:
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+@login_required
+@require_POST
+def librarian_candidates(request):
+    """Reader's own key, step 1: the question's vector in, the closed list and the request to send to Gemini out."""
+    data = _json_body(request)
+    question = str(data.get("question", "")).strip()[:librarian.QUESTION_MAX]
+    vector = data.get("vector")
+    if not question or not isinstance(vector, list) or len(vector) != DIMENSIONS             or not all(isinstance(x, (int, float)) for x in vector):
+        return JsonResponse({"error": "A question and its vector are needed."}, status=400)
+    books = librarian.candidates(vector)
+    token = secrets.token_urlsafe(16)
+    cache.set(f"librarian:{token}", {"question": question, "ids": [b.pk for b in books], "user": request.user.pk}, 600)
+    return JsonResponse({"token": token, "model": settings.LIBRARIAN_MODEL,
+                         "body": librarian.request_body(question, books)})
+
+
+@login_required
+@require_POST
+def librarian_answer(request):
+    """Reader's own key, step 2: the model's raw answer in, checked against that same list, the page fragment out."""
+    data = _json_body(request)
+    key = f"librarian:{data.get('token', '')}"
+    pending = cache.get(key)
+    if not pending or pending["user"] != request.user.pk:
+        return JsonResponse({"error": "This question expired. Ask it again."}, status=400)
+    cache.delete(key)
+    found = Book.objects.in_bulk(pending["ids"])
+    books = [found[pk] for pk in pending["ids"] if pk in found]
+    picks, dropped = librarian.check_picks(str(data.get("text", "")), books)
+    _log(pending["question"], picks, dropped, "reader")
+    html = render_to_string("library/librarian_picks.html",
+                            {"picks": picks, "dropped": dropped, "question": pending["question"]}, request)
+    return JsonResponse({"html": html})
+
+
+@login_required
+def ai_key(request):
+    """Where a reader keeps their own Gemini key. It is stored by their browser only; this view just shows the page."""
+    return render(request, "library/ai_key.html")

@@ -8,7 +8,8 @@ from django.core.management import call_command
 from django.test import SimpleTestCase, TestCase, override_settings
 from django.urls import reverse
 
-from library.embeddings import DIMENSIONS, EmbeddingError, QuotaExceeded, book_text, embed
+from library.embeddings import DIMENSIONS, book_text, embed
+from library.gemini import GeminiError, QuotaExceeded
 from library.models import Book
 
 from .factories import make_book
@@ -54,13 +55,13 @@ class EmbedTests(SimpleTestCase):
     def test_unexpected_answer_is_an_error(self):
         short = io.BytesIO(json.dumps({"embeddings": [{"values": [0.1, 0.2]}]}).encode())
         with mock.patch("urllib.request.urlopen", return_value=short):
-            with self.assertRaises(EmbeddingError):
+            with self.assertRaises(GeminiError):
                 embed(["a"], "RETRIEVAL_QUERY")
 
     @override_settings(GEMINI_API_KEY="")
     def test_no_key_is_an_error_before_any_call(self):
         with mock.patch("urllib.request.urlopen") as urlopen:
-            with self.assertRaises(EmbeddingError):
+            with self.assertRaises(GeminiError):
                 embed(["a"], "RETRIEVAL_QUERY")
         urlopen.assert_not_called()
 

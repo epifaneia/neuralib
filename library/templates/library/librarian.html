@@ -1,0 +1,41 @@
+{% extends "library/base.html" %}
+{% load static %}
+{% block head_title %}Ask the librarian · Neuralib{% endblock head_title %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <h1 class="h3">Ask the librarian</h1>
+        <p class="text-muted">Say what you feel like reading. The librarian recommends up to three books, and only books in this catalog: the code checks every suggestion before you see it.</p>
+
+        <form method="post" id="librarian-form" class="mb-3"
+              data-site-key="{{ site_key|yesno:'true,false' }}"
+              data-embedding-model="{{ embedding_model }}" data-dimensions="{{ dimensions }}"
+              data-candidates-url="{% url 'librarian_candidates' %}" data-answer-url="{% url 'librarian_answer' %}">
+            {% csrf_token %}
+            <label class="form-label" for="question">Your question</label>
+            <textarea class="form-control mb-2" id="question" name="question" rows="3" maxlength="{{ question_max }}" required
+                      placeholder="Something short and funny to read on a train">{{ question }}</textarea>
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <button type="submit" class="btn btn-primary">Ask</button>
+                <span class="small text-muted" id="key-status">
+                    {% if site_key %}Answers with this site's key, a few questions a day.{% endif %}
+                    <a href="{% url 'ai_key' %}">Use your own Gemini key</a>
+                </span>
+            </div>
+        </form>
+
+        <div id="no-key" class="alert alert-info" hidden>
+            This site has no AI key of its own. Add your free Gemini key on the <a href="{% url 'ai_key' %}">AI key page</a>:
+            it stays in your browser and goes straight to Google.
+        </div>
+        <div id="librarian-status" class="text-muted small mb-2" role="status"></div>
+        <div id="librarian-results">
+            {% if picks is not None %}{% include "library/librarian_picks.html" %}{% endif %}
+        </div>
+        <p class="small text-muted mt-4">Your question is sent to Google's Gemini API, with the summaries of the books that may fit; nothing else about you is.</p>
+    </div>
+</div>
+{% endblock content %}
+{% block extra_body %}
+<script src="{% static 'library/librarian.js' %}"></script>
+{% endblock extra_body %}

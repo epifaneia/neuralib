@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 
-from library.embeddings import BATCH, EmbeddingError, QuotaExceeded, book_text, embed, text_hash
+from library.embeddings import BATCH, book_text, embed, text_hash
+from library.gemini import GeminiError, QuotaExceeded
 from library.models import Book
 
 
@@ -27,7 +28,7 @@ class Command(BaseCommand):
                 vectors = embed([text for _, text in chunk], "RETRIEVAL_DOCUMENT")
             except QuotaExceeded as error:
                 raise CommandError(f"{done} book(s) embedded before the quota ran out; run this again later.") from error
-            except EmbeddingError as error:
+            except GeminiError as error:
                 raise CommandError(str(error)) from error
             for (book, text), vector in zip(chunk, vectors):
                 book.embedding, book.embedding_hash = vector, text_hash(text)

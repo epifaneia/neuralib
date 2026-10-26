@@ -39,7 +39,8 @@ def book_fields(item):
     formats = item.get("formats", {})
     title = re.sub(r"\s+", " ", item["title"]).strip()
     # Some titles keep library catalog subfield codes: "Boston : $b a novel" -> "Boston: a novel".
-    title = re.sub(r"\s*:?\s*\$[a-z]\s+", ": ", title)
+    title = re.sub(r"(\s*:)*\s*\$[a-z]\s+", ": ", title)
+    title = re.sub(r"\s*:{2,}", ":", title)
     return {
         "title": title[:200],
         "description": summary.replace(GENERATED_NOTE, "").strip(),

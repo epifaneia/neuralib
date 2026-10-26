@@ -22,12 +22,14 @@
                     <li class="nav-item"><a class="nav-link" href="{% url 'reviews' %}">Reviews</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'users' %}">Readers</a></li>
                     {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'librarian' %}">Ask the librarian</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'add_review' %}">Write a review</a></li>
                     {% endif %}
                 </ul>
                 <div class="d-flex gap-2">
                     {% if user.is_authenticated %}
                         <span class="navbar-text me-2">{{ user.username }}</span>
+                        <a href="{% url 'ai_key' %}" class="btn btn-outline-secondary btn-sm">AI key</a>
                         {% if user.is_staff %}<a href="{% url 'admin:index' %}" class="btn btn-outline-dark btn-sm">Admin</a>{% endif %}
                         <a href="{% url 'account_logout' %}" class="btn btn-primary btn-sm">Log out</a>
                     {% else %}

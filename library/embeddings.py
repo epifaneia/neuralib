@@ -1,27 +1,13 @@
-"""Text -> vector with Gemini's embedding model, over its REST API.
-
-The key travels in a header, never in the URL. A rate-limit answer is not retried:
-the caller hears about it and the page says so, so a busy day cannot turn into a bill.
-"""
+"""Text -> vector with Gemini's embedding model."""
 import hashlib
-import json
-import urllib.error
-import urllib.request
 
 from django.conf import settings
 from django.core.cache import cache
 
+from .gemini import GeminiError, call
+
 DIMENSIONS = 768
 BATCH = 50
-API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:batchEmbedContents"
-
-
-class EmbeddingError(Exception):
-    """The embedding service could not answer (no key, network, bad response)."""
-
-
-class QuotaExceeded(EmbeddingError):
-    """The provider's free quota is used up for now."""
 
 
 def book_text(book):
@@ -34,25 +20,6 @@ def text_hash(text):
     return hashlib.sha256(f"{settings.EMBEDDING_MODEL}:{DIMENSIONS}:{text}".encode()).hexdigest()
 
 
-def _post(payload):
-    if not settings.GEMINI_API_KEY:
-        raise EmbeddingError("GEMINI_API_KEY is not set.")
-    request = urllib.request.Request(
-        API.format(model=settings.EMBEDDING_MODEL),
-        data=json.dumps(payload).encode(),
-        headers={"Content-Type": "application/json", "x-goog-api-key": settings.GEMINI_API_KEY},
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=60) as response:
-            return json.load(response)
-    except urllib.error.HTTPError as error:
-        if error.code == 429:
-            raise QuotaExceeded("The embedding quota is used up for now.") from error
-        raise EmbeddingError(f"Embedding request failed with HTTP {error.code}.") from error
-    except OSError as error:
-        raise EmbeddingError("The embedding service could not be reached.") from error
-
-
 def embed(texts, task):
     """Vectors for texts. task: RETRIEVAL_DOCUMENT for books, RETRIEVAL_QUERY for searches."""
     model = f"models/{settings.EMBEDDING_MODEL}"
@@ -60,10 +27,10 @@ def embed(texts, task):
     for start in range(0, len(texts), BATCH):
         requests = [{"model": model, "content": {"parts": [{"text": t}]}, "taskType": task,
                      "outputDimensionality": DIMENSIONS} for t in texts[start:start + BATCH]]
-        answer = _post({"requests": requests})
+        answer = call(settings.EMBEDDING_MODEL, "batchEmbedContents", {"requests": requests})
         batch = [e["values"] for e in answer.get("embeddings", [])]
         if len(batch) != len(requests) or any(len(v) != DIMENSIONS for v in batch):
-            raise EmbeddingError("The embedding service returned an unexpected answer.")
+            raise GeminiError("The embedding service returned an unexpected answer.")
         vectors += batch
     return vectors
 

@@ -41,6 +41,23 @@ class Book(models.Model):
         return self.title
 
 
+class LibrarianAnswer(models.Model):
+    """One question to the librarian and what passed the check. No reader is stored."""
+
+    question = models.TextField()
+    picks = models.JSONField(default=list, help_text="Ids of the books recommended, in order.")
+    dropped = models.PositiveSmallIntegerField(default=0, help_text="Picks the check removed: not in the list, no reason, repeated or over the limit.")
+    model = models.CharField(max_length=60)
+    key = models.CharField(max_length=10, choices=[("site", "Site key"), ("reader", "Reader's own key")])
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created"]
+
+    def __str__(self):
+        return self.question[:60]
+
+
 class Review(models.Model):
     """One review per reader and book, with a 1–5 rating."""
 
