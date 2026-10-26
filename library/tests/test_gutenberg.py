@@ -49,6 +49,10 @@ class BookFieldsTests(SimpleTestCase):
             with self.subTest(**changes):
                 self.assertIsNone(book_fields(item(**changes)))
 
+    def test_catalog_subfield_codes_are_removed_from_titles(self):
+        self.assertEqual(book_fields(item(title="Boston : $b a novel"))["title"], "Boston: a novel")
+        self.assertEqual(book_fields(item(title="A $100 bet"))["title"], "A $100 bet")
+
     def test_no_authors_means_anonymous(self):
         self.assertEqual(book_fields(item(authors=[]))["writer"], "Anonymous")
 

@@ -1,6 +1,9 @@
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from pgvector.django import HnswIndex, VectorField
+
+from .embeddings import DIMENSIONS
 
 
 class Book(models.Model):
@@ -23,9 +26,16 @@ class Book(models.Model):
     image_url = models.URLField(blank=True, null=True)
     read_online = models.URLField(blank=True, null=True)
     download_link = models.URLField(blank=True, null=True)
+    # Semantic search. The hash says what text the vector was made from, so only changed books are embedded again.
+    embedding = VectorField(dimensions=DIMENSIONS, null=True, blank=True, editable=False)
+    embedding_hash = models.CharField(max_length=64, blank=True, editable=False)
 
     class Meta:
         ordering = ["title"]
+        indexes = [
+            HnswIndex(name="book_embedding_hnsw", fields=["embedding"], m=16, ef_construction=64,
+                      opclasses=["vector_cosine_ops"]),
+        ]
 
     def __str__(self):
         return self.title

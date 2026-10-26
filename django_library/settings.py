@@ -1,8 +1,9 @@
 """Settings for Neuralib.
 
 The same code runs in two places:
-- locally: SQLite and the values in an optional `.env` file (see `.env.example`);
-- on Heroku: Postgres from DATABASE_URL and config vars set with `heroku config:set`.
+- locally: the values in a `.env` file (see `.env.example`);
+- on Heroku: config vars set with `heroku config:set`.
+Both need DATABASE_URL pointing to Postgres with pgvector (Neon's free plan works).
 """
 
 import os
@@ -74,15 +75,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "django_library.wsgi.application"
 
-# Local: SQLite. Heroku: DATABASE_URL (Postgres, with SSL).
+# Postgres everywhere: semantic search stores its vectors with pgvector.
+if not os.environ.get("DATABASE_URL"):
+    raise ImproperlyConfigured(
+        "Set DATABASE_URL to a Postgres database with pgvector (Neon's free plan works). See .env.example.")
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
-        ssl_require=ON_HEROKU,
-    )
+    "default": dj_database_url.config(conn_max_age=600, conn_health_checks=True, ssl_require=ON_HEROKU)
 }
+
+# Semantic search: Gemini embeddings. Without a key the catalog still works, by keyword only.
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+EMBEDDING_MODEL = "gemini-embedding-001"
+# Each search spends one call of the free quota; these caps keep the demo inside it.
+SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY", "30"))
+SEMANTIC_SEARCHES_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_DAY", "500"))
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

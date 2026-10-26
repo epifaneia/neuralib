@@ -18,6 +18,9 @@
     </div>
 </form>
 
+{% if semantic %}
+    <p class="small text-muted">Closest in meaning to your search first. Your search is sent to Google's Gemini API to be turned into a vector; nothing else about you is.</p>
+{% endif %}
 <div class="list-group mb-3">
     {% for book in books %}
         <div class="list-group-item">

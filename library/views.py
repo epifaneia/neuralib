@@ -5,8 +5,10 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
 
+from .embeddings import EmbeddingError
 from .forms import ReviewForm, ReviewSearchForm, SearchForm, UserSearchForm
 from .models import Book, Review
+from .search import SearchLimitReached, semantic_search
 
 PAGE_SIZE = 5
 
@@ -41,8 +43,22 @@ def _search(request, form_class, queryset, lookups):
 
 
 def _book_context(request):
-    form, books, query = _search(request, SearchForm, Book.objects.all(), BOOK_LOOKUPS)
-    return {"form": form, "books": _paginate(request, books), "query": query}
+    form = SearchForm(request.GET or None)
+    books, query, semantic = Book.objects.all(), "", False
+    if form.is_valid():
+        query, field = form.cleaned_data["query"], form.cleaned_data["field"]
+        if field == "meaning":
+            try:
+                books, semantic = semantic_search(request, query), True
+            except SearchLimitReached:
+                messages.info(request, "Today's AI searches are used up, so these results match the title only.")
+                books = books.filter(title__icontains=query)
+            except EmbeddingError:
+                messages.warning(request, "AI search is not available right now, so these results match the title only.")
+                books = books.filter(title__icontains=query)
+        else:
+            books = books.filter(**{BOOK_LOOKUPS[field]: query})
+    return {"form": form, "books": _paginate(request, books), "query": query, "semantic": semantic}
 
 
 def library_home(request):
