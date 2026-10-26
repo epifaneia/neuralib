@@ -4,30 +4,22 @@ from django.db import models
 
 
 class Book(models.Model):
-    GENRE_CHOICES = (
-        ("folk_tales", "Folk tales"),
-        ("fantasy_magic", "Fantasy and magic"),
-        ("african_history", "History of African countries"),
-        ("children_10_12", "Children's literature for 10 to 12 year olds"),
-        ("french_literature", "French literature"),
-        ("spanish_literature", "Spanish literature"),
-        ("science_fiction_new", "Science fiction"),
-        ("humorous_fiction", "Humorous fiction"),
-        ("horror_fiction", "Horror fiction"),
-        ("travel_literature", "Travel literature"),
-        ("foreign_lit_18th", "Foreign literature up to the 18th century"),
-        ("fantastic_fiction", "Fantastic fiction"),
-        ("horror_pocketbooks", "Horror pocketbooks"),
-    )
+    """A catalog entry. Books imported from Project Gutenberg carry its id; the
+    edition fields (pages, editorial, year) stay empty for them."""
 
     title = models.CharField(max_length=200)
     description = models.TextField()
-    genre = models.CharField(max_length=50, choices=GENRE_CHOICES)
-    num_pages = models.PositiveIntegerField()
-    editorial = models.CharField(max_length=100)
-    year_edition = models.PositiveIntegerField()
-    writer = models.CharField(max_length=100)
+    summary_is_generated = models.BooleanField(
+        default=False, help_text="The description is an automatically generated summary (Project Gutenberg's).")
+    genre = models.CharField("category", max_length=200, blank=True)
+    subjects = models.TextField(blank=True)
+    language = models.CharField(max_length=8, blank=True, db_index=True)
+    num_pages = models.PositiveIntegerField(null=True, blank=True)
+    editorial = models.CharField(max_length=100, blank=True)
+    year_edition = models.PositiveIntegerField(null=True, blank=True)
+    writer = models.CharField(max_length=200)
     isbn = models.CharField("ISBN", max_length=17, blank=True, db_index=True)
+    gutenberg_id = models.PositiveIntegerField(null=True, blank=True, unique=True)
     image_url = models.URLField(blank=True, null=True)
     read_online = models.URLField(blank=True, null=True)
     download_link = models.URLField(blank=True, null=True)

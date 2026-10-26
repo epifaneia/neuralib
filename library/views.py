@@ -14,8 +14,9 @@ PAGE_SIZE = 5
 BOOK_LOOKUPS = {
     "title": "title__icontains",
     "writer": "writer__icontains",
+    "subjects": "subjects__icontains",
     "genre": "genre__icontains",
-    "editorial": "editorial__icontains",
+    "language": "language__iexact",
     "isbn": "isbn__icontains",
 }
 REVIEW_LOOKUPS = {

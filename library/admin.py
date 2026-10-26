@@ -23,8 +23,8 @@ def import_books(text):
             errors.append(f"Line {line}: expected {len(CSV_COLUMNS) - 1} or {len(CSV_COLUMNS)} columns, got {len(row)}.")
             continue
         data = dict(zip(CSV_COLUMNS, (cell.strip() for cell in row)))
-        for url_field in ("image_url", "read_online", "download_link"):
-            data[url_field] = data[url_field] or None
+        for optional in ("image_url", "read_online", "download_link", "num_pages", "year_edition"):
+            data[optional] = data[optional] or None
         try:
             book = Book(**data)
             book.full_clean()
@@ -39,9 +39,9 @@ def import_books(text):
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     change_list_template = "admin/book_changelist.html"
-    list_display = ("title", "writer", "genre", "year_edition", "isbn")
-    list_filter = ("genre",)
-    search_fields = ("title", "writer", "editorial", "isbn")
+    list_display = ("title", "writer", "language", "genre", "gutenberg_id")
+    list_filter = ("language", "summary_is_generated")
+    search_fields = ("title", "writer", "editorial", "isbn", "subjects")
 
     def get_urls(self):
         custom = [path("import-csv/", self.admin_site.admin_view(self.import_csv), name="library_book_import_csv")]

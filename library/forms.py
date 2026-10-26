@@ -9,8 +9,9 @@ class SearchForm(forms.Form):
     FIELDS = (
         ("title", "Title"),
         ("writer", "Writer"),
-        ("genre", "Genre"),
-        ("editorial", "Editorial"),
+        ("subjects", "Subject"),
+        ("genre", "Category"),
+        ("language", "Language"),
         ("isbn", "ISBN"),
     )
     query = forms.CharField(label="Search", max_length=200)

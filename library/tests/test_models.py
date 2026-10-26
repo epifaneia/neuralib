@@ -16,11 +16,14 @@ class BookTests(TestCase):
         make_book(title="Animal Farm")
         self.assertEqual([b.title for b in Book.objects.all()], ["Animal Farm", "Zorba"])
 
-    def test_unknown_genre_is_rejected(self):
-        book = Book(title="X", description="X", genre="cooking", num_pages=1,
-                    editorial="X", year_edition=2000, writer="X")
-        with self.assertRaises(ValidationError):
-            book.full_clean()
+    def test_edition_fields_are_optional(self):
+        # Project Gutenberg gives no pages, editorial or edition year.
+        Book(title="X", description="X", writer="X").full_clean()
+
+    def test_gutenberg_id_is_unique(self):
+        make_book(gutenberg_id=2000)
+        with self.assertRaises(IntegrityError):
+            make_book(title="Other", gutenberg_id=2000)
 
 
 class ReviewTests(TestCase):

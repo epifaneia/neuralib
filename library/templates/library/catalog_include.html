@@ -28,12 +28,16 @@
                         <div class="col-sm-2"><img src="{{ book.image_url }}" alt="Cover of {{ book.title }}" class="img-fluid"></div>
                     {% endif %}
                     <div class="col">
-                        <p>{{ book.description }}</p>
+                        <p class="mb-1">{{ book.description }}</p>
+                        {% if book.summary_is_generated %}<p class="small text-muted">Summary generated automatically by Project Gutenberg.</p>{% endif %}
                         <dl class="row small mb-0">
-                            <dt class="col-sm-3">Genre</dt><dd class="col-sm-9">{{ book.get_genre_display }}</dd>
-                            <dt class="col-sm-3">Pages</dt><dd class="col-sm-9">{{ book.num_pages }}</dd>
-                            <dt class="col-sm-3">Editorial</dt><dd class="col-sm-9">{{ book.editorial }} ({{ book.year_edition }})</dd>
+                            {% if book.genre %}<dt class="col-sm-3">Category</dt><dd class="col-sm-9">{{ book.genre }}</dd>{% endif %}
+                            {% if book.subjects %}<dt class="col-sm-3">Subjects</dt><dd class="col-sm-9">{{ book.subjects }}</dd>{% endif %}
+                            {% if book.language %}<dt class="col-sm-3">Language</dt><dd class="col-sm-9">{{ book.language|upper }}</dd>{% endif %}
+                            {% if book.num_pages %}<dt class="col-sm-3">Pages</dt><dd class="col-sm-9">{{ book.num_pages }}</dd>{% endif %}
+                            {% if book.editorial %}<dt class="col-sm-3">Editorial</dt><dd class="col-sm-9">{{ book.editorial }}{% if book.year_edition %} ({{ book.year_edition }}){% endif %}</dd>{% endif %}
                             {% if book.isbn %}<dt class="col-sm-3">ISBN</dt><dd class="col-sm-9">{{ book.isbn }}</dd>{% endif %}
+                            {% if book.gutenberg_id %}<dt class="col-sm-3">Source</dt><dd class="col-sm-9"><a href="https://www.gutenberg.org/ebooks/{{ book.gutenberg_id }}" target="_blank" rel="noopener">Project Gutenberg #{{ book.gutenberg_id }}</a></dd>{% endif %}
                             {% if book.read_online %}<dt class="col-sm-3">Read online</dt><dd class="col-sm-9"><a href="{{ book.read_online }}" target="_blank" rel="noopener">Open</a></dd>{% endif %}
                             {% if book.download_link %}<dt class="col-sm-3">Download</dt><dd class="col-sm-9"><a href="{{ book.download_link }}" target="_blank" rel="noopener">Download</a></dd>{% endif %}
                         </dl>
