@@ -5,7 +5,9 @@
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <h1 class="h3">Ask the librarian</h1>
-        <p class="text-muted">Say what you feel like reading. The librarian recommends up to three books, and only books in this catalog: the code checks every suggestion before you see it.</p>
+        <p class="text-muted">Say what you feel like reading. The librarian answers twice, and only with books in this catalog:
+            once from the books' summaries, quoting the line that backs each pick (the code checks the quote is really there),
+            and once from what the model knows about the books beyond them.</p>
 
         <form method="post" id="librarian-form" class="mb-3"
               data-site-key="{{ site_key|yesno:'true,false' }}"
@@ -30,7 +32,7 @@
         </div>
         <div id="librarian-status" class="text-muted small mb-2" role="status"></div>
         <div id="librarian-results">
-            {% if picks is not None %}{% include "library/librarian_picks.html" %}{% endif %}
+            {% if cards is not None %}{% include "library/librarian_picks.html" %}{% endif %}
         </div>
         <p class="small text-muted mt-4">Your question is sent to Google's Gemini API, with the summaries of the books that may fit; nothing else about you is.</p>
     </div>

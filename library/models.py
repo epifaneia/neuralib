@@ -45,8 +45,11 @@ class LibrarianAnswer(models.Model):
     """One question to the librarian and what passed the check. No reader is stored."""
 
     question = models.TextField()
-    picks = models.JSONField(default=list, help_text="Ids of the books recommended, in order.")
-    dropped = models.PositiveSmallIntegerField(default=0, help_text="Picks the check removed: not in the list, no reason, repeated or over the limit.")
+    picks = models.JSONField(default=list, help_text="From the summaries: ids of the books recommended, in order.")
+    dropped = models.PositiveSmallIntegerField(default=0, help_text="From the summaries: picks the check removed (not listed, no reason, quote not in the summary, repeated or over the limit).")
+    knowledge_picks = models.JSONField(default=list, help_text="From general knowledge: ids of the books recommended, in order.")
+    knowledge_dropped = models.PositiveSmallIntegerField(default=0, help_text="From general knowledge: picks the check removed.")
+    knowledge_failed = models.BooleanField(default=False, help_text="The general-knowledge pass could not run.")
     model = models.CharField(max_length=60)
     key = models.CharField(max_length=10, choices=[("site", "Site key"), ("reader", "Reader's own key")])
     created = models.DateTimeField(auto_now_add=True)

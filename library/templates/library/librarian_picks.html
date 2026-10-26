@@ -1,14 +1,23 @@
-{# The librarian's checked answer. Needs: picks ((book, reason) pairs), dropped, question. #}
-{% if picks %}
+{# The librarian's checked answer. Needs: cards (book, reason, quote, knowledge), dropped, knowledge_failed. #}
+{% if cards %}
     <div class="list-group mb-2">
-        {% for book, reason in picks %}
+        {% for card in cards %}
             <div class="list-group-item d-flex gap-3">
-                {% if book.image_url %}<img src="{{ book.image_url }}" alt="" width="64" class="flex-shrink-0 align-self-start">{% endif %}
-                <div>
-                    <h2 class="h6 mb-1">{{ book.title }} <span class="text-muted fw-normal">· {{ book.writer }}</span></h2>
-                    <p class="mb-1">{{ reason }}</p>
-                    <a href="{% url 'catalog' %}?query={{ book.title|urlencode }}&amp;field=title" class="small">In the catalog</a>
-                    {% if book.read_online %} · <a href="{{ book.read_online }}" target="_blank" rel="noopener" class="small">Read online</a>{% endif %}
+                {% if card.book.image_url %}<img src="{{ card.book.image_url }}" alt="" width="64" class="flex-shrink-0 align-self-start">{% endif %}
+                <div class="flex-grow-1">
+                    <h2 class="h6 mb-2">{{ card.book.title }} <span class="text-muted fw-normal">· {{ card.book.writer }}</span></h2>
+                    {% if card.reason %}
+                        <p class="small text-uppercase text-success fw-semibold mb-1">From its summary</p>
+                        <p class="mb-1">{{ card.reason }}</p>
+                        <blockquote class="small text-muted border-start ps-2 mb-2">“{{ card.quote }}”</blockquote>
+                    {% endif %}
+                    {% if card.knowledge %}
+                        <p class="small text-uppercase text-secondary fw-semibold mb-1">What the librarian also knows</p>
+                        <p class="mb-1">{{ card.knowledge }}</p>
+                        <p class="small text-muted mb-2">From the model's general knowledge; not checked against the catalog.</p>
+                    {% endif %}
+                    <a href="{% url 'catalog' %}?query={{ card.book.title|urlencode }}&amp;field=title" class="small">In the catalog</a>
+                    {% if card.book.read_online %} · <a href="{{ card.book.read_online }}" target="_blank" rel="noopener" class="small">Read online</a>{% endif %}
                 </div>
             </div>
         {% endfor %}
@@ -17,5 +26,8 @@
     <div class="alert alert-secondary">Nothing in the catalog fits that question. Try asking it another way.</div>
 {% endif %}
 {% if dropped %}
-    <p class="small text-muted">The check removed {{ dropped }} suggestion{{ dropped|pluralize }} that {{ dropped|pluralize:"was,were" }} not in the catalog list or came without a reason.</p>
+    <p class="small text-muted mb-1">The check removed {{ dropped }} suggestion{{ dropped|pluralize }}: not in the list, without a reason, or with a quote that is not in the book's summary.</p>
+{% endif %}
+{% if knowledge_failed %}
+    <p class="small text-muted mb-1">The general-knowledge pass could not run this time; these come from the summaries only.</p>
 {% endif %}

@@ -121,16 +121,24 @@ def review_book(request, book_id):
 
 # The librarian. With the site's key the page posts its form here and the server calls Gemini.
 # With a reader's own key the page's script calls Gemini from the browser, so the key never
-# reaches this server, and uses the two JSON views below for the closed list and the check.
+# reaches this server, and uses the two JSON views below for the closed lists and the checks.
 
-def _log(question, picks, dropped, key):
-    LibrarianAnswer.objects.create(question=question, picks=[b.pk for b, _ in picks], dropped=dropped,
-                                   model=settings.LIBRARIAN_MODEL, key=key)
+def _answer(question, summary_text, summary_books, knowledge_text, knowledge_books, key):
+    """Check both passes, log them, and return what the page shows. knowledge_text is None if that pass failed."""
+    summary_picks, dropped = librarian.check_summary_picks(summary_text, summary_books)
+    knowledge_picks, knowledge_dropped = ([], 0) if knowledge_text is None else \
+        librarian.check_knowledge_picks(knowledge_text, knowledge_books)
+    LibrarianAnswer.objects.create(
+        question=question, picks=[b.pk for b, _, _ in summary_picks], dropped=dropped,
+        knowledge_picks=[b.pk for b, _ in knowledge_picks], knowledge_dropped=knowledge_dropped,
+        knowledge_failed=knowledge_text is None, model=settings.LIBRARIAN_MODEL, key=key)
+    return {"cards": librarian.cards(summary_picks, knowledge_picks), "dropped": dropped + knowledge_dropped,
+            "knowledge_failed": knowledge_text is None}
 
 
 @login_required
 def ask_librarian(request):
-    context = {"site_key": bool(settings.GEMINI_API_KEY), "question": "", "picks": None, "dropped": 0,
+    context = {"site_key": bool(settings.GEMINI_API_KEY), "question": "", "cards": None,
                "embedding_model": settings.EMBEDDING_MODEL, "dimensions": DIMENSIONS,
                "question_max": librarian.QUESTION_MAX}
     if request.method == "POST":
@@ -143,14 +151,20 @@ def ask_librarian(request):
             messages.info(request, "Today's questions to the librarian are used up. You can use your own key from the AI key page.")
         elif question:
             try:
-                books = librarian.candidates(cached_query_vector(question) or query_vector(question))
-                answer = call(settings.LIBRARIAN_MODEL, "generateContent", librarian.request_body(question, books))
-                picks, dropped = librarian.check_picks(generated_text(answer), books)
+                vector = cached_query_vector(question) or query_vector(question)
+                summary_books = librarian.candidates(vector, librarian.SUMMARY_CANDIDATES)
+                knowledge_books = librarian.candidates(vector, librarian.KNOWLEDGE_CANDIDATES)
+                summary_text = generated_text(call(settings.LIBRARIAN_MODEL, "generateContent",
+                                                   librarian.summary_request(question, summary_books)))
             except GeminiError:
                 messages.warning(request, "The librarian cannot answer right now. Try again in a while.")
             else:
-                _log(question, picks, dropped, "site")
-                context.update(picks=picks, dropped=dropped)
+                try:
+                    knowledge_text = generated_text(call(settings.LIBRARIAN_MODEL, "generateContent",
+                                                         librarian.knowledge_request(question, knowledge_books)))
+                except GeminiError:
+                    knowledge_text = None
+                context.update(_answer(question, summary_text, summary_books, knowledge_text, knowledge_books, "site"))
     return render(request, "library/librarian.html", context)
 
 
@@ -162,39 +176,50 @@ def _json_body(request):
     return data if isinstance(data, dict) else {}
 
 
+def _is_vector(value):
+    return isinstance(value, list) and len(value) == DIMENSIONS and all(isinstance(x, (int, float)) for x in value)
+
+
 @login_required
 @require_POST
 def librarian_candidates(request):
-    """Reader's own key, step 1: the question's vector in, the closed list and the request to send to Gemini out."""
+    """Reader's own key, step 1: the question's vector in; the closed lists and both requests for Gemini out."""
     data = _json_body(request)
     question = str(data.get("question", "")).strip()[:librarian.QUESTION_MAX]
     vector = data.get("vector")
-    if not question or not isinstance(vector, list) or len(vector) != DIMENSIONS             or not all(isinstance(x, (int, float)) for x in vector):
+    if not question or not _is_vector(vector):
         return JsonResponse({"error": "A question and its vector are needed."}, status=400)
-    books = librarian.candidates(vector)
+    summary_books = librarian.candidates(vector, librarian.SUMMARY_CANDIDATES)
+    knowledge_books = librarian.candidates(vector, librarian.KNOWLEDGE_CANDIDATES)
     token = secrets.token_urlsafe(16)
-    cache.set(f"librarian:{token}", {"question": question, "ids": [b.pk for b in books], "user": request.user.pk}, 600)
+    cache.set(f"librarian:{token}", {"question": question, "user": request.user.pk,
+                                     "summary_ids": [b.pk for b in summary_books],
+                                     "knowledge_ids": [b.pk for b in knowledge_books]}, 600)
     return JsonResponse({"token": token, "model": settings.LIBRARIAN_MODEL,
-                         "body": librarian.request_body(question, books)})
+                         "summary_body": librarian.summary_request(question, summary_books),
+                         "knowledge_body": librarian.knowledge_request(question, knowledge_books)})
+
+
+def _books(ids):
+    found = Book.objects.in_bulk(ids)
+    return [found[pk] for pk in ids if pk in found]
 
 
 @login_required
 @require_POST
 def librarian_answer(request):
-    """Reader's own key, step 2: the model's raw answer in, checked against that same list, the page fragment out."""
+    """Reader's own key, step 2: the model's raw answers in, checked against those same lists; the page fragment out.
+    A knowledge_text of null means that pass failed in the browser."""
     data = _json_body(request)
     key = f"librarian:{data.get('token', '')}"
     pending = cache.get(key)
     if not pending or pending["user"] != request.user.pk:
         return JsonResponse({"error": "This question expired. Ask it again."}, status=400)
     cache.delete(key)
-    found = Book.objects.in_bulk(pending["ids"])
-    books = [found[pk] for pk in pending["ids"] if pk in found]
-    picks, dropped = librarian.check_picks(str(data.get("text", "")), books)
-    _log(pending["question"], picks, dropped, "reader")
-    html = render_to_string("library/librarian_picks.html",
-                            {"picks": picks, "dropped": dropped, "question": pending["question"]}, request)
-    return JsonResponse({"html": html})
+    knowledge_text = data.get("knowledge_text")
+    shown = _answer(pending["question"], str(data.get("summary_text", "")), _books(pending["summary_ids"]),
+                    None if knowledge_text is None else str(knowledge_text), _books(pending["knowledge_ids"]), "reader")
+    return JsonResponse({"html": render_to_string("library/librarian_picks.html", shown, request)})
 
 
 @login_required

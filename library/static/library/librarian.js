@@ -69,6 +69,11 @@
     });
   }
 
+  function textOf(answer) {
+    var parts = (((answer.candidates || [])[0] || {}).content || {}).parts || [];
+    return (parts[0] || {}).text || "";
+  }
+
   function neuralib(url, data) {
     return fetch(url, {
       method: "POST",
@@ -103,11 +108,13 @@
       return neuralib(form.dataset.candidatesUrl, { question: question, vector: answer.embedding.values });
     }).then(function (pending) {
       statusLine.textContent = "Asking the librarian…";
-      // 3. The model picks, from Google with the reader's key.
-      return gemini(pending.model, "generateContent", pending.body).then(function (answer) {
-        var parts = (((answer.candidates || [])[0] || {}).content || {}).parts || [];
-        // 4. Neuralib checks the picks against the same list and returns what passed.
-        return neuralib(form.dataset.answerUrl, { token: pending.token, text: (parts[0] || {}).text || "" });
+      // 3. The model picks twice, from Google with the reader's key: from the summaries and from what it knows.
+      //    The second pass may fail on its own; the first one is the answer.
+      var summary = gemini(pending.model, "generateContent", pending.summary_body).then(textOf);
+      var knowledge = gemini(pending.model, "generateContent", pending.knowledge_body).then(textOf, function () { return null; });
+      return Promise.all([summary, knowledge]).then(function (texts) {
+        // 4. Neuralib checks both against the same lists and returns what passed.
+        return neuralib(form.dataset.answerUrl, { token: pending.token, summary_text: texts[0], knowledge_text: texts[1] });
       });
     }).then(function (checked) {
       statusLine.textContent = "";

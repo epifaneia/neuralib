@@ -68,8 +68,8 @@ class BookAdmin(admin.ModelAdmin):
 class LibrarianAnswerAdmin(admin.ModelAdmin):
     """The log of the librarian's answers: read-only, it is a record."""
 
-    list_display = ("created", "question", "picks", "dropped", "key", "model")
-    list_filter = ("key", "model")
+    list_display = ("created", "question", "picks", "dropped", "knowledge_picks", "knowledge_dropped", "key", "model")
+    list_filter = ("key", "model", "knowledge_failed")
     search_fields = ("question",)
 
     def has_add_permission(self, request):
