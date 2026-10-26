@@ -1,0 +1,364 @@
+{
+ "date": "2026-10-26T12:42:44",
+ "embedding_model": "gemini-embedding-001",
+ "librarian_model": null,
+ "summary_candidates": 12,
+ "knowledge_candidates": 40,
+ "totals": {
+  "questions": 36,
+  "answerable": 34,
+  "unanswerable": 2,
+  "search_hit_at_5": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_hit_at_12": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_hit_at_40": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_mrr_at_40": 0.971
+ },
+ "results": [
+  {
+   "question": "Un detective excéntrico que resuelve crímenes en Londres con la ayuda de su amigo médico",
+   "language": "es",
+   "expected": [
+    155,
+    200,
+    244
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2
+  },
+  {
+   "question": "A Belgian detective obsessed with order solves a murder in an English country house",
+   "language": "en",
+   "expected": [
+    216,
+    219,
+    221,
+    251
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un científico crea una criatura con partes de cadáveres y luego la abandona",
+   "language": "es",
+   "expected": [
+    152
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A man drinks a potion that splits him into a respectable doctor and a violent double",
+   "language": "en",
+   "expected": [
+    73,
+    160,
+    268
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un hombre viaja al futuro lejano y descubre que la humanidad se ha dividido en dos especies",
+   "language": "es",
+   "expected": [
+    227
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A sailor is wrongly imprisoned, escapes, finds a fortune and takes revenge on those who betrayed him",
+   "language": "en",
+   "expected": [
+    170
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un capitán obsesionado persigue por los mares a una ballena blanca",
+   "language": "es",
+   "expected": [
+    153
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A family is shipwrecked and has to survive on a deserted island",
+   "language": "en",
+   "expected": [
+    245
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Una niña cae por una madriguera y llega a un mundo absurdo siguiendo a un conejo blanco",
+   "language": "es",
+   "expected": [
+    154
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A girl from Kansas is carried away by a cyclone to a magical land and follows a yellow road",
+   "language": "en",
+   "expected": [
+    194
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un niño que no quiere crecer se lleva a unos hermanos a una isla con piratas y hadas",
+   "language": "es",
+   "expected": [
+    238
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A poor student murders a pawnbroker and is tormented by guilt",
+   "language": "en",
+   "expected": [
+    1,
+    166
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Dos jóvenes de familias enemigas se enamoran y acaban muriendo",
+   "language": "es",
+   "expected": [
+    157,
+    159
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A Danish prince wants to avenge his father, murdered by his uncle",
+   "language": "en",
+   "expected": [
+    68,
+    159
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un hidalgo enloquece de tanto leer libros de caballerías y sale a buscar aventuras",
+   "language": "es",
+   "expected": [
+    4
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un niño pobre sirve a varios amos y sobrevive con picardía en la España del siglo XVI",
+   "language": "es",
+   "expected": [
+    19,
+    128
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un poeta pasea por los campos de Andalucía con su burro",
+   "language": "es",
+   "expected": [
+    48,
+    82
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "An orphan girl is sent by mistake to an elderly brother and sister who had asked for a boy",
+   "language": "en",
+   "expected": [
+    211
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Four sisters grow up in New England while their father is away at war",
+   "language": "en",
+   "expected": [
+    168
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Una institutriz cuida de dos niños en una casa de campo y cree que los acechan fantasmas",
+   "language": "es",
+   "expected": [
+    222
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A Transylvanian count travels to England to spread the curse of the undead",
+   "language": "en",
+   "expected": [
+    158
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un millonario misterioso da fiestas en Long Island esperando reencontrar a su antiguo amor",
+   "language": "es",
+   "expected": [
+    172
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A young man stays handsome forever while his portrait grows old and shows his sins",
+   "language": "en",
+   "expected": [
+    169
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Una mujer encerrada en un cuarto empieza a ver figuras en el papel pintado de la pared",
+   "language": "es",
+   "expected": [
+    178
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "An ex-convict who stole bread rebuilds his life while a relentless police inspector hunts him",
+   "language": "en",
+   "expected": [
+    2,
+    83
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2
+  },
+  {
+   "question": "Novela sobre la guerra de 1914 y una familia dividida entre Francia y Alemania",
+   "language": "es",
+   "expected": [
+    44
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "La batalla naval de 1805 contada por un muchacho que estuvo a bordo",
+   "language": "es",
+   "expected": [
+    117
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A Spanish soldier's eyewitness account of how Cortés conquered Mexico",
+   "language": "en",
+   "expected": [
+    104
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un tratado sobre cómo un gobernante debe conservar el poder aunque tenga que ser cruel",
+   "language": "es",
+   "expected": [
+    180
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A Roman emperor's private reflections on Stoic philosophy and how to live well",
+   "language": "en",
+   "expected": [
+    173
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Cuentos de un autor uruguayo sobre la selva, la locura y la muerte",
+   "language": "es",
+   "expected": [
+    36
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "A man is arrested one morning and prosecuted by a court whose charges he never learns",
+   "language": "en",
+   "expected": [
+    111
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Leyendas sobre un palacio árabe de Granada",
+   "language": "es",
+   "expected": [
+    105,
+    120
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un libro de recetas de cocina tradicional",
+   "language": "es",
+   "expected": [
+    141
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1
+  },
+  {
+   "question": "Un manual práctico para aprender a programar en Python",
+   "language": "es",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null
+  },
+  {
+   "question": "A repair guide for modern electric cars",
+   "language": "en",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null
+  }
+ ]
+}

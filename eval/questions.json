@@ -1,0 +1,267 @@
+{
+ "about": "Questions written by hand, describing each book without its title, with the Gutenberg ids of the books that answer them. An empty list means nothing in the catalog should be recommended.",
+ "questions": [
+  {
+   "question": "Un detective excéntrico que resuelve crímenes en Londres con la ayuda de su amigo médico",
+   "language": "es",
+   "expected": [
+    244,
+    1661,
+    2852
+   ]
+  },
+  {
+   "question": "A Belgian detective obsessed with order solves a murder in an English country house",
+   "language": "en",
+   "expected": [
+    863,
+    61262,
+    58866,
+    69087
+   ]
+  },
+  {
+   "question": "Un científico crea una criatura con partes de cadáveres y luego la abandona",
+   "language": "es",
+   "expected": [
+    84
+   ]
+  },
+  {
+   "question": "A man drinks a potion that splits him into a respectable doctor and a violent double",
+   "language": "en",
+   "expected": [
+    42,
+    43,
+    62627
+   ]
+  },
+  {
+   "question": "Un hombre viaja al futuro lejano y descubre que la humanidad se ha dividido en dos especies",
+   "language": "es",
+   "expected": [
+    35
+   ]
+  },
+  {
+   "question": "A sailor is wrongly imprisoned, escapes, finds a fortune and takes revenge on those who betrayed him",
+   "language": "en",
+   "expected": [
+    1184
+   ]
+  },
+  {
+   "question": "Un capitán obsesionado persigue por los mares a una ballena blanca",
+   "language": "es",
+   "expected": [
+    2701
+   ]
+  },
+  {
+   "question": "A family is shipwrecked and has to survive on a deserted island",
+   "language": "en",
+   "expected": [
+    78017
+   ]
+  },
+  {
+   "question": "Una niña cae por una madriguera y llega a un mundo absurdo siguiendo a un conejo blanco",
+   "language": "es",
+   "expected": [
+    11
+   ]
+  },
+  {
+   "question": "A girl from Kansas is carried away by a cyclone to a magical land and follows a yellow road",
+   "language": "en",
+   "expected": [
+    55
+   ]
+  },
+  {
+   "question": "Un niño que no quiere crecer se lleva a unos hermanos a una isla con piratas y hadas",
+   "language": "es",
+   "expected": [
+    16
+   ]
+  },
+  {
+   "question": "A poor student murders a pawnbroker and is tormented by guilt",
+   "language": "en",
+   "expected": [
+    2554,
+    61851
+   ]
+  },
+  {
+   "question": "Dos jóvenes de familias enemigas se enamoran y acaban muriendo",
+   "language": "es",
+   "expected": [
+    1513,
+    100
+   ]
+  },
+  {
+   "question": "A Danish prince wants to avenge his father, murdered by his uncle",
+   "language": "en",
+   "expected": [
+    56454,
+    100
+   ]
+  },
+  {
+   "question": "Un hidalgo enloquece de tanto leer libros de caballerías y sale a buscar aventuras",
+   "language": "es",
+   "expected": [
+    2000
+   ]
+  },
+  {
+   "question": "Un niño pobre sirve a varios amos y sobrevive con picardía en la España del siglo XVI",
+   "language": "es",
+   "expected": [
+    320,
+    32315
+   ]
+  },
+  {
+   "question": "Un poeta pasea por los campos de Andalucía con su burro",
+   "language": "es",
+   "expected": [
+    9980,
+    39209
+   ]
+  },
+  {
+   "question": "An orphan girl is sent by mistake to an elderly brother and sister who had asked for a boy",
+   "language": "en",
+   "expected": [
+    45
+   ]
+  },
+  {
+   "question": "Four sisters grow up in New England while their father is away at war",
+   "language": "en",
+   "expected": [
+    37106
+   ]
+  },
+  {
+   "question": "Una institutriz cuida de dos niños en una casa de campo y cree que los acechan fantasmas",
+   "language": "es",
+   "expected": [
+    209
+   ]
+  },
+  {
+   "question": "A Transylvanian count travels to England to spread the curse of the undead",
+   "language": "en",
+   "expected": [
+    345
+   ]
+  },
+  {
+   "question": "Un millonario misterioso da fiestas en Long Island esperando reencontrar a su antiguo amor",
+   "language": "es",
+   "expected": [
+    64317
+   ]
+  },
+  {
+   "question": "A young man stays handsome forever while his portrait grows old and shows his sins",
+   "language": "en",
+   "expected": [
+    174
+   ]
+  },
+  {
+   "question": "Una mujer encerrada en un cuarto empieza a ver figuras en el papel pintado de la pared",
+   "language": "es",
+   "expected": [
+    1952
+   ]
+  },
+  {
+   "question": "An ex-convict who stole bread rebuilds his life while a relentless police inspector hunts him",
+   "language": "en",
+   "expected": [
+    75739,
+    78068
+   ]
+  },
+  {
+   "question": "Novela sobre la guerra de 1914 y una familia dividida entre Francia y Alemania",
+   "language": "es",
+   "expected": [
+    24536
+   ]
+  },
+  {
+   "question": "La batalla naval de 1805 contada por un muchacho que estuvo a bordo",
+   "language": "es",
+   "expected": [
+    16961
+   ]
+  },
+  {
+   "question": "A Spanish soldier's eyewitness account of how Cortés conquered Mexico",
+   "language": "en",
+   "expected": [
+    64945
+   ]
+  },
+  {
+   "question": "Un tratado sobre cómo un gobernante debe conservar el poder aunque tenga que ser cruel",
+   "language": "es",
+   "expected": [
+    1232
+   ]
+  },
+  {
+   "question": "A Roman emperor's private reflections on Stoic philosophy and how to live well",
+   "language": "en",
+   "expected": [
+    2680
+   ]
+  },
+  {
+   "question": "Cuentos de un autor uruguayo sobre la selva, la locura y la muerte",
+   "language": "es",
+   "expected": [
+    13507
+   ]
+  },
+  {
+   "question": "A man is arrested one morning and prosecuted by a court whose charges he never learns",
+   "language": "en",
+   "expected": [
+    77334
+   ]
+  },
+  {
+   "question": "Leyendas sobre un palacio árabe de Granada",
+   "language": "es",
+   "expected": [
+    52262,
+    49660
+   ]
+  },
+  {
+   "question": "Un libro de recetas de cocina tradicional",
+   "language": "es",
+   "expected": [
+    45770
+   ]
+  },
+  {
+   "question": "Un manual práctico para aprender a programar en Python",
+   "language": "es",
+   "expected": []
+  },
+  {
+   "question": "A repair guide for modern electric cars",
+   "language": "en",
+   "expected": []
+  }
+ ]
+}

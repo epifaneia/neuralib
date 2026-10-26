@@ -1,0 +1,800 @@
+{
+ "date": "2026-10-26T12:49:04",
+ "embedding_model": "gemini-embedding-001",
+ "librarian_model": "gemini-3.5-flash-lite",
+ "summary_candidates": 12,
+ "knowledge_candidates": 40,
+ "totals": {
+  "questions": 36,
+  "answerable": 34,
+  "unanswerable": 2,
+  "search_hit_at_5": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_hit_at_12": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_hit_at_40": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "search_mrr_at_40": 0.971,
+  "summary_pass_hit": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "knowledge_pass_hit": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "either_pass_hit": {
+   "hits": 34,
+   "of": 34,
+   "rate": 1.0
+  },
+  "knowledge_only_hit": 0,
+  "summary_pass_abstained": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "knowledge_pass_abstained": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "quotes_checked": {
+   "proposed": 39,
+   "quote_not_in_summary": 0,
+   "passed_rate": 1.0
+  },
+  "drops": {}
+ },
+ "results": [
+  {
+   "question": "Un detective excéntrico que resuelve crímenes en Londres con la ayuda de su amigo médico",
+   "language": "es",
+   "expected": [
+    155,
+    200,
+    244
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2,
+   "summary_picks": [
+    200
+   ],
+   "knowledge_picks": [
+    200,
+    155,
+    244
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"200\",\n      \"reason\": \"La novela introduce al célebre detective Sherlock Holmes y al doctor Watson investigando un crimen en Londres.\",\n      \"quote\": \"This groundbreaking work introduces Sherlock Holmes and Dr. Watson as they investigate a mysterious murder in London.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"200\",\n      \"reason\": \"Presenta al famoso detective Sherlock Holmes y su fiel amigo el doctor Watson resolviendo un misterioso caso de asesinato en Londres.\"\n    },\n    {\n      \"book_id\": \"155\",\n      \"reason\": \"Recopila las aventuras de Sherlock Holmes, el excéntrico detective londinense, junto a su inseparable compañero el doctor Watson.\"\n    },\n    {\n      \"book_id\": \"244\",\n      \"reason\": \"Una clásica novela de Sherlock Holmes donde el brillante detective y el doctor Watson investigan un terrorífico misterio en los páramos británicos.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A Belgian detective obsessed with order solves a murder in an English country house",
+   "language": "en",
+   "expected": [
+    216,
+    219,
+    221,
+    251
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    251
+   ],
+   "knowledge_picks": [
+    251,
+    216,
+    221
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"251\",\n      \"reason\": \"It features the famous Belgian detective Hercule Poirot investigating a mysterious death at an English country estate in Essex.\",\n      \"quote\": \"The story centers around the mysterious death of an elderly matriarch, Mrs. Inglethorp, at Styles Court, her estate in Essex, and the subsequent investigation into the incident.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"251\",\n      \"reason\": \"This novel introduces Hercule Poirot, the famous Belgian detective, who uses his meticulous attention to order and little grey cells to solve a murder at Styles Court.\"\n    },\n    {\n      \"book_id\": \"216\",\n      \"reason\": \"Featuring the Belgian detective Hercule Poirot, this classic mystery investigates the brutal murder of a wealthy country gentleman in his English manor.\"\n    },\n    {\n      \"book_id\": \"221\",\n      \"reason\": \"Hercule Poirot is called to a French villa for a case involving a murdered wealthy man, showcasing his trademark obsession with order and method.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un científico crea una criatura con partes de cadáveres y luego la abandona",
+   "language": "es",
+   "expected": [
+    152
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    152
+   ],
+   "knowledge_picks": [
+    152
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"152\",\n      \"reason\": \"El libro cuenta la historia de un científico que crea un ser vivo a partir de partes de cuerpos en un experimento y luego huye aterrorizado, abandonando su creación.\",\n      \"quote\": \"It tells the story of Victor Frankenstein, a young scientist who creates a living creature from assembled body parts in an unorthodox experiment. When the creature awakens, Victor flees in horror, abandoning his creation.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"152\",\n      \"reason\": \"Narra la historia del joven científico Victor Frankenstein, quien da vida a una criatura monstruosa construida con restos humanos y luego la rechaza, desencadenando la tragedia.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A man drinks a potion that splits him into a respectable doctor and a violent double",
+   "language": "en",
+   "expected": [
+    73,
+    160,
+    268
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    73
+   ],
+   "knowledge_picks": [
+    160,
+    73
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"73\",\n      \"reason\": \"El doctor Jekyll crea una pócima que separa el bien y el mal, transformándolo en un monstruoso doble.\",\n      \"quote\": \"Jekyll creates a potion that separates these opposing forces, transforming him into the monstrous Hyde.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"160\",\n      \"reason\": \"This classic novella by Robert Louis Stevenson tells the story of Dr. Henry Jekyll, who creates a potion that transforms him into his violent and malevolent alter ego, Mr. Edward Hyde.\"\n    },\n    {\n      \"book_id\": \"73\",\n      \"reason\": \"Esta es la versión en español del clásico de Robert Louis Stevenson sobre un médico respetable que inventa una pócima capaz de separar la dualidad de su alma en una faceta bondadosa y otra monstruosa.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un hombre viaja al futuro lejano y descubre que la humanidad se ha dividido en dos especies",
+   "language": "es",
+   "expected": [
+    227
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    227
+   ],
+   "knowledge_picks": [
+    227
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"227\",\n      \"reason\": \"La novela narra el viaje de un científico victoriano hacia el futuro lejano, donde descubre que la humanidad se ha convertido en dos especies diferentes.\",\n      \"quote\": \"A Victorian scientist known as the Time Traveller journeys to the year 802,701, where he discovers humanity has evolved into two distinct species: the childlike Eloi and the savage Morlocks.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"227\",\n      \"reason\": \"Esta obra clásica narra las aventuras de un científico que viaja al futuro lejano y descubre que la raza humana se ha bifurcado en dos especies distintas: los pacíficos Eloi y los subterráneos Morlocks.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A sailor is wrongly imprisoned, escapes, finds a fortune and takes revenge on those who betrayed him",
+   "language": "en",
+   "expected": [
+    170
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    170
+   ],
+   "knowledge_picks": [
+    170
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"170\",\n      \"reason\": \"El protagonista, un marinero, es acusado falsamente, encarcelado, escapa, encuentra un tesoro y busca venganza.\",\n      \"quote\": \"When sailor Edmond Dantès is falsely accused and imprisoned on his wedding day, he spends fourteen years in solitary confinement. After a daring escape and the discovery of a vast hidden treasure, he reinvents himself as the wealthy Count of Monte Cristo. Returning to Paris, he methodically infiltrates high society to confront the three men who destroyed his life, exploring themes of justice, vengeance, mercy, and forgiveness.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\"picks\": [{\"book_id\": \"170\", \"reason\": \"Edmond Dant\\u0026egrave;s is a young sailor who is wrongfully imprisoned for a crime he did not commit, later escapes from the Chateau d'If, discovers a hidden fortune on the island of Monte Cristo, and returns to exact meticulous revenge on the men who betrayed him.\"}]}"
+  },
+  {
+   "question": "Un capitán obsesionado persigue por los mares a una ballena blanca",
+   "language": "es",
+   "expected": [
+    153
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    153
+   ],
+   "knowledge_picks": [
+    153
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"153\",\n      \"reason\": \"El libro relata la obsesiva persecución de una ballena blanca por parte del capitán Ahab en los océanos.\",\n      \"quote\": \"Sailor Ishmael narrates the obsessive quest of Captain Ahab, who commands the whaling ship Pequod in pursuit of Moby Dick, a giant white sperm whale that destroyed his leg.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\"picks\": [{\"book_id\": \"153\", \"reason\": \"La obra narra la obsesiva y trágica persecución del capitán Ahab contra el gran cachalote blanco, Moby Dick.\"}]}"
+  },
+  {
+   "question": "A family is shipwrecked and has to survive on a deserted island",
+   "language": "en",
+   "expected": [
+    245
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    245
+   ],
+   "knowledge_picks": [
+    245,
+    28,
+    210
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"245\",\n      \"reason\": \"La novela narra la historia de una familia suiza cuyo barco encalla y deben sobrevivir en una isla desierta.\",\n      \"quote\": \"The ship's crew is lost, but the family and several domestic animals survive.  They make their way to shore, where they build a settlement, undergoing several adventures before being rescued; some refuse rescue and remain on the island.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"245\",\n      \"reason\": \"Esta novela relata las emocionantes aventuras de una familia suiza que naufraga y debe ingeniárselas para sobrevivir en una isla desierta.\"\n    },\n    {\n      \"book_id\": \"28\",\n      \"reason\": \"Es la clásica versión en español de la historia de piratas, mapas y naufragios en islas misteriosas.\"\n    },\n    {\n      \"book_id\": \"210\",\n      \"reason\": \"It is the original English classic featuring a perilous adventure and survival on a remote island with buried pirate treasure.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una niña cae por una madriguera y llega a un mundo absurdo siguiendo a un conejo blanco",
+   "language": "es",
+   "expected": [
+    154
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    154
+   ],
+   "knowledge_picks": [
+    154
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"154\",\n      \"reason\": \"La obra narra la historia de Alice, quien persigue a un conejo blanco y cae por una madriguera hacia un mundo fantástico y lleno de sinsentidos.\",\n      \"quote\": \"When a curious girl named Alice spots a White Rabbit with a pocket watch, she tumbles down a rabbit hole into an extraordinary fantasy world filled with peculiar anthropomorphic creatures.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"154\",\n      \"reason\": \"Narrates the famous adventures of a young girl who falls down a rabbit hole into a whimsical and nonsensical world.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A girl from Kansas is carried away by a cyclone to a magical land and follows a yellow road",
+   "language": "en",
+   "expected": [
+    194
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    194
+   ],
+   "knowledge_picks": [
+    194
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"194\",\n      \"reason\": \"Dorothy is swept by a cyclone from Kansas to the Land of Oz and follows the yellow brick road.\",\n      \"quote\": \"When a cyclone sweeps young Dorothy and her dog Toto from Kansas to the magical Land of Oz, she discovers only one way home: she must destroy the Wicked Witch of the West. Joined by a Scarecrow seeking brains, a Tin Woodman wanting a heart, and a Cowardly Lion desiring courage, Dorothy follows the yellow brick road to seek help from the mysterious Wizard of Oz.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"194\",\n      \"reason\": \"This classic novel tells the exact story of Dorothy, a girl from Kansas who is carried away by a cyclone to the magical land of Oz and follows the yellow brick road.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un niño que no quiere crecer se lleva a unos hermanos a una isla con piratas y hadas",
+   "language": "es",
+   "expected": [
+    238
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    238
+   ],
+   "knowledge_picks": [
+    238
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"238\",\n      \"reason\": \"El libro cuenta la historia de Peter Pan, un chico que no crece y que lleva a Wendy y a sus hermanos a una isla mágica llena de hadas y piratas.\",\n      \"quote\": \"It tells the story of Peter Pan, a mischievous boy who can fly and never grows up. He whisks Wendy Darling and her brothers away to Neverland, a magical island inhabited by mermaids, fairies, and pirates.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"238\",\n      \"reason\": \"Esta famosa obra de J. M. Barrie narra la historia de Peter Pan, el niño que no quería crecer, quien lleva a Wendy y a sus hermanos al País de Nunca Jamás, donde habitan hadas y feroces piratas como el capitán Garfio.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A poor student murders a pawnbroker and is tormented by guilt",
+   "language": "en",
+   "expected": [
+    1,
+    166
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    166,
+    1
+   ],
+   "knowledge_picks": [
+    166,
+    1
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"166\",\n      \"reason\": \"It follows a former law student in Saint Petersburg who commits a murder and is subsequently consumed by guilt and paranoia.\",\n      \"quote\": \"It follows Rodion Raskolnikov, an impoverished former law student in Saint Petersburg who plans to murder an unscrupulous pawnbroker.\"\n    },\n    {\n      \"book_id\": \"1\",\n      \"reason\": \"En la obra, un estudiante empobrecido comete un asesinato y posteriormente sufre de profunda angustia y culpa.\",\n      \"quote\": \"An impoverished former law student in Saint Petersburg plans to murder a pawnbroker, convincing himself that certain crimes are justifiable when committed by \\\"extraordinary\\\" men for higher purposes. But once the deed is done, he finds himself consumed by confusion, paranoia, and guilt.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"166\",\n      \"reason\": \"This classic novel follows Raskolnikov, a destitute former student in Saint Petersburg who murders a pawnbroker and subsequently suffers intense psychological torment.\"\n    },\n    {\n      \"book_id\": \"1\",\n      \"reason\": \"Esta obra es la versión en español de la famosa novela sobre un joven estudiante empobrecido que comete un asesinato y es carcomido por los remordimientos.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Dos jóvenes de familias enemigas se enamoran y acaban muriendo",
+   "language": "es",
+   "expected": [
+    157,
+    159
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    157
+   ],
+   "knowledge_picks": [
+    157
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"157\",\n      \"reason\": \"La historia relata cómo dos jóvenes de familias enemigas se enamoran en Verona y se casan en secreto para unir a sus hogares, aunque la tragedia los acecha.\",\n      \"quote\": \"Two young lovers from feuding Italian families meet and fall secretly in love in Verona.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"157\",\n      \"reason\": \"Es la obra clásica por excelencia de William Shakespeare sobre dos jóvenes de familias enemigas que se enamoran trágicamente.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A Danish prince wants to avenge his father, murdered by his uncle",
+   "language": "en",
+   "expected": [
+    68,
+    159
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    68,
+    190
+   ],
+   "knowledge_picks": [
+    68
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"68\",\n      \"reason\": \"El libro sigue la historia del príncipe Hamlet de Dinamarca en su búsqueda de venganza contra su tío por el asesinato de su padre.\",\n      \"quote\": \"Set in Denmark, the play follows Prince Hamlet as he seeks revenge against his uncle Claudius, who murdered Hamlet's father to seize the throne and marry Hamlet's mother.\"\n    },\n    {\n      \"book_id\": \"190\",\n      \"reason\": \"Esta colección incluye la obra 'Hamlet', que presenta al personaje atribulado en un escenario atmosférico en Elsinor.\",\n      \"quote\": \"This volume specifically includes iconic plays such as \\\"Hamlet,\\\" \\\"King Lear,\\\" and \\\"Othello,\\\" among others.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"68\",\n      \"reason\": \"Esta obra maestra de William Shakespeare narra la historia del príncipe danés Hamlet, quien busca vengar la muerte de su padre asesinado por su tío.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un hidalgo enloquece de tanto leer libros de caballerías y sale a buscar aventuras",
+   "language": "es",
+   "expected": [
+    4
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    4
+   ],
+   "knowledge_picks": [
+    4
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"El libro narra la historia de un hidalgo que pierde la cordura debido a su lectura de romances caballerescos y decide convertirse en caballero andante.\",\n      \"quote\": \"A minor nobleman reads so many chivalric romances that he loses his sanity and decides to become a knight-errant, recruiting a simple farm laborer as his squire.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"Esta famosa obra de Miguel de Cervantes narra las aventuras de un hidalgo enloquecido por la lectura de novelas de caballería que decide convertirse en caballero andante.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un niño pobre sirve a varios amos y sobrevive con picardía en la España del siglo XVI",
+   "language": "es",
+   "expected": [
+    19,
+    128
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    19
+   ],
+   "knowledge_picks": [
+    19
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"19\",\n      \"reason\": \"La novela narra la historia autobiográfica de un muchacho de origen humilde que sirve a varios amos en la España del siglo XVI.\",\n      \"quote\": \"\\\"Vida De Lazarillo De Tormes Y De Sus Fortunas Y Adversidades\\\" by Anonymous is a Spanish novel published in 1554. Written as a long letter, it tells the autobiographical story of Lázaro de Tormes, who recounts his life from miserable childhood through adulthood and marriage in sixteenth-century Spain. Serving various masters, Lázaro witnesses society's vices and hypocrisy, particularly among clergy and religious figures.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"19\",\n      \"reason\": \"Esta novela picaresca anónima narra la vida de un niño pobre, Lázaro, que debe servir a varios amos para sobrevivir recurriendo al ingenio y la picardía en la España del siglo XVI.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un poeta pasea por los campos de Andalucía con su burro",
+   "language": "es",
+   "expected": [
+    48,
+    82
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    82,
+    48
+   ],
+   "knowledge_picks": [
+    82,
+    48
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"82\",\n      \"reason\": \"El libro narra la vida de Platero, un burro que acompañaba al autor en Andalucía.\",\n      \"quote\": \"\\\"Platero y yo\\\" by Juan Ramón Jiménez is a poetic work published in 1914 that recreates the life of Platero, a donkey who was the author's inseparable childhood companion in Moguer, Spain.\"\n    },\n    {\n      \"book_id\": \"48\",\n      \"reason\": \"La obra se centra en un escritor y su querido burro Platero, con quien pasea mientras reflexiona.\",\n      \"quote\": \"The work centers on a writer and his beloved donkey, Platero, described as small, soft, and silvery.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"82\",\n      \"reason\": \"Platero y yo narra la tierna y entrañable relación entre el poeta y su burro Platero recorriendo los paisajes y campos de Andalucía.\"\n    },\n    {\n      \"book_id\": \"48\",\n      \"reason\": \"Esta edición también corresponde a la obra maestra de Juan Ramón Jiménez sobre sus paseos por Andalucía en compañía de su inseparable burro.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "An orphan girl is sent by mistake to an elderly brother and sister who had asked for a boy",
+   "language": "en",
+   "expected": [
+    211
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    211
+   ],
+   "knowledge_picks": [
+    211
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"211\",\n      \"reason\": \"Anne, an orphan girl, is sent by mistake to a brother and sister (the Cuthberts) at Green Gables farm, who had originally requested a boy to help with farmwork.\",\n      \"quote\": \"When eleven-year-old orphan Anne Shirley arrives at Green Gables farm by mistake, the Cuthbert siblings had requested a boy to help with farmwork.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"211\",\n      \"reason\": \"This beloved classic features an imaginative orphan girl named Anne Shirley who is mistakenly sent to an elderly brother and sister on Prince Edward Island.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Four sisters grow up in New England while their father is away at war",
+   "language": "en",
+   "expected": [
+    168
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    168
+   ],
+   "knowledge_picks": [
+    168
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"168\",\n      \"reason\": \"The novel follows four sisters navigating the passage from childhood to womanhood in Civil War-era Massachusetts.\",\n      \"quote\": \"The story follows four sisters—Meg, Jo, Beth, and Amy March—as they navigate the passage from childhood to womanhood in Civil War-era Massachusetts.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"168\",\n      \"reason\": \"This beloved classic follows the lives of the four March sisters (Meg, Jo, Beth, and Amy) growing up in New England while their father serves as a chaplain in the Civil War.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una institutriz cuida de dos niños en una casa de campo y cree que los acechan fantasmas",
+   "language": "es",
+   "expected": [
+    222
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    222
+   ],
+   "knowledge_picks": [
+    222
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"222\",\n      \"reason\": \"La historia relata cómo una joven institutriz llega a una finca campestre remota para cuidar a dos niños y se convence de que hay fuerzas sobrenaturales en el lugar.\",\n      \"quote\": \"A young governess arrives at a remote country estate to care for two children, only to become convinced that supernatural forces haunt the grounds.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"222\",\n      \"reason\": \"Trata sobre una joven institutriz que viaja a una aislada mansión rural para cuidar a dos niños huérfanos y termina convencida de que la propiedad está habitada por los fantasmas de antiguos criados.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A Transylvanian count travels to England to spread the curse of the undead",
+   "language": "en",
+   "expected": [
+    158
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    158
+   ],
+   "knowledge_picks": [
+    158
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"158\",\n      \"reason\": \"The novel tells the story of a vampire Count from Transylvania who travels to England and starts preying on victims.\",\n      \"quote\": \"When the vampire Count travels to England and begins preying on victims in Whitby, a small group led by Professor Abraham Van Helsing must hunt him down.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"158\",\n      \"reason\": \"This is the classic gothic horror novel by Bram Stoker that famously features the vampire Count Dracula traveling from Transylvania to England to seek new victims and spread the undead curse.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un millonario misterioso da fiestas en Long Island esperando reencontrar a su antiguo amor",
+   "language": "es",
+   "expected": [
+    172
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    172
+   ],
+   "knowledge_picks": [
+    172
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"172\",\n      \"reason\": \"La historia sigue a un millonario llamado Jay Gatsby que organiza fiestas lujosas en Long Island y busca desesperadamente reencontrarse con un amor del pasado.\",\n      \"quote\": \"Set in the Jazz Age on Long Island, it follows narrator Nick Carraway as he becomes drawn into the world of his mysterious neighbor, Jay Gatsby, a wealthy millionaire who throws extravagant parties. Gatsby harbors an obsession with reuniting with Daisy Buchanan, a woman from his past now married to the affluent Tom.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"172\",\n      \"reason\": \"The Great Gatsby by F. Scott Fitzgerald tells the story of Jay Gatsby, a mysterious millionaire who throws extravagant parties in Long Island in the hope of reuniting with his former love, Daisy Buchanan.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A young man stays handsome forever while his portrait grows old and shows his sins",
+   "language": "en",
+   "expected": [
+    169
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    169
+   ],
+   "knowledge_picks": [
+    169
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"169\",\n      \"reason\": \"Dorian Gray makes a wish to stay eternally youthful while his painted portrait ages and reflects his moral corruption and sins.\",\n      \"quote\": \"When a beautiful young man wishes that his portrait would age instead of himself, his desire becomes terrifyingly real. As Dorian pursues a life of pleasure and moral corruption, he remains eternally youthful while his painted image transforms into a horrifying record of his sins.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"169\",\n      \"reason\": \"The Picture of Dorian Gray by Oscar Wilde tells the story of a young man whose portrait ages and reflects his moral corruption while he remains physically youthful and untouched by time.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una mujer encerrada en un cuarto empieza a ver figuras en el papel pintado de la pared",
+   "language": "es",
+   "expected": [
+    178
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    178
+   ],
+   "knowledge_picks": [
+    178
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"178\",\n      \"reason\": \"La historia sigue a una mujer confinada en una habitación que se obsesiona con el papel tapiz amarillo y las figuras que ve en él.\",\n      \"quote\": \"With nothing to occupy her mind but the room's disturbing yellow wallpaper, she descends into madness, becoming obsessed with its strange patterns and the figures she perceives within it.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"178\",\n      \"reason\": \"La obra narra la historia de una mujer confinada en una habitación por su esposo, donde poco a poco empieza a perder la cordura y a obsesionarse con los extraños patrones del papel pintado de la pared.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "An ex-convict who stole bread rebuilds his life while a relentless police inspector hunts him",
+   "language": "en",
+   "expected": [
+    2,
+    83
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2,
+   "summary_picks": [
+    83,
+    2
+   ],
+   "knowledge_picks": [
+    83,
+    2
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"83\",\n      \"reason\": \"Victor Hugo's novel follows the struggles of characters including an ex-convict in post-revolutionary France, exploring themes of redemption and transformation.\",\n      \"quote\": \"The book centers on the struggles of various characters in post-revolutionary France, focusing particularly on themes of injustice, compassion, and redemption.\"\n    },\n    {\n      \"book_id\": \"2\",\n      \"reason\": \"Esta novela de Victor Hugo plantea discusiones sobre la ley y la justicia, inspirándose en la historia de un criminal francés que se redimió y dio origen a una fuerza policial.\",\n      \"quote\": \"El autor confesó que se había inspirado en Vidocq —criminal francés que se redimió y acabó inaugurando la Policía Nacional francesa— para crear a los dos protagonistas y que la historia de su país le había inspirado para situar el contexto…\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"83\",\n      \"reason\": \"Esta obra narra la historia de Jean Valjean, un exrecluso condenado por robar un pan que intenta rehacer su vida, mientras es perseguido incansablemente por el inspector Javert.\"\n    },\n    {\n      \"book_id\": \"2\",\n      \"reason\": \"Este segundo tomo continúa la profunda saga de Victor Hugo sobre la redención de Jean Valjean y su constante huida de la justicia representada por Javert.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Novela sobre la guerra de 1914 y una familia dividida entre Francia y Alemania",
+   "language": "es",
+   "expected": [
+    44
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    44
+   ],
+   "knowledge_picks": [
+    44
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"44\",\n      \"reason\": \"La novela trata sobre la Primera Guerra Mundial y cómo los miembros de una familia dividida entre Francia y Alemania se convierten en enemigos.\",\n      \"quote\": \"It follows the French and German sons-in-law of an Argentinian landowner who become enemies when World War I erupts.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"44\",\n      \"reason\": \"Esta novela de Vicente Blasco Ibáñez relata los estragos de la Primera Guerra Mundial y se centra en una familia franco-alemana dividida por el conflicto.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "La batalla naval de 1805 contada por un muchacho que estuvo a bordo",
+   "language": "es",
+   "expected": [
+    117
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    117
+   ],
+   "knowledge_picks": [
+    117
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"117\",\n      \"reason\": \"Este libro narra las vivencias de un joven de catorce años que participa en la histórica batalla naval de Trafalgar a bordo de un barco.\",\n      \"quote\": \"This opening volume of the National Episodes series follows Gabriel de Araceli, a fourteen-year-old orphaned pícaresque character from Cádiz who becomes unexpectedly swept into the legendary Battle of Trafalgar in October 1805.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\"picks\": [{\"book_id\": \"117\", \"reason\": \"Trafalgar de Benito Pérez Gald\\u0033s narra los acontecimientos de la famosa batalla naval de 1805 a trav\\u0033s de los recuerdos de un muchacho llamado Gabriel de Araceli, quien participa en ella a bordo del nav\\u0033o San Juan Nepomuceno.\"}]}"
+  },
+  {
+   "question": "A Spanish soldier's eyewitness account of how Cortés conquered Mexico",
+   "language": "en",
+   "expected": [
+    104
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    104
+   ],
+   "knowledge_picks": [
+    104
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"104\",\n      \"reason\": \"Escrito por un soldado que participó en las campañas, este relato en primera persona detalla la conquista española de México y las hazañas de Hernán Cortés.\",\n      \"quote\": \"This eyewitness account narrates the Spanish conquest of Mexico from the perspective of a soldier who participated in the campaigns. Written decades after the events, Díaz del Castillo presents detailed descriptions of battles, encounters with indigenous peoples, and the exploits of Hernán Cortés.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"104\",\n      \"reason\": \"Escrito por el soldado Bernal Díaz del Castillo, esta obra ofrece una crónica directa y detallada de la conquista de México desde la perspectiva de quienes la vivieron.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un tratado sobre cómo un gobernante debe conservar el poder aunque tenga que ser cruel",
+   "language": "es",
+   "expected": [
+    180
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    180
+   ],
+   "knowledge_picks": [
+    180
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"180\",\n      \"reason\": \"El libro analiza cómo los gobernantes pueden conservar el poder a través de actos que desafían la moral tradicional.\",\n      \"quote\": \"Presented as an instruction guide for new rulers, this controversial work suggests that immoral acts may be necessary to achieve political power and glory.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"180\",\n      \"reason\": \"El Príncipe de Nicolás Maquiavelo es el tratado clásico por excelencia sobre cómo un gobernante debe adquirir y conservar el poder, justificando a menudo la crueldad y la astucia para lograrlo.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A Roman emperor's private reflections on Stoic philosophy and how to live well",
+   "language": "en",
+   "expected": [
+    173
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    173
+   ],
+   "knowledge_picks": [
+    173
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"173\",\n      \"reason\": \"This book consists of the private reflections of Roman Emperor Marcus Aurelius on Stoic philosophy and self-improvement.\",\n      \"quote\": \"\\\"Meditations\\\" by Emperor of Rome Marcus Aurelius is a series of personal writings composed between 170-180 CE. Written in Greek as private notes to himself, this work captures the Roman Emperor's reflections on Stoic philosophy and self-improvement during military campaigns.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"173\",\n      \"reason\": \"Written by Roman Emperor Marcus Aurelius, this book consists of his private journals and personal reflections on Stoic philosophy, ethics, and duty.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Cuentos de un autor uruguayo sobre la selva, la locura y la muerte",
+   "language": "es",
+   "expected": [
+    36
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    36
+   ],
+   "knowledge_picks": [
+    36
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"36\",\n      \"reason\": \"Este libro de cuentos escrito por el autor uruguayo Horacio Quiroga explora temas de la locura y la muerte a través de narrativas oscuras.\",\n      \"quote\": \"\\\"Cuentos de Amor de Locura y de Muerte\\\" by Horacio Quiroga is a short story collection published in 1918. This haunting compilation explores death as its central theme across nineteen tales, several later removed by Quiroga himself.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"36\",\n      \"reason\": \"Esta obra reúne los cuentos más famosos del escritor uruguayo Horacio Quiroga, donde explora magistralmente la relación hostil del hombre con la selva, la locura y la muerte.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A man is arrested one morning and prosecuted by a court whose charges he never learns",
+   "language": "en",
+   "expected": [
+    111
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    111
+   ],
+   "knowledge_picks": [
+    111
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"111\",\n      \"reason\": \"Un hombre es arrestado una mañana sin conocer el motivo y debe enfrentarse a un proceso judicial incomprensible.\",\n      \"quote\": \"En el relato, Josef K. es arrestado una mañana por una razón que desconoce.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"111\",\n      \"reason\": \"Esta novela narra la pesadilla de Josef K., quien es detenido una mañana por una autoridad invisible y sometido a un proceso judicial del cual nunca llega a conocer los cargos exactos.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Leyendas sobre un palacio árabe de Granada",
+   "language": "es",
+   "expected": [
+    105,
+    120
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    105,
+    120
+   ],
+   "knowledge_picks": [
+    120,
+    105
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"105\",\n      \"reason\": \"Este libro presenta una recopilación de leyendas árabes ambientadas en el famoso palacio de la Alhambra durante el siglo XIII.\",\n      \"quote\": \"\\\"La Alhambra; Leyendas árabes\\\" by Manuel Fernández y González is a collection of Arabic legends set in 13th-century Andalusia.\"\n    },\n    {\n      \"book_id\": \"120\",\n      \"reason\": \"Esta obra romántica mezcla diarios y relatos fantásticos centrados específicamente en el emblemático palacio de la Alhambra en Granada.\",\n      \"quote\": \"\\\"Cuentos de la Alhambra\\\" by Washington Irving is a book written in 1829 and published in 1832. This romantic work blends travel narrative, diary, and fantasy tales centered on the legendary Alhambra palace in Granada, Spain.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"120\",\n      \"reason\": \"Esta obra clásica de Washington Irving recopila cautivadoras leyendas, cuentos e impresiones románticas ambientadas en el famoso palacio nazarí de la Alhambra en Granada.\"\n    },\n    {\n      \"book_id\": \"105\",\n      \"reason\": \"Escrita por Manuel Fernández y González, esta obra profundiza en el universo de las leyendas árabes vinculadas a la emblemática Alhambra.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro de recetas de cocina tradicional",
+   "language": "es",
+   "expected": [
+    141
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    141
+   ],
+   "knowledge_picks": [
+    141
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"141\",\n      \"reason\": \"Este libro es una guía culinaria completa que ofrece una gran variedad de recetas fáciles de ejecutar.\",\n      \"quote\": \"\\\"Cocina moderna\\\" by Anonymous is a comprehensive culinary guide written in the late 19th century. This work serves as a complete treaty on the art of cooking, baking, pastry-making, and mixology, featuring a multitude of recipes that are designed to be easy to execute and secure.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"141\",\n      \"reason\": \"Este libro titulado 'Cocina moderna' ofrece una recopilación de recetas culinarias y técnicas de cocina, siendo ideal para quienes buscan un recetario tradicional.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un manual práctico para aprender a programar en Python",
+   "language": "es",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null,
+   "summary_picks": [],
+   "knowledge_picks": [],
+   "summary_proposed": 0,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": []\n}",
+   "knowledge_text": "{\"picks\": []}"
+  },
+  {
+   "question": "A repair guide for modern electric cars",
+   "language": "en",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null,
+   "summary_picks": [],
+   "knowledge_picks": [],
+   "summary_proposed": 0,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": []\n}",
+   "knowledge_text": "{\"picks\": []}"
+  }
+ ]
+}
