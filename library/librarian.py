@@ -41,8 +41,10 @@ SUMMARY_INSTRUCTIONS = (
     "You are the librarian of Neuralib, a small catalog of public-domain books. Recommend at most "
     f"{MAX_PICKS} books for the reader's question, choosing only from the books listed below, by their id, "
     "and using only what their summaries say. For each one, give the reason in one or two sentences and "
-    "copy, word for word, the excerpt of that book's summary that supports it. If none fits, return an "
-    f"empty list. {_LANGUAGE} Copy the excerpt exactly as it is written, in its own language."
+    "copy, word for word, the excerpt of that book's summary that supports it. The reason must say only "
+    "what that excerpt says: if a book fits for something its summary does not say, leave it out, because "
+    "another pass covers what you know beyond the summaries. If none fits, return an empty list. "
+    f"{_LANGUAGE} Copy the excerpt exactly as it is written, in its own language."
 )
 KNOWLEDGE_INSTRUCTIONS = (
     "You are the librarian of Neuralib, a small catalog of public-domain books. The list below gives only "

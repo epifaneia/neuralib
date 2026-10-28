@@ -1,0 +1,665 @@
+{
+ "date": "2026-10-28T14:20:19",
+ "embedding_model": "gemini-embedding-001",
+ "librarian_model": "gemini-3.5-flash-lite",
+ "summary_candidates": 12,
+ "knowledge_candidates": 40,
+ "totals": {
+  "questions": 18,
+  "answerable": 16,
+  "unanswerable": 2,
+  "search_hit_at_5": {
+   "hits": 13,
+   "of": 16,
+   "rate": 0.812
+  },
+  "search_hit_at_12": {
+   "hits": 14,
+   "of": 16,
+   "rate": 0.875
+  },
+  "search_hit_at_40": {
+   "hits": 16,
+   "of": 16,
+   "rate": 1.0
+  },
+  "search_mrr_at_40": 0.763,
+  "summary_pass_hit": {
+   "hits": 14,
+   "of": 16,
+   "rate": 0.875
+  },
+  "knowledge_pass_hit": {
+   "hits": 16,
+   "of": 16,
+   "rate": 1.0
+  },
+  "either_pass_hit": {
+   "hits": 16,
+   "of": 16,
+   "rate": 1.0
+  },
+  "knowledge_only_hit": 2,
+  "summary_pass_abstained": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "knowledge_pass_abstained": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "quotes_checked": {
+   "proposed": 28,
+   "quote_not_in_summary": 0,
+   "passed_rate": 1.0
+  },
+  "drops": {}
+ },
+ "results": [
+  {
+   "question": "Algo del escritor que perdió el uso de la mano izquierda en la batalla de Lepanto",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    4,
+    86,
+    126
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    4,
+    18,
+    86
+   ],
+   "knowledge_picks": [
+    4,
+    86,
+    126
+   ],
+   "summary_proposed": 3,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"Don Quijote es una obra escrita por Miguel de Cervantes Saavedra.\",\n      \"quote\": \"\\\"Don Quijote\\\" by Miguel de Cervantes Saavedra is a Spanish novel published in two parts in 1605 and 1615.\"\n    },\n    {\n      \"book_id\": \"18\",\n      \"reason\": \"Este volumen ofrece un examen detallado de la vida y la obra de Miguel de Cervantes.\",\n      \"quote\": \"The opening of this volume provides a detailed examination of Miguel de Cervantes' life and works, highlighting…\"\n    },\n    {\n      \"book_id\": \"86\",\n      \"reason\": \"Novelas ejemplares es una colección de novelas cortas escritas por Miguel de Cervantes Saavedra.\",\n      \"quote\": \"\\\"Novelas ejemplares\\\" by Miguel de Cervantes Saavedra is a collection of twelve short novels published in 1613.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"Escrita por Miguel de Cervantes, conocido como el Manco de Lepanto, narra las fantásticas aventuras de un hidalgo caballero y su fiel escudero.\"\n    },\n    {\n      \"book_id\": \"86\",\n      \"reason\": \"Estas narraciones breves fueron compuestas por Miguel de Cervantes, célebre autor que perdió la movilidad de su mano izquierda en la histórica batalla naval.\"\n    },\n    {\n      \"book_id\": \"126\",\n      \"reason\": \"Este tomo reúne piezas teatrales y narrativas de Miguel de Cervantes, el insigne escritor manco de Lepanto.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Something by the author of the poem The Raven",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    34,
+    213
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    213,
+    34
+   ],
+   "knowledge_picks": [
+    213,
+    34
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"213\",\n      \"reason\": \"This book is written by Edgar Allan Poe, the author of The Raven, and contains short stories showcasing his suspenseful and psychological storytelling.\",\n      \"quote\": \"\\\"The Works of Edgar Allan Poe — Volume 2\\\" by Edgar Allan Poe is a collection of literary works, including short stories and essays, written during the early to mid-19th century.\"\n    },\n    {\n      \"book_id\": \"34\",\n      \"reason\": \"This collection features classic short stories by Edgar Allan Poe, the author of The Raven, highlighting his mastery of macabre themes.\",\n      \"quote\": \"\\\"Cuentos Clásicos del Norte, Primera Serie\\\" by Edgar Allan Poe is a collection of classic short stories written in the early 20th century.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"213\",\n      \"reason\": \"This volume is part of the collected works of Edgar Allan Poe, the famous author of the poem The Raven.\"\n    },\n    {\n      \"book_id\": \"34\",\n      \"reason\": \"This collection features classical tales translated or compiled by Edgar Allan Poe, the creator of The Raven.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro del científico español que ganó el Nobel por sus estudios del sistema nervioso",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    130
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    130
+   ],
+   "knowledge_picks": [
+    130
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"130\",\n      \"reason\": \"Este libro es una obra autobiográfica escrita a principios del siglo XX por Santiago Ramón y Cajal, cuyos recuerdos de vida y carrera científica culminaron en un destacado recorrido en la ciencia.\",\n      \"quote\": \"\\\"Recuerdos de mi vida (tomo 1 de 2)\\\" by Santiago Ramón y Cajal is an autobiographical work written in the early 20th century.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"130\",\n      \"reason\": \"Escrito por Santiago Ramón y Cajal, el célebre científico español que ganó el Premio Nobel de Fisiología o Medicina gracias a sus descubrimientos sobre la estructura del sistema nervioso. Esta obra autobiográfica narra su vida, su vocación y las investigaciones científicas que lo llevaron a la fama mundial.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A book by the philosopher who wrote that God is dead",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    225,
+    230
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    225
+   ],
+   "knowledge_picks": [
+    225,
+    230
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"225\",\n      \"reason\": \"El libro introduce conceptos de Friedrich Wilhelm Nietzsche, incluyendo la muerte de Dios.\",\n      \"quote\": \"The work introduces core Nietzschean concepts including the Übermensch, the death of God, the will to power, and eternal recurrence.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"225\",\n      \"reason\": \"Friedrich Wilhelm Nietzsche wrote Thus Spake Zarathustra, the work most famously associated with the declaration that God is dead.\"\n    },\n    {\n      \"book_id\": \"230\",\n      \"reason\": \"Beyond Good and Evil is another major philosophical text written by Friedrich Wilhelm Nietzsche, the philosopher who proclaimed the death of God.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Poemas del poeta sevillano que murió en Colliure huyendo de la guerra",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    85,
+    137
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2,
+   "summary_picks": [
+    137,
+    85
+   ],
+   "knowledge_picks": [
+    85,
+    137
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"137\",\n      \"reason\": \"El libro contiene obras del poeta Antonio Machado, quien residió en Sevilla y falleció en Collioure, en una colección que incluye escritos sobre sus experiencias y reflexiones personales.\",\n      \"quote\": \"\\\"Páginas escogidas\\\" by Antonio Machado is a collection of poetry and prose written in the early 20th century. The work reflects on themes of memory, love, loss, and the nature of existence, drawing deeply from Machado's personal experiences and introspections.\"\n    },\n    {\n      \"book_id\": \"85\",\n      \"reason\": \"La obra reúne la producción poética de Antonio Machado a lo largo de cuatro décadas, abarcando sus diversos poemas en ediciones revisadas por el propio autor.\",\n      \"quote\": \"\\\"Poesías completas\\\" by Antonio Machado is a collection of poetry published across four successive editions between 1917 and 1936. Each edition expanded upon the last, gathering Machado's poetic work from 1899 onward.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"85\",\n      \"reason\": \"Esta obra recopila la poesía de Antonio Machado, el célebre poeta sevillano que falleció en el exilio en Collioure durante la Guerra Civil española.\"\n    },\n    {\n      \"book_id\": \"137\",\n      \"reason\": \"Estas páginas escogidas recogen versos de Antonio Machado, el emblemático poeta nacido en Sevilla que murió en Colliure huyendo del conflicto bélico.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A comedy by the Irish writer who was later jailed in Reading",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    209
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    209
+   ],
+   "knowledge_picks": [
+    209
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"209\",\n      \"reason\": \"\\\"The Importance of Being Earnest\\\" is a comedy written by Oscar Wilde.\",\n      \"quote\": \"\\\"The Importance of Being Earnest: A Trivial Comedy for Serious People\\\" by Oscar Wilde is a play first performed in 1895.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"209\",\n      \"reason\": \"The Importance of Being Earnest is a brilliant comedy written by the famous Irish author Oscar Wilde, who was famously imprisoned in Reading Gaol.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo del poeta que escribió La casa de Bernarda Alba",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    65
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    65
+   ],
+   "knowledge_picks": [
+    65
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"65\",\n      \"reason\": \"Este libro de poesía fue escrito por Federico García Lorca.\",\n      \"quote\": \"\\\"Romancero gitano\\\" by Federico García Lorca is a poetry collection published in 1928.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"65\",\n      \"reason\": \"Este libro contiene el famoso poemario 'Romancero gitano', escrito por Federico García Lorca, autor también de 'La casa de Bernarda Alba'.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo para reírme a carcajadas",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    4,
+    59,
+    186,
+    197,
+    209,
+    254
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 9,
+   "summary_picks": [
+    254
+   ],
+   "knowledge_picks": [
+    4,
+    254,
+    209
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"254\",\n      \"reason\": \"Es una obra humorística y satírica sobre la historia de Inglaterra.\",\n      \"quote\": \"1066 and All That: A Memorable History of England, Comprising All the Parts You Can Remember, Including 103 Good Things, 5 Bad Kings and 2 Genuine Dates is a tongue-in-cheek reworking of the history of England.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"Las aventuras del ingenioso hidalgo Don Quijote de la Mancha ofrecen situaciones cómicas universales gracias al choque entre el idealismo del protagonista y el realismo de Sancho Panza.\"\n    },\n    {\n      \"book_id\": \"254\",\n      \"reason\": \"Esta obra es una parodia hilarante y disparatada de la historia de Inglaterra que garantiza risas constantes con su humor absurdo.\"\n    },\n    {\n      \"book_id\": \"209\",\n      \"reason\": \"Una comedia brillante y llena de ingenio con diálogos sarcásticos y situaciones absurdas que provocan carcajadas en torno a la alta sociedad victoriana.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A love story with a happy ending",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    59,
+    94,
+    151,
+    161,
+    165,
+    167,
+    177,
+    199
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 16,
+   "summary_picks": [],
+   "knowledge_picks": [
+    151,
+    165,
+    177
+   ],
+   "summary_proposed": 0,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": []\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"151\",\n      \"reason\": \"Pride and Prejudice is a classic romance by Jane Austen that concludes with a joyful and satisfying happy ending for Elizabeth Bennet and Mr. Darcy.\"\n    },\n    {\n      \"book_id\": \"165\",\n      \"reason\": \"The Blue Castle by L. M. Montgomery is a heartwarming romance where the protagonist finds unexpected freedom, love, and a very happy ending.\"\n    },\n    {\n      \"book_id\": \"177\",\n      \"reason\": \"The Enchanted April by Elizabeth Von Arnim follows characters who find rejuvenation and transformative love during a sunny Italian holiday, ending happily.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo muy triste que me haga llorar",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    2,
+    40,
+    66,
+    83,
+    142,
+    143,
+    157
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 2,
+   "summary_picks": [
+    142,
+    121,
+    145
+   ],
+   "knowledge_picks": [
+    142,
+    83,
+    68
+   ],
+   "summary_proposed": 3,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"El libro relata la historia trágica y conmovedora de Margarita Gautier y su romance desafortunado.\",\n      \"quote\": \"The narrative unfolds around the tragic and poignant story of Margarita Gautier, a beautiful courtesan, and her ill-fated romance with Armando Duval, delving into themes of love, sacrifice, and societal judgment.\"\n    },\n    {\n      \"book_id\": \"121\",\n      \"reason\": \"La obra presenta la perspectiva de la vida como una lucha trágica.\",\n      \"quote\": \"Unamuno focuses on the tangible human condition, the duality of feeling and reason, and the essence of individual identity, presenting a perspective of life as a tragic struggle.\"\n    },\n    {\n      \"book_id\": \"145\",\n      \"reason\": \"La historia de la protagonista se convierte en una exploración trágica de engaño y caída.\",\n      \"quote\": \"Her story becomes a tragic exploration of delusion and downfall.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"La dama de las camelias de Alexandre Dumas es una trágica y desgarradora historia de amor imposible marcada por la enfermedad y el sacrificio, perfecta para conmover y hacer llorar.\"\n    },\n    {\n      \"book_id\": \"83\",\n      \"reason\": \"Los miserables de Victor Hugo ofrece un retrato profundamente emotivo de la injusticia social y la redención que ha hecho llorar a generaciones de lectores con sus trágicos destinos.\"\n    },\n    {\n      \"book_id\": \"68\",\n      \"reason\": \"Hamlet de William Shakespeare es una de las tragedias más conmovedoras de la literatura universal, cuyo desenlace fatal y dolor profundo garantizan una experiencia desoladora.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Something short I can finish in one sitting",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    160,
+    178,
+    197,
+    208,
+    217,
+    222,
+    224,
+    226,
+    268
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 26,
+   "summary_picks": [
+    233,
+    100,
+    293
+   ],
+   "knowledge_picks": [
+    208,
+    76
+   ],
+   "summary_proposed": 3,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"233\",\n      \"reason\": \"Changeling and Other Stories by Donn Byrne is a collection of short stories written in the early 20th century.\",\n      \"quote\": \"\\\"Changeling and Other Stories\\\" by Donn Byrne is a collection of short stories written in the early 20th century.\"\n    },\n    {\n      \"book_id\": \"100\",\n      \"reason\": \"Thespis by Carlos O. Bunge is a collection of short novels and stories written in the early 20th century.\",\n      \"quote\": \"\\\"Thespis (novelas cortas y cuentos)\\\" by Carlos O. Bunge is a collection of short novels and stories written in the early 20th century.\"\n    },\n    {\n      \"book_id\": \"293\",\n      \"reason\": \"A young man's story by Sarah Doudney is a romantic supernatural short story written in the late 19th century.\",\n      \"quote\": \"A young man's story by Sarah Doudney is a romantic supernatural short story written in the late 19th century, during the Victorian era.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"208\",\n      \"reason\": \"The Legend of Sleepy Hollow es un cuento clásico de Washington Irving que se puede leer perfectamente de una sola sentada.\"\n    },\n    {\n      \"book_id\": \"76\",\n      \"reason\": \"Ratón Pérez es un cuento infantil muy breve escrito por Luis Coloma, ideal para una lectura rápida.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro para entender la Rusia del siglo XIX",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    1,
+    166,
+    181,
+    215
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    215
+   ],
+   "knowledge_picks": [
+    1,
+    181,
+    215
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"215\",\n      \"reason\": \"Esta novela de 19-siglo Rusia explora cuestiones profundas sobre Dios, el libre albedrío y la moralidad.\",\n      \"quote\": \"Set in 19th-century Russia, this passionate philosophical work explores profound questions of God, free will, and morality.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"1\",\n      \"reason\": \"El crimen y el castigo de Dostoyevsky ofrece una profunda inmersión en la psicología de la sociedad rusa del siglo XIX, retratando las tensiones morales y existenciales en San Petersburgo.\"\n    },\n    {\n      \"book_id\": \"181\",\n      \"reason\": \"War and Peace de León Tolstói es una obra maestra monumental que retrata fielmente la sociedad rusa, la aristocracia y los acontecimientos históricos del siglo XIX.\"\n    },\n    {\n      \"book_id\": \"215\",\n      \"reason\": \"Los hermanos Karamázov explora los dilemas espirituales, filosóficos y morales de la Rusia decimonónica a través de una inolvidable saga familiar.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro sobre el mar que no sea una novela de aventuras",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    51
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    51
+   ],
+   "knowledge_picks": [
+    51,
+    262
+   ],
+   "summary_proposed": 1,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"51\",\n      \"reason\": \"Es una publicación científica del siglo XIX que explora la naturaleza profunda del mar, sus características físicas, importancia ecológica y las respuestas emocionales que suscita.\",\n      \"quote\": \"\\\"El Mar\\\" by Jules Michelet is a scientific publication written in the late 19th century. The work explores the profound and multifaceted nature of the sea, examining its physical characteristics, ecological importance, and the emotional responses it elicits in humans.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"51\",\n      \"reason\": \"Este libro de Jules Michelet es un ensayo lírico y reflexivo sobre el mar, su naturaleza y su simbolismo, alejado por completo de la trama de una novela de aventuras.\"\n    },\n    {\n      \"book_id\": \"262\",\n      \"reason\": \"La obra de Hilaire Belloc relata un viaje real por la costa inglesa mientras intercala profundas reflexiones filosóficas y literarias sobre la vida y el mar.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A detective story that is not by Agatha Christie or Conan Doyle",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    226,
+    229,
+    235,
+    241,
+    258,
+    284,
+    290,
+    292
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    284,
+    292,
+    258
+   ],
+   "knowledge_picks": [
+    229
+   ],
+   "summary_proposed": 3,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"284\",\n      \"reason\": \"The Trouble at Pinelands is a detective novel written by Ernest M. Poate.\",\n      \"quote\": \"The Trouble at Pinelands by Ernest M. Poate is a detective novel written in the early 20th century.\"\n    },\n    {\n      \"book_id\": \"292\",\n      \"reason\": \"The Unknown Seven is a detective novel written by Herman Landon.\",\n      \"quote\": \"\\\"The unknown seven\\\" by Herman Landon is a detective novel written in the early 20th century.\"\n    },\n    {\n      \"book_id\": \"258\",\n      \"reason\": \"Three Sevens is a detective novel written by Perley Poore Sheehan.\",\n      \"quote\": \"\\\"Three Sevens\\\" by Perley Poore Sheehan is a detective novel written in the early 20th century.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\"picks\": [{\"book_id\": \"229\", \"reason\": \"Whose Body? is a classic detective novel introducing Lord Peter Wimsey, written by Dorothy L. Sayers and entirely independent of Christie or Doyle.\"}]}"
+  },
+  {
+   "question": "Una novela de Dumas que no sea El conde de Montecristo",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    142,
+    179
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    142,
+    179
+   ],
+   "knowledge_picks": [
+    142,
+    179
+   ],
+   "summary_proposed": 2,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"La novela narra la trágica historia de amor de Margarita Gautier y Armando Duval.\",\n      \"quote\": \"The narrative unfolds around the tragic and poignant story of Margarita Gautier, a beautiful courtesan, and her ill-fated romance with Armando Duval, delving into themes of love, sacrifice, and societal judgment.\"\n    },\n    {\n      \"book_id\": \"179\",\n      \"reason\": \"D'Artagnan es convocado por el Cardenal Mazarin para reunir a los legendarios mosqueteros.\",\n      \"quote\": \"D'Artagnan, still a lowly lieutenant after two decades, is summoned by the despised Cardinal Mazarin during France's brewing rebellion. Tasked with reuniting the legendary musketeers, he tracks down his old friends—now scattered across vastly different lives.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"La dama de las camelias y Una familia corsa es una obra famosa de Alexandre Dumas que explora el trágico romance de Marguerite Gautier y Armand Duval.\"\n    },\n    {\n      \"book_id\": \"179\",\n      \"reason\": \"Twenty years after es la famosa continuación de Los tres mosqueteros escrita por Alexandre Dumas, donde los héroes se reúnen nuevamente años después.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Poetry from Latin America, not prose",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    12,
+    57,
+    95,
+    103,
+    109,
+    114
+   ],
+   "missing_from_catalog": [],
+   "first_expected_rank": 1,
+   "summary_picks": [
+    95,
+    57,
+    114
+   ],
+   "knowledge_picks": [
+    12,
+    95,
+    114
+   ],
+   "summary_proposed": 3,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"95\",\n      \"reason\": \"Prosas Profanas by Rubén Darío is a collection of poems written in the late 19th century.\",\n      \"quote\": \"\\\"Prosas Profanas\\\" by Rubén Darío is a collection of poems written in the late 19th century.\"\n    },\n    {\n      \"book_id\": \"57\",\n      \"reason\": \"El Gaucho Martín Fierro by José Hernández is a narrative poem written in 1872.\",\n      \"quote\": \"\\\"El Gaucho Martín Fierro\\\" by José Hernández is a narrative poem written in 1872.\"\n    },\n    {\n      \"book_id\": \"114\",\n      \"reason\": \"Cantos de Vida y Esperanza, Los Cisnes y otros poemas by Rubén Darío is a poetry collection published in 1905.\",\n      \"quote\": \"\\\"Cantos de Vida y Esperanza, Los Cisnes y otros poemas\\\" by Rubén Darío is a poetry collection published in 1905.\"\n    }\n  ]\n}",
+   "knowledge_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"12\",\n      \"reason\": \"Azul... es una de las obras fundacionales del modernismo hispanoamericano, escrita en verso y prosa poética por el nicaragüense Rubén Darío.\"\n    },\n    {\n      \"book_id\": \"95\",\n      \"reason\": \"Prosas profanas y otros poemas consagra la maestría poética de Rubén Darío, siendo un pilar fundamental de la lírica modernista en América Latina.\"\n    },\n    {\n      \"book_id\": \"114\",\n      \"reason\": \"Cantos de vida y esperanza contiene la poesía madura y profunda de Rubén Darío, una de las voces más altas de la poesía latinoamericana.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una novela del autor de Cien años de soledad",
+   "language": "es",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null,
+   "summary_picks": [],
+   "knowledge_picks": [],
+   "summary_proposed": 0,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\"picks\":[]}",
+   "knowledge_text": "{\"picks\": []}"
+  },
+  {
+   "question": "A biography of Steve Jobs",
+   "language": "en",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "first_expected_rank": null,
+   "summary_picks": [],
+   "knowledge_picks": [],
+   "summary_proposed": 0,
+   "summary_drops": {},
+   "knowledge_drops": {},
+   "summary_text": "{\n  \"picks\": []\n}",
+   "knowledge_text": "{\"picks\":[]}"
+  }
+ ],
+ "totals_by_kind": {
+  "knowledge": {
+   "questions": 7,
+   "answerable": 7,
+   "unanswerable": 0,
+   "search_hit_at_5": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "search_hit_at_12": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "search_hit_at_40": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "search_mrr_at_40": 0.929,
+   "summary_pass_hit": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "knowledge_pass_hit": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "either_pass_hit": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "knowledge_only_hit": 0,
+   "summary_pass_abstained": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "knowledge_pass_abstained": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 11,
+    "quote_not_in_summary": 0,
+    "passed_rate": 1.0
+   },
+   "drops": {}
+  },
+  "mood": {
+   "questions": 5,
+   "answerable": 5,
+   "unanswerable": 0,
+   "search_hit_at_5": {
+    "hits": 2,
+    "of": 5,
+    "rate": 0.4
+   },
+   "search_hit_at_12": {
+    "hits": 3,
+    "of": 5,
+    "rate": 0.6
+   },
+   "search_hit_at_40": {
+    "hits": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "search_mrr_at_40": 0.342,
+   "summary_pass_hit": {
+    "hits": 3,
+    "of": 5,
+    "rate": 0.6
+   },
+   "knowledge_pass_hit": {
+    "hits": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "either_pass_hit": {
+    "hits": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "knowledge_only_hit": 2,
+   "summary_pass_abstained": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "knowledge_pass_abstained": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 8,
+    "quote_not_in_summary": 0,
+    "passed_rate": 1.0
+   },
+   "drops": {}
+  },
+  "trap": {
+   "questions": 6,
+   "answerable": 4,
+   "unanswerable": 2,
+   "search_hit_at_5": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "search_hit_at_12": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "search_hit_at_40": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "search_mrr_at_40": 1.0,
+   "summary_pass_hit": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "knowledge_pass_hit": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "either_pass_hit": {
+    "hits": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "knowledge_only_hit": 0,
+   "summary_pass_abstained": {
+    "hits": 2,
+    "of": 2,
+    "rate": 1.0
+   },
+   "knowledge_pass_abstained": {
+    "hits": 2,
+    "of": 2,
+    "rate": 1.0
+   },
+   "quotes_checked": {
+    "proposed": 9,
+    "quote_not_in_summary": 0,
+    "passed_rate": 1.0
+   },
+   "drops": {}
+  }
+ }
+}
