@@ -2,7 +2,7 @@
 
 *Read this in [Español](README.es.md).*
 
-A catalog of 300 public-domain books (Project Gutenberg, in Spanish and English) with search by meaning and a librarian that recommends in plain language. The librarian answers twice, and only with books in the catalog: once from the summaries, quoting the line that backs each recommendation (code checks the quote exists), and once from what the model knows about those books, labelled as such. It is a 2023 bootcamp project, rescued and rewritten in 2026; the repository's history tells how.
+A catalog of 300 public-domain books (Project Gutenberg, in Spanish and English), and one that is not, with search by meaning and a librarian that recommends in plain language. The librarian answers twice, and only with books in the catalog: once from the summaries, quoting the line that backs each recommendation (code checks the quote exists), and once from what the model knows about those books, labelled as such. It is a 2023 bootcamp project, rescued and rewritten in 2026; the repository's history tells how.
 
 > AI carries risk. Code bounds it. The standard answers for what remains.
 
@@ -41,7 +41,7 @@ A reader does not search "title contains X": they ask for "something to make me 
 
 ## Measured
 
-Two sets of questions written for this measurement (not by the model under test), with the books that should come out, by Gutenberg id: [`eval/questions.json`](eval/questions.json) and [`eval/questions_hard.json`](eval/questions_hard.json). `python manage.py evaluate` reproduces the tables and keeps the raw answers in [`eval/results/`](eval/results/). Measured on 28-10-2026 with Gemini's free quota.
+Two sets of questions written for this measurement (not by the model under test), with the books that should come out, by Gutenberg id: [`eval/questions.json`](eval/questions.json) and [`eval/questions_hard.json`](eval/questions_hard.json). `python manage.py evaluate` reproduces the tables and keeps the raw answers in [`eval/results/`](eval/results/). Measured on 28-10-2026 with Gemini's free quota, over the 300 Gutenberg books.
 
 **Base set, 36 questions** that describe the plot without the title; Spanish questions for books only in English and the other way round; 2 with no answer in the catalog.
 
@@ -75,9 +75,10 @@ pip install -r requirements-dev.txt
 cp .env.example .env                              # DATABASE_URL and, if you want, GEMINI_API_KEY
 python manage.py migrate
 python manage.py import_gutenberg                 # 150 books in Spanish and 150 in English
+python manage.py add_nogum                        # the one that is not public domain
 python manage.py embed_books                      # 6 calls of 50 books
 python manage.py runserver
-python manage.py test                             # 80 tests, never calling Gemini or Gutenberg
+python manage.py test                             # 81 tests, never calling Gemini or Gutenberg
 python manage.py evaluate --questions eval/questions_hard.json
 ```
 
@@ -116,8 +117,8 @@ Framework: EU AI Act (2024/1689) · GDPR.
 
 ```
 library/     models · views · librarian (the two passes and their checks) · search · embeddings · gemini
-             gutenberg (import) · evaluation · management/commands/ (import_gutenberg · embed_books · evaluate)
-             templates/ · static/library/librarian.js (the reader's key, in the browser only) · tests/ (80 tests)
+             gutenberg (import) · evaluation · management/commands/ (import_gutenberg · add_nogum · embed_books · evaluate)
+             templates/ · static/library/librarian.js (the reader's key, in the browser only) · tests/ (81 tests)
 eval/        questions.json · questions_hard.json · results/ (every measurement, with the raw answers)
 django_library/  settings (local and Heroku in one file) · urls
 .github/workflows/tests.yml   the tests against Postgres 17 with pgvector on every push

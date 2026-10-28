@@ -75,6 +75,13 @@ class ImportCommandTests(TestCase):
             call_command("import_gutenberg", "--language", "es", "--count", "10", stdout=out)
         return out.getvalue()
 
+    def test_the_one_book_not_from_gutenberg_is_added_once(self):
+        for _ in range(2):
+            call_command("add_nogum", stdout=StringIO())
+        book = Book.objects.get(title="NOGUM")
+        self.assertIsNone(book.gutenberg_id)
+        self.assertIn("No es de dominio público", book.description)
+
     def test_imports_and_running_again_updates_instead_of_duplicating(self):
         self.assertIn("es: 2 created, 0 updated.", self.run_import([item(1), item(2)]))
         self.assertIn("es: 0 created, 2 updated.", self.run_import([item(1), item(2, title="Renamed")]))

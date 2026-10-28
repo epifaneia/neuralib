@@ -2,7 +2,7 @@
 
 *Read this in [English](README.md).*
 
-Un catálogo de 300 libros de dominio público (Project Gutenberg, en español y en inglés) con búsqueda por significado y un bibliotecario que recomienda en lenguaje natural. El bibliotecario contesta dos veces, y solo con libros del catálogo: una desde los resúmenes, citando la línea que respalda cada recomendación (el código comprueba que la cita existe), y otra desde lo que el modelo sabe de esos libros, marcada como tal. Es un proyecto de bootcamp de 2023, rescatado y reescrito en 2026; la historia del repositorio cuenta cómo.
+Un catálogo de 300 libros de dominio público (Project Gutenberg, en español y en inglés), y uno que no lo es, con búsqueda por significado y un bibliotecario que recomienda en lenguaje natural. El bibliotecario contesta dos veces, y solo con libros del catálogo: una desde los resúmenes, citando la línea que respalda cada recomendación (el código comprueba que la cita existe), y otra desde lo que el modelo sabe de esos libros, marcada como tal. Es un proyecto de bootcamp de 2023, rescatado y reescrito en 2026; la historia del repositorio cuenta cómo.
 
 > La IA tiene riesgos. El código los acota. La norma responde de lo que queda.
 
@@ -41,7 +41,7 @@ Un lector no busca "título contiene X": pide "algo para reírme", "una historia
 
 ## Medido
 
-Dos sets de preguntas redactadas para esta medición (no por el modelo que se evalúa), con los libros que deberían salir, por id de Gutenberg: [`eval/questions.json`](eval/questions.json) y [`eval/questions_hard.json`](eval/questions_hard.json). `python manage.py evaluate` reproduce las tablas y guarda las respuestas en bruto en [`eval/results/`](eval/results/). Medido el 28-10-2026 con la cuota gratuita de Gemini.
+Dos sets de preguntas redactadas para esta medición (no por el modelo que se evalúa), con los libros que deberían salir, por id de Gutenberg: [`eval/questions.json`](eval/questions.json) y [`eval/questions_hard.json`](eval/questions_hard.json). `python manage.py evaluate` reproduce las tablas y guarda las respuestas en bruto en [`eval/results/`](eval/results/). Medido el 28-10-2026 con la cuota gratuita de Gemini, sobre los 300 libros de Gutenberg.
 
 **Set base, 36 preguntas** que describen la trama sin el título; preguntas en español para libros que solo están en inglés y al revés; 2 sin respuesta en el catálogo.
 
@@ -75,9 +75,10 @@ pip install -r requirements-dev.txt
 cp .env.example .env                              # DATABASE_URL y, si quieres, GEMINI_API_KEY
 python manage.py migrate
 python manage.py import_gutenberg                 # 150 libros en español y 150 en inglés
+python manage.py add_nogum                        # el que no es de dominio público
 python manage.py embed_books                      # 6 llamadas de 50 libros
 python manage.py runserver
-python manage.py test                             # 80 pruebas, sin llamar a Gemini ni a Gutenberg
+python manage.py test                             # 81 pruebas, sin llamar a Gemini ni a Gutenberg
 python manage.py evaluate --questions eval/questions_hard.json
 ```
 
@@ -116,8 +117,8 @@ Marco: EU AI Act (2024/1689) · RGPD.
 
 ```
 library/     models · views · librarian (las dos pasadas y sus comprobaciones) · search · embeddings · gemini
-             gutenberg (importación) · evaluation · management/commands/ (import_gutenberg · embed_books · evaluate)
-             templates/ · static/library/librarian.js (la clave del lector, solo en el navegador) · tests/ (80 pruebas)
+             gutenberg (importación) · evaluation · management/commands/ (import_gutenberg · add_nogum · embed_books · evaluate)
+             templates/ · static/library/librarian.js (la clave del lector, solo en el navegador) · tests/ (81 pruebas)
 eval/        questions.json · questions_hard.json · results/ (cada medición, con las respuestas en bruto)
 django_library/  settings (local y Heroku en un fichero) · urls
 .github/workflows/tests.yml   las pruebas contra Postgres 17 con pgvector en cada push
