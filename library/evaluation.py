@@ -80,7 +80,7 @@ def evaluate(questions, retrieval_only=False, pause=4.0, log=print):
         missing = [g for g in q["expected"] if g not in by_gutenberg]
         ranked = librarian.candidates(vector, librarian.KNOWLEDGE_CANDIDATES)
         rank = next((i for i, b in enumerate(ranked, start=1) if b.pk in expected), None)
-        row = {"question": q["question"], "language": q["language"], "expected": sorted(expected),
+        row = {"question": q["question"], "language": q["language"], "kind": q.get("kind"), "expected": sorted(expected),
                "missing_from_catalog": missing, "first_expected_rank": rank}
         if not retrieval_only:
             summary_books = ranked[:librarian.SUMMARY_CANDIDATES]

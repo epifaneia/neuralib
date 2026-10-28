@@ -1,6 +1,10 @@
 import json
+import tempfile
+from io import StringIO
+from pathlib import Path
 from unittest import mock
 
+from django.core.management import call_command
 from django.test import TestCase
 
 from library.evaluation import drop_reasons, evaluate
@@ -65,3 +69,23 @@ class EvaluationTests(TestCase):
         self.assertEqual(drop_reasons(text, books, with_quote=True),
                          {"not_listed": 1, "no_reason": 1, "quote_not_in_summary": 1})
         self.assertEqual(drop_reasons("not json", books, with_quote=True), {"not_json": 1})
+
+
+class EvaluateCommandTests(TestCase):
+    def test_writes_the_run_named_after_its_question_set_with_totals_by_kind(self):
+        book = make_book(title="Dracula", gutenberg_id=345)
+        book.embedding = axis(0)
+        book.save()
+        with tempfile.TemporaryDirectory() as tmp:
+            questions = Path(tmp) / "questions_hard.json"
+            questions.write_text(json.dumps({"questions": [
+                {"question": "vampiros", "language": "es", "kind": "trap", "expected": [345]},
+                {"question": "Python", "language": "es", "kind": "mood", "expected": []}]}), encoding="utf-8")
+            with mock.patch("library.management.commands.evaluate.EVAL", Path(tmp)), \
+                    mock.patch("library.evaluation.embed", return_value=[axis(0), axis(1)]):
+                call_command("evaluate", "--retrieval-only", "--questions", str(questions), stdout=StringIO())
+            written = list((Path(tmp) / "results").glob("*-hard-retrieval.json"))
+            self.assertEqual(len(written), 1)
+            run = json.loads(written[0].read_text(encoding="utf-8"))
+            self.assertEqual(sorted(run["totals_by_kind"]), ["mood", "trap"])
+            self.assertEqual(run["totals_by_kind"]["trap"]["search_hit_at_5"]["hits"], 1)

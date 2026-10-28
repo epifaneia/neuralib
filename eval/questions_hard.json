@@ -1,0 +1,210 @@
+{
+ "about": "The hard set. Questions written by hand with the Gutenberg ids that answer them; kind says what each one tests: knowledge (the answer needs facts no summary has), mood (several right answers, a matter of taste), trap (negations, misleading words, or nothing in the catalog fits).",
+ "questions": [
+  {
+   "question": "Algo del escritor que perdió el uso de la mano izquierda en la batalla de Lepanto",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    2000,
+    61202,
+    15115
+   ],
+   "note": "Cervantes. Ningún resumen dice Lepanto."
+  },
+  {
+   "question": "Something by the author of the poem The Raven",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    2148,
+    46196
+   ],
+   "note": "Poe. Ningún resumen nombra El cuervo."
+  },
+  {
+   "question": "Un libro del científico español que ganó el Nobel por sus estudios del sistema nervioso",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    58331
+   ],
+   "note": "Ramón y Cajal, sus memorias. El resumen no dice Nobel."
+  },
+  {
+   "question": "A book by the philosopher who wrote that God is dead",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    4363,
+    1998
+   ],
+   "note": "Nietzsche. Ningún resumen lo dice."
+  },
+  {
+   "question": "Poemas del poeta sevillano que murió en Colliure huyendo de la guerra",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    68525,
+    49437
+   ],
+   "note": "Antonio Machado. Ni Sevilla ni Colliure aparecen en los resúmenes."
+  },
+  {
+   "question": "A comedy by the Irish writer who was later jailed in Reading",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    844
+   ],
+   "note": "Wilde: La importancia de llamarse Ernesto. Dorian Gray es novela, no comedia."
+  },
+  {
+   "question": "Algo del poeta que escribió La casa de Bernarda Alba",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    72665
+   ],
+   "note": "Lorca: Romancero gitano es lo único suyo en el catálogo."
+  },
+  {
+   "question": "Algo para reírme a carcajadas",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    78124,
+    844,
+    6593,
+    1080,
+    2000,
+    50027
+   ],
+   "note": "Muchas válidas: 1066 and all that, Earnest, Tom Jones, A Modest Proposal (sátira), el Quijote, El sí de las niñas. Corrige a tu gusto."
+  },
+  {
+   "question": "A love story with a happy ending",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    1342,
+    161,
+    2641,
+    67979,
+    1260,
+    16389,
+    17223,
+    50027
+   ],
+   "note": "Austen (2), A Room with a View, The Blue Castle, Jane Eyre, The Enchanted April, Pepita Jiménez, El sí de las niñas."
+  },
+  {
+   "question": "Algo muy triste que me haga llorar",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    17340,
+    74029,
+    1513,
+    75739,
+    78068,
+    52392,
+    75126
+   ],
+   "note": "Marianela, La dama de las camelias, Romeo y Julieta, Los miserables (2 tomos), Miau, Sab."
+  },
+  {
+   "question": "Something short I can finish in one sitting",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    46,
+    1952,
+    1080,
+    42,
+    43,
+    41,
+    68283,
+    209,
+    57669
+   ],
+   "note": "No hay número de páginas en el catálogo: solo lo sabe el conocimiento del modelo."
+  },
+  {
+   "question": "Un libro para entender la Rusia del siglo XIX",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    2600,
+    28054,
+    2554,
+    61851
+   ],
+   "note": "Guerra y paz, Los hermanos Karamázov, Crimen y castigo (2 copias)."
+  },
+  {
+   "question": "Un libro sobre el mar que no sea una novela de aventuras",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    26284
+   ],
+   "note": "El Mar de Michelet, historia natural. Trampa: Moby Dick, La isla del tesoro y Shanti Andía son de aventuras."
+  },
+  {
+   "question": "A detective story that is not by Agatha Christie or Conan Doyle",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    58820,
+    204,
+    57669,
+    78103,
+    78010,
+    78011,
+    78094,
+    1695
+   ],
+   "note": "Negación. Sayers, Father Brown, Futrelle, tres novelas de detectives menores, Thursday de Chesterton."
+  },
+  {
+   "question": "Una novela de Dumas que no sea El conde de Montecristo",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    1259,
+    74029
+   ],
+   "note": "Negación. Veinte años después; y La dama de las camelias, que es de Dumas hijo (el volumen trae también Una familia corsa, del padre)."
+  },
+  {
+   "question": "Poetry from Latin America, not prose",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    50341,
+    52894,
+    47650,
+    53867,
+    51569,
+    14765
+   ],
+   "note": "Rubén Darío (Prosas profanas es poesía pese al nombre) y Martín Fierro. Trampa: Rizal y Florante son de Filipinas."
+  },
+  {
+   "question": "Una novela del autor de Cien años de soledad",
+   "language": "es",
+   "kind": "trap",
+   "expected": [],
+   "note": "García Márquez no está: aún tiene derechos. Lo correcto es no recomendar nada."
+  },
+  {
+   "question": "A biography of Steve Jobs",
+   "language": "en",
+   "kind": "trap",
+   "expected": [],
+   "note": "Nada en el catálogo. Lo correcto es no recomendar nada."
+  }
+ ]
+}
