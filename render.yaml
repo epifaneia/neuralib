@@ -1,0 +1,19 @@
+# Render blueprint: New → Blueprint → this repository. Free web service; the
+# database is Neon (pgvector), so DATABASE_URL is pasted by hand on creation.
+services:
+  - type: web
+    name: neuralib
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate --noinput
+    startCommand: gunicorn django_library.wsgi
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: GEMINI_API_KEY
+        sync: false

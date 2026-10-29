@@ -84,7 +84,9 @@ python manage.py evaluate --questions eval/questions_hard.json
 
 Sin `GEMINI_API_KEY` el catálogo funciona igual, por palabras. El bibliotecario entonces pide a cada lector su propia clave (página "AI key"): se guarda en su navegador y es su navegador quien habla con Google.
 
-**Heroku.** `Procfile` con `release: migrate` y gunicorn; WhiteNoise sirve los estáticos. Basta con `DATABASE_URL`, `SECRET_KEY` y, si se quiere que el sitio conteste con su propia clave, `GEMINI_API_KEY` como config vars. En Heroku el sitio exige HTTPS, cookies seguras y HSTS, y no arranca sin `SECRET_KEY`.
+**Heroku.** `Procfile` con `release: migrate` y gunicorn; WhiteNoise sirve los estáticos. Basta con `DATABASE_URL`, `SECRET_KEY` y, si se quiere que el sitio conteste con su propia clave, `GEMINI_API_KEY` como config vars. En producción el sitio exige HTTPS, cookies seguras y HSTS, y no arranca sin `SECRET_KEY`.
+
+**Render.** `render.yaml` es un blueprint para un servicio web gratuito: instala, recoge los estáticos, migra y arranca gunicorn, y genera `SECRET_KEY`. Pega `DATABASE_URL` (Neon) y, si quieres, `GEMINI_API_KEY` cuando lo pida. El plan gratuito se duerme tras un rato sin visitas, así que la primera petición después tarda cerca de un minuto.
 
 ## Limitaciones
 

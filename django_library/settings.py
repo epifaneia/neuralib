@@ -16,17 +16,18 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-ON_HEROKU = "DYNO" in os.environ
-DEBUG = os.environ.get("DEBUG", "0" if ON_HEROKU else "1") == "1"
+# Heroku sets DYNO and Render sets RENDER: either one means production.
+ON_HOST = "DYNO" in os.environ or "RENDER" in os.environ
+DEBUG = os.environ.get("DEBUG", "0" if ON_HOST else "1") == "1"
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 if not SECRET_KEY:
-    if DEBUG or not ON_HEROKU:
+    if DEBUG or not ON_HOST:
         SECRET_KEY = "dev-only-insecure-key"
     else:
-        raise ImproperlyConfigured("SECRET_KEY must be set on Heroku.")
+        raise ImproperlyConfigured("SECRET_KEY must be set in production.")
 
-ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,.herokuapp.com").split(",") if h.strip()]
+ALLOWED_HOSTS = [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "localhost,127.0.0.1,.herokuapp.com,.onrender.com").split(",") if h.strip()]
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",") if o.strip()]
 
 INSTALLED_APPS = [
@@ -80,7 +81,7 @@ if not os.environ.get("DATABASE_URL"):
     raise ImproperlyConfigured(
         "Set DATABASE_URL to a Postgres database with pgvector (Neon's free plan works). See .env.example.")
 DATABASES = {
-    "default": dj_database_url.config(conn_max_age=600, conn_health_checks=True, ssl_require=ON_HEROKU)
+    "default": dj_database_url.config(conn_max_age=600, conn_health_checks=True, ssl_require=ON_HOST)
 }
 
 # Semantic search: Gemini embeddings. Without a key the catalog still works, by keyword only.
@@ -126,14 +127,14 @@ STORAGES = {
     "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
-        if ON_HEROKU
+        if ON_HOST
         else "django.contrib.staticfiles.storage.StaticFilesStorage"
     },
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-if ON_HEROKU:
+if ON_HOST:
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
