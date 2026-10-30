@@ -2,6 +2,8 @@
 
 *Read this in [Español](README.es.md).*
 
+**Live: [neuralib-m8q6.onrender.com](https://neuralib-m8q6.onrender.com)** (free plan: the first visit after a quiet spell takes about a minute to wake up).
+
 A catalog of 300 public-domain books (Project Gutenberg, in Spanish and English), and one that is not, with search by meaning and a librarian that recommends in plain language. The librarian answers twice, and only with books in the catalog: once from the summaries, quoting the line that backs each recommendation (code checks the quote exists), and once from what the model knows about those books, labelled as such. It is a 2023 bootcamp project, rescued and rewritten in 2026; the repository's history tells how.
 
 > AI carries risk. Code bounds it. The standard answers for what remains.

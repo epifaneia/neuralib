@@ -2,6 +2,8 @@
 
 *Read this in [English](README.md).*
 
+**En vivo: [neuralib-m8q6.onrender.com](https://neuralib-m8q6.onrender.com)** (plan gratuito: la primera visita tras un rato sin uso tarda cerca de un minuto en despertar).
+
 Un catálogo de 300 libros de dominio público (Project Gutenberg, en español y en inglés), y uno que no lo es, con búsqueda por significado y un bibliotecario que recomienda en lenguaje natural. El bibliotecario contesta dos veces, y solo con libros del catálogo: una desde los resúmenes, citando la línea que respalda cada recomendación (el código comprueba que la cita existe), y otra desde lo que el modelo sabe de esos libros, marcada como tal. Es un proyecto de bootcamp de 2023, rescatado y reescrito en 2026; la historia del repositorio cuenta cómo.
 
 > La IA tiene riesgos. El código los acota. La norma responde de lo que queda.
