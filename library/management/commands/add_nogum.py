@@ -4,8 +4,8 @@ from library.models import Book
 
 NOGUM = {
     "description": (
-        "NOGUM es un juego de rol universal escrito por el autor de esta biblioteca: un manual de unas 150 "
-        "páginas en castellano y en inglés, una versión acelerada de 16 páginas para empezar a jugar enseguida "
+        "NOGUM es un juego de rol universal escrito por el autor de esta biblioteca: un manual de más de 200 "
+        "páginas en castellano y en inglés, una versión acelerada para empezar a jugar enseguida "
         "y una aplicación que prepara la partida con preguntas sobre situaciones, no sobre reglas. No es de "
         "dominio público: lo publica su autor."
     ),
