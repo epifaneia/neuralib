@@ -1,0 +1,521 @@
+{
+ "date": "2026-11-03T11:48:52",
+ "librarian_model": "gemini-3.5-flash-lite",
+ "catalog_books": 301,
+ "summary_max": 600,
+ "totals": {
+  "questions": 18,
+  "answerable": 16,
+  "unanswerable": 2,
+  "recommends_it": {
+   "hits": 14,
+   "of": 16,
+   "rate": 0.875
+  },
+  "with_a_checked_quote": {
+   "hits": 10,
+   "of": 16,
+   "rate": 0.625
+  },
+  "only_from_knowledge": 4,
+  "silent_when_nothing_fits": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "quotes_checked": {
+   "proposed": 21,
+   "quote_not_in_summary": 6,
+   "passed_rate": 0.714
+  },
+  "drops": {
+   "quote_not_in_summary": 6
+  },
+  "prompt_tokens_per_question": 53222
+ },
+ "results": [
+  {
+   "question": "Algo del escritor que perdió el uso de la mano izquierda en la batalla de Lepanto",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    4,
+    86,
+    126
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    4,
+    86,
+    126
+   ],
+   "proposed": 3,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53228,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\": [{\"book_id\": \"4\", \"reason\": \"Esta novela fundamental de la literatura occidental fue escrita por Miguel de Cervantes Saavedra, conocido como el manco de Lepanto.\", \"quote\": \"\"}, {\"book_id\": \"86\", \"reason\": \"Estas novelas ejemplares fueron escritas por Miguel de Cervantes Saavedra, quien perdió el movimiento de la mano izquierda en la célebre batalla naval.\", \"quote\": \"\"}, {\"book_id\": \"126\", \"reason\": \"Esta compilación incluye obras de Miguel de Cervantes Saavedra, el célebre escritor que perdió su mano izquierda en la batalla de Lepanto.\", \"quote\": \"\"}]}"
+  },
+  {
+   "question": "Something by the author of the poem The Raven",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    34,
+    213
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    34,
+    213
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {},
+   "prompt_tokens": 53220,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"34\",\n      \"reason\": \"This collection of Poe's works comes from Cuentos Clásicos del Norte, Primera Serie.\",\n      \"quote\": \"Cuentos Clásicos del Norte, Primera Serie\"\n    },\n    {\n      \"book_id\": \"213\",\n      \"reason\": \"This collection of Poe's short stories and essays comes from The Works of Edgar Allan Poe — Volume 2.\",\n      \"quote\": \"The Works of Edgar Allan Poe — Volume 2\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro del científico español que ganó el Nobel por sus estudios del sistema nervioso",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    130
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    130
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53226,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"130\",\n      \"reason\": \"Recuerdos de mi vida es la obra autobiográfica de Santiago Ramón y Cajal, el científico español galardonado con el Premio Nobel de Fisiología o Medicina por sus investigaciones sobre el sistema nervioso.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A book by the philosopher who wrote that God is dead",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    225,
+    230
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    225
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53222,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"225\",\n      \"reason\": \"This philosophical work introduces core Nietzschean concepts including the Übermensch, the death of God, the will to power, and eternal recurrence.\",\n      \"quote\": \"The work introduces core Nietzschean concepts including the Übermensch, the death of God, the will to power, and eternal recurrence.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Poemas del poeta sevillano que murió en Colliure huyendo de la guerra",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    85,
+    137
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    85
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53229,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\":[{\"book_id\":\"85\",\"reason\":\"\\\"Poesías completas\\\" by Antonio Machado is a collection of poetry published across four successive editions between 1917 and 1936.\",\"quote\":\"\\\"Poesías completas\\\" by Antonio Machado is a collection of poetry published across four successive editions between 1917 and 1936.\"}]}"
+  },
+  {
+   "question": "A comedy by the Irish writer who was later jailed in Reading",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    209
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    209
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53223,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"209\",\n      \"reason\": \"The Importance of Being Earnest is a comedy written by Oscar Wilde, who was imprisoned in Reading Gaol.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo del poeta que escribió La casa de Bernarda Alba",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    65
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    65
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53222,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\":[{\"book_id\":\"65\",\"reason\":\"El autor de La casa de Bernarda Alba escribió Romancero gitano, una colección de baladas publicada en 1928.\",\"quote\":\"Romancero gitano by Federico García Lorca is a poetry collection published in 1928.\"}]}"
+  },
+  {
+   "question": "Algo para reírme a carcajadas",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    4,
+    59,
+    186,
+    197,
+    209,
+    254
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    254
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53220,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\": [{\"book_id\": \"254\", \"reason\": \"1066 and All That: A Memorable History of England, Comprising All the Parts You Can Remember, Including 103 Good Things, 5 Bad Kings and 2 Genuine Dates is a tongue-in-cheek reworking of the history of England.\", \"quote\": \"1066 and All That: A Memorable History of England, Comprising All the Parts You Can Remember, Including 103 Good Things, 5 Bad Kings and 2 Genuine Dates is a tongue-in-cheek reworking of the history of England.\"}]}"
+  },
+  {
+   "question": "A love story with a happy ending",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    59,
+    94,
+    151,
+    161,
+    165,
+    167,
+    177,
+    199
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    151,
+    165
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {},
+   "prompt_tokens": 53218,
+   "cached_tokens": 49621,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"151\",\n      \"reason\": \"It follows Elizabeth Bennet, who must learn to see past first impressions and hasty judgments.\",\n      \"quote\": \"It follows Elizabeth Bennet, who must learn to see past first impressions and hasty judgments.\"\n    },\n    {\n      \"book_id\": \"165\",\n      \"reason\": \"Together they build a new life on a remote island—but secrets still linger.\",\n      \"quote\": \"Together they build a new life on a remote island—but secrets still linger.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo muy triste que me haga llorar",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    2,
+    40,
+    66,
+    83,
+    142,
+    143,
+    157
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    40
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {
+    "quote_not_in_summary": 1
+   },
+   "prompt_tokens": 53219,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"El libro se desarrolla en torno a la trágica y conmovedora historia de Margarita Gautier, una bella cortesana, y su desventurado romance con Armando Duval, adentrándose en temas de amor, sacrificio y juicio social.\",\n      \"quote\": \"La narrativa se desarrolla en torno a la trágica y conmovedora historia de Margarita Gautier, una bella cortesana, y su desventurado romance con Armando Duval, adentrándose en temas de amor, sacrificio y societal judgment.\"\n    },\n    {\n      \"book_id\": \"40\",\n      \"reason\": \"La historia sigue a Marianela, una niña huérfana que vive en exclusión social, que encuentra compañía en Pablo, un joven ciego que no juzga su apariencia.\",\n      \"quote\": \"The story follows Marianela, an orphaned girl living in social exclusion, who finds companionship with Pablo, a blind young man who doesn't judge her appearance.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Something short I can finish in one sitting",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    160,
+    178,
+    197,
+    208,
+    217,
+    222,
+    224,
+    226,
+    268
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    73
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53219,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"73\",\n      \"reason\": \"Es una novela corta de terror gótico publicada en 1886 que se lee en poco tiempo.\",\n      \"quote\": \"El caso extraño del Doctor Jekyll\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro para entender la Rusia del siglo XIX",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    1,
+    166,
+    181,
+    215
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    181
+   ],
+   "knowledge_picks": [],
+   "proposed": 3,
+   "quotes_proposed": 3,
+   "drops": {
+    "quote_not_in_summary": 2
+   },
+   "prompt_tokens": 53220,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"1\",\n      \"reason\": \"This novel by Fyodor Dostoyevsky is a classic of Russian literature that captures the psychological and moral turmoil of Saint Petersburg.\",\n      \"quote\": \"Saint Petersburg (Russia) -- Fiction\"\n    },\n    {\n      \"book_id\": \"166\",\n      \"reason\": \"Written by Fyodor Dostoyevsky, this masterpiece delves deep into the darker psychological landscapes of Saint Petersburg in 1866.\",\n      \"quote\": \"Saint Petersburg (Russia) -- Fiction\"\n    },\n    {\n      \"book_id\": \"181\",\n      \"reason\": \"This monumental work by Leo Tolstoy is set during the Napoleonic Wars and chronicles Russian aristocratic life and history.\",\n      \"quote\": \"Set during the Napoleonic Wars, it chronicles the French invasion of Russia through five interlocking narratives following different Russian aristocratic families.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro sobre el mar que no sea una novela de aventuras",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    51
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {
+    "quote_not_in_summary": 1
+   },
+   "prompt_tokens": 53223,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"51\",\n      \"reason\": \"El libro explora la naturaleza profunda del mar y ofrece una interpretación lírica del mundo oceánico desde una perspectiva científica y reflexiva.\",\n      \"quote\": \"El Mar\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A detective story that is not by Agatha Christie or Conan Doyle",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    226,
+    229,
+    235,
+    241,
+    258,
+    284,
+    290,
+    292
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    229,
+    284,
+    292
+   ],
+   "knowledge_picks": [],
+   "proposed": 3,
+   "quotes_proposed": 3,
+   "drops": {},
+   "prompt_tokens": 53223,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"229\",\n      \"reason\": \"When an architect discovers a naked corpse wearing only pince-nez spectacles in his London bathtub, the amateur detective Lord Peter Wimsey takes on the puzzling case.\",\n      \"quote\": \"When an architect discovers a naked corpse wearing only pince-nez spectacles in his London bathtub, the amateur detective Lord Peter Wimsey takes on the puzzling case.\"\n    },\n    {\n      \"book_id\": \"284\",\n      \"reason\": \"Set in a small North Carolina town, it follows elderly bachelor George Uhlman as he keeps watch over Dorothy McGregor, her exacting invalid aunt Mary, and their sleepy nurse in a gloomy, possibly haunted house.\",\n      \"quote\": \"Set in a small North Carolina town, it follows elderly bachelor George Uhlman as he keeps watch over Dorothy McGregor, her exacting invalid aunt Mary, and their sleepy nurse in a gloomy, possibly haunted house.\"\n    },\n    {\n      \"book_id\": \"292\",\n      \"reason\": \"It centers on criminologist Kingdon Cole, who is drawn into a shadowy conspiracy tied to a missing man, Malcolm Reeves, an enigmatic scientist named Professor Carmody, and a secret council of seven masked figures.\",\n      \"quote\": \"It centers on criminologist Kingdon Cole, who is drawn into a shadowy conspiracy tied to a missing man, Malcolm Reeves, an enigmatic scientist named Professor Carmody, and a secret council of seven masked figures.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una novela de Dumas que no sea El conde de Montecristo",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    142,
+    179
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    179
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53225,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\":[{\"book_id\":\"179\",\"reason\":\"En esta novela, D'Artagnan y los legendarios mosqueteros se reencuentran en una nueva misión durante la turbulencia política en Francia e Inglaterra.\",\"quote\":\"\"}]}"
+  },
+  {
+   "question": "Poetry from Latin America, not prose",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    12,
+    57,
+    95,
+    103,
+    109,
+    114
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    114
+   ],
+   "knowledge_picks": [],
+   "proposed": 3,
+   "quotes_proposed": 3,
+   "drops": {
+    "quote_not_in_summary": 2
+   },
+   "prompt_tokens": 53218,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"95\",\n      \"reason\": \"This work showcases the poet's exploration of aesthetic themes, reflecting his preoccupation with beauty, love, and the complexities of existence.\",\n      \"quote\": \"Prosas Profanas\"\n    },\n    {\n      \"book_id\": \"114\",\n      \"reason\": \"This work marks a turning point in Darío's modernist style, moving beyond exotic imagery toward political and social themes.\",\n      \"quote\": \"Cantos de Vida y Esperanza, Los Cisnes y otros poemas\"\n    },\n    {\n      \"book_id\": \"103\",\n      \"reason\": \"This work reflects the voice of modernismo, showcasing Darío's celebrated lyrical style and profound themes.\",\n      \"quote\": \"Lira Póstuma\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una novela del autor de Cien años de soledad",
+   "language": "es",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 0,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53222,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\":[]}"
+  },
+  {
+   "question": "A biography of Steve Jobs",
+   "language": "en",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 0,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53216,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\": []}"
+  }
+ ],
+ "totals_by_kind": {
+  "knowledge": {
+   "questions": 7,
+   "answerable": 7,
+   "unanswerable": 0,
+   "recommends_it": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "with_a_checked_quote": {
+    "hits": 4,
+    "of": 7,
+    "rate": 0.571
+   },
+   "only_from_knowledge": 3,
+   "silent_when_nothing_fits": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 5,
+    "quote_not_in_summary": 0,
+    "passed_rate": 1.0
+   },
+   "drops": {},
+   "prompt_tokens_per_question": 53224
+  },
+  "mood": {
+   "questions": 5,
+   "answerable": 5,
+   "unanswerable": 0,
+   "recommends_it": {
+    "hits": 4,
+    "of": 5,
+    "rate": 0.8
+   },
+   "with_a_checked_quote": {
+    "hits": 4,
+    "of": 5,
+    "rate": 0.8
+   },
+   "only_from_knowledge": 0,
+   "silent_when_nothing_fits": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 9,
+    "quote_not_in_summary": 3,
+    "passed_rate": 0.667
+   },
+   "drops": {
+    "quote_not_in_summary": 3
+   },
+   "prompt_tokens_per_question": 53219
+  },
+  "trap": {
+   "questions": 6,
+   "answerable": 4,
+   "unanswerable": 2,
+   "recommends_it": {
+    "hits": 3,
+    "of": 4,
+    "rate": 0.75
+   },
+   "with_a_checked_quote": {
+    "hits": 2,
+    "of": 4,
+    "rate": 0.5
+   },
+   "only_from_knowledge": 1,
+   "silent_when_nothing_fits": {
+    "hits": 2,
+    "of": 2,
+    "rate": 1.0
+   },
+   "quotes_checked": {
+    "proposed": 7,
+    "quote_not_in_summary": 3,
+    "passed_rate": 0.571
+   },
+   "drops": {
+    "quote_not_in_summary": 3
+   },
+   "prompt_tokens_per_question": 53221
+  }
+ }
+}
