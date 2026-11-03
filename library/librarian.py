@@ -37,7 +37,8 @@ INSTRUCTIONS = (
     "You are the librarian of Neuralib, a small catalog of public-domain books. Recommend at most "
     f"{MAX_PICKS} books for the reader's question, choosing only from the books listed below, by their id. "
     "For each one, give the reason in one or two sentences, and say where it comes from. If the book's "
-    "summary says why it fits, copy in `quote`, word for word, the excerpt of that summary that says it, "
+    "summary says why it fits, copy in `quote`, word for word, the excerpt of that summary that says it "
+    "(a phrase or a sentence of the summary, never just the title), "
     "and let the reason say only what that excerpt says. If it fits for something you know about the book "
     "that its summary does not say (its plot, its ending, its length, its reputation), leave `quote` empty "
     "and say in the reason what you know. Leave out books you do not know. If none fits, return an empty "
@@ -81,7 +82,10 @@ def request(question, books):
     }
 
 
-_QUOTE_MARKS = str.maketrans({"“": '"', "”": '"', "«": '"', "»": '"', "‘": "'", "’": "'", "—": "-", "–": "-"})
+# Quotation marks do not count: Gutenberg's summaries open with the title in quotes, and a model copying
+# that line often leaves them out. Apostrophes stay, they are part of words.
+_QUOTE_MARKS = str.maketrans({"“": None, "”": None, "«": None, "»": None, '"': None,
+                              "‘": "'", "’": "'", "—": "-", "–": "-"})
 
 
 def _normalize(text):
@@ -90,7 +94,7 @@ def _normalize(text):
 
 
 def quote_in_summary(quote, summary):
-    """True when the quote, give or take case, spacing, quote marks and the dots around it, is in the summary."""
+    """True when the quote, give or take case, spacing, quotation marks and the dots around it, is in the summary."""
     quote = _normalize(quote).strip(" .\"'-")
     return len(quote) >= QUOTE_MIN and quote in _normalize(summary)
 

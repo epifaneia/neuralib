@@ -60,10 +60,15 @@ class QuoteTests(SimpleTestCase):
         self.assertTrue(librarian.quote_in_summary("“Finds  himself a PRISONER in the castle…”", summary))
         self.assertTrue(librarian.quote_in_summary("in the castle - and the Count's guest", summary))
 
+    def test_quotation_marks_do_not_count(self):
+        summary = '"Vida De Lazarillo De Tormes" by Anonymous is a Spanish novel published in 1554.'
+        self.assertTrue(librarian.quote_in_summary("Vida De Lazarillo De Tormes by Anonymous is a Spanish novel", summary))
+
     def test_a_paraphrase_or_a_scrap_does_not(self):
         summary = "He finds himself a prisoner in the castle."
         self.assertFalse(librarian.quote_in_summary("he is held captive in the castle", summary))
         self.assertFalse(librarian.quote_in_summary("the castle", summary))
+        self.assertFalse(librarian.quote_in_summary("“Azul...”", '"Azul..." by Rubén Darío is a collection of prose and poetry.'))
 
 
 class CheckTests(LibrarianTestCase):

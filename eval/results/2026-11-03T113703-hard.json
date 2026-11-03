@@ -1,0 +1,520 @@
+{
+ "date": "2026-11-03T11:37:03",
+ "librarian_model": "gemini-3.5-flash-lite",
+ "catalog_books": 301,
+ "summary_max": 600,
+ "totals": {
+  "questions": 18,
+  "answerable": 16,
+  "unanswerable": 2,
+  "recommends_it": {
+   "hits": 15,
+   "of": 16,
+   "rate": 0.938
+  },
+  "with_a_checked_quote": {
+   "hits": 10,
+   "of": 16,
+   "rate": 0.625
+  },
+  "only_from_knowledge": 5,
+  "silent_when_nothing_fits": {
+   "hits": 2,
+   "of": 2,
+   "rate": 1.0
+  },
+  "quotes_checked": {
+   "proposed": 19,
+   "quote_not_in_summary": 5,
+   "passed_rate": 0.737
+  },
+  "drops": {
+   "quote_not_in_summary": 5
+  },
+  "prompt_tokens_per_question": 53208
+ },
+ "results": [
+  {
+   "question": "Algo del escritor que perdió el uso de la mano izquierda en la batalla de Lepanto",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    4,
+    86,
+    126
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    4,
+    86,
+    126
+   ],
+   "proposed": 3,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53214,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"4\",\n      \"reason\": \"Miguel de Cervantes Saavedra perdió el movimiento de su mano izquierda en la celebre batalla de Lepanto, un hecho histórico que le valió el sobrenombre del «Manco de Lepanto».\",\n      \"quote\": \"\"\n    },\n    {\n      \"book_id\": \"86\",\n      \"reason\": \"Miguel de Cervantes Saavedra perdió el movimiento de su mano izquierda en la celebre batalla de Lepanto, un hecho histórico que le valió el sobrenombre del «Manco de Lepanto».\",\n      \"quote\": \"\"\n    },\n    {\n      \"book_id\": \"126\",\n      \"reason\": \"Miguel de Cervantes Saavedra perdió el movimiento de su mano izquierda en la celebre batalla de Lepanto, un hecho histórico que le valió el sobrenombre del «Manco de Lepanto».\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Something by the author of the poem The Raven",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    34,
+    213
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    213
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {
+    "quote_not_in_summary": 1
+   },
+   "prompt_tokens": 53206,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\": [{\"book_id\": \"34\", \"reason\": \"Esta colecci\\u0033n de cuentos presenta obras de Edgar Allan Poe, autor del célebre poema The Raven.\", \"quote\": \"\\\"Cuentos Cl\\u0033sicos del Norte, Primera Serie\\\" by Edgar Allan Poe is a collection of classic short stories written in the early 20th century. This anthology features some of Poe's most renowned works, showcasing his mastery of macabre themes and profound psychological insights.\"}, {\"book_id\": \"213\", \"reason\": \"Este volumen reúne relatos y ensayos de Edgar Allan Poe, creador del célebre poema The Raven.\", \"quote\": \"\\\"The Works of Edgar Allan Poe \\u2014 Volume 2\\\" by Edgar Allan Poe is a collection of literary works, including short stories and essays, written during the early to mid-19th century. This volume contains a range of tales that delve into themes of mystery, horror, and the uncanny, showcasing Poe's mastery of suspenseful and psychological storytelling.\"}]}"
+  },
+  {
+   "question": "Un libro del científico español que ganó el Nobel por sus estudios del sistema nervioso",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    130
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    130
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53212,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"130\",\n      \"reason\": \"Recuerdos de mi vida (tomo 1 de 2) is an autobiographical work written by the Spanish scientist Santiago Ramón y Cajal, who won the Nobel Prize in Physiology or Medicine in 1906 for his groundbreaking studies on the nervous system.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A book by the philosopher who wrote that God is dead",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    225,
+    230
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    225
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53208,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"225\",\n      \"reason\": \"This philosophical work by Friedrich Wilhelm Nietzsche introduces core concepts including the Übermensch and the death of God.\",\n      \"quote\": \"The work introduces core Nietzschean concepts including the Übermensch, the death of God, the will to power, and eternal recurrence.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Poemas del poeta sevillano que murió en Colliure huyendo de la guerra",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    85,
+    137
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    85,
+    137
+   ],
+   "proposed": 2,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53215,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"85\",\n      \"reason\": \"Poemas del poeta sevillano Antonio Machado, quien murió en Colliure en 1939 tras huir de la guerra civil española.\",\n      \"quote\": \"\"\n    },\n    {\n      \"book_id\": \"137\",\n      \"reason\": \"Selección de poesía y prosa de Antonio Machado, el célebre poeta de Sevilla que falleció en el exilio en Colliure.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A comedy by the Irish writer who was later jailed in Reading",
+   "language": "en",
+   "kind": "knowledge",
+   "expected": [
+    209
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    209
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53209,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"209\",\n      \"reason\": \"It is a comedy by Oscar Wilde, who was imprisoned in Reading Gaol.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo del poeta que escribió La casa de Bernarda Alba",
+   "language": "es",
+   "kind": "knowledge",
+   "expected": [
+    65
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [
+    65
+   ],
+   "proposed": 1,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53208,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"65\",\n      \"reason\": \"Este libro de poesía fue escrito por Federico García Lorca, autor de La casa de Bernarda Alba.\",\n      \"quote\": \"\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo para reírme a carcajadas",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    4,
+    59,
+    186,
+    197,
+    209,
+    254
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    254,
+    184
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {},
+   "prompt_tokens": 53206,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"254\",\n      \"reason\": \"1066 and All That: A Memorable History of England, Comprising All the Parts You Can Remember, Including 103 Good Things, 5 Bad Kings and 2 Genuine Dates is a tongue-in-cheek reworking of the history of England.\",\n      \"quote\": \"1066 and All That: A Memorable History of England, Comprising All the Parts You Can Remember, Including 103 Good Things, 5 Bad Kings and 2 Genuine Dates is a tongue-in-cheek reworking of the history of England.\"\n    },\n    {\n      \"book_id\": \"184\",\n      \"reason\": \"The Expedition of Humphry Clinker by Tobias Smollett is an epistolary novel published in 1771.\",\n      \"quote\": \"Through wildly contrasting letters describing the same events, Smollett satirizes eighteenth-century British society, class pretensions, and urban life.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A love story with a happy ending",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    59,
+    94,
+    151,
+    161,
+    165,
+    167,
+    177,
+    199
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    151
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53204,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n            \"book_id\": \"151\",\n            \"reason\": \"It follows Elizabeth Bennet, who must learn to see past first impressions and hasty judgments. When wealthy Mr. Darcy arrives in their countryside neighborhood, his pride and Elizabeth's prejudice set the stage for misunderstandings, hidden truths, and unexpected revelations about character and love.\",\n            \"quote\": \"When wealthy Mr. Darcy arrives in their countryside neighborhood, his pride and Elizabeth's prejudice set the stage for misunderstandings, hidden truths, and unexpected revelations about character and love.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Algo muy triste que me haga llorar",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    2,
+    40,
+    66,
+    83,
+    142,
+    143,
+    157
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    2,
+    83
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {},
+   "prompt_tokens": 53205,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"2\",\n      \"reason\": \"El texto, de estilo romántico, plantea por medio de su argumento una discusión sobre el bien y el mal, sobre la ley, la política, la ética, la justicia y la religión.\",\n      \"quote\": \"El texto, de estilo romántico, plantea por medio de su argumento una discusión sobre el bien y el mal, sobre la ley, la política, la ética, la justicia y la religión.\"\n    },\n    {\n      \"book_id\": \"83\",\n      \"reason\": \"The book centers on the struggles of various characters in post-revolutionary France, focusing particularly on themes of injustice, compassion, and redemption.\",\n      \"quote\": \"The book centers on the struggles of various characters in post-revolutionary France, focusing particularly on themes of injustice, compassion, and redemption.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Something short I can finish in one sitting",
+   "language": "en",
+   "kind": "mood",
+   "expected": [
+    160,
+    178,
+    197,
+    208,
+    217,
+    222,
+    224,
+    226,
+    268
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    73,
+    178,
+    227
+   ],
+   "knowledge_picks": [],
+   "proposed": 3,
+   "quotes_proposed": 3,
+   "drops": {},
+   "prompt_tokens": 53205,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"73\",\n      \"reason\": \"It is a Gothic horror novella published in 1886.\",\n      \"quote\": \"El caso extraño del Doctor Jekyll\"\n    },\n    {\n      \"book_id\": \"178\",\n      \"reason\": \"It is a short story published in January 1892.\",\n      \"quote\": \"\\\"The Yellow Wallpaper\\\" by Charlotte Perkins Gilman is a short story published in January 1892.\"\n    },\n    {\n      \"book_id\": \"227\",\n      \"reason\": \"It is a science fiction novella published in 1895.\",\n      \"quote\": \"\\\"The Time Machine\\\" by H. G. Wells is a science fiction novella published in 1895.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro para entender la Rusia del siglo XIX",
+   "language": "es",
+   "kind": "mood",
+   "expected": [
+    1,
+    166,
+    181,
+    215
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    181
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53206,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"181\",\n      \"reason\": \"Set during the Napoleonic Wars, it chronicles the French invasion of Russia through five interlocking narratives following different Russian aristocratic families.\",\n      \"quote\": \"Set during the Napoleonic Wars, it chronicles the French invasion of Russia through five interlocking narratives following different Russian aristocratic families.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Un libro sobre el mar que no sea una novela de aventuras",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    51
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    51
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53209,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"51\",\n      \"reason\": \"El Mar by Jules Michelet is a scientific publication written in the late 19th century. The work explores the profound and multifaceted nature of the sea, examining its physical characteristics, ecological importance, and the emotional responses it elicits in humans.\",\n      \"quote\": \"\\\"El Mar\\\" by Jules Michelet is a scientific publication written in the late 19th century. The work explores the profound and multifaceted nature of the sea, examining its physical characteristics, ecological importance, and the emotional responses it elicits in humans.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "A detective story that is not by Agatha Christie or Conan Doyle",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    226,
+    229,
+    235,
+    241,
+    258,
+    284,
+    290,
+    292
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    226
+   ],
+   "knowledge_picks": [],
+   "proposed": 1,
+   "quotes_proposed": 1,
+   "drops": {},
+   "prompt_tokens": 53209,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"226\",\n      \"reason\": \"The tale features Augustus S. F. X. Van Dusen, 'The Thinking Machine,' who claims nothing is impossible when the human mind is properly applied.\",\n      \"quote\": \"The tale features Augustus S. F. X. Van Dusen, \\\"The Thinking Machine,\\\" who claims nothing is impossible when the human mind is properly applied.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una novela de Dumas que no sea El conde de Montecristo",
+   "language": "es",
+   "kind": "trap",
+   "expected": [
+    142,
+    179
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [
+    179
+   ],
+   "knowledge_picks": [],
+   "proposed": 2,
+   "quotes_proposed": 2,
+   "drops": {
+    "quote_not_in_summary": 1
+   },
+   "prompt_tokens": 53211,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"142\",\n      \"reason\": \"Esta novela de Alexandre Dumas presenta la trágica historia de amor entre Margarita Gautier y Armando Duval.\",\n      \"quote\": \"La narrativa unfolds alrededor de la trágica y conmovedora historia de Margarita Gautier, una hermosa cortesana, y su desdichado romance con Armando Duval, adentrándose en temas de amor, sacrificio y juicio social.\"\n    },\n    {\n      \"book_id\": \"179\",\n      \"reason\": \"Esta continuación de las aventuras de los mosqueteros es otra célebre novela de Alexandre Dumas.\",\n      \"quote\": \"\\\"Twenty years after\\\" by Alexandre Dumas and Auguste Maquet is a novel serialized from January to August 1845.\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Poetry from Latin America, not prose",
+   "language": "en",
+   "kind": "trap",
+   "expected": [
+    12,
+    57,
+    95,
+    103,
+    109,
+    114
+   ],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 3,
+   "quotes_proposed": 3,
+   "drops": {
+    "quote_not_in_summary": 3
+   },
+   "prompt_tokens": 53204,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": [\n    {\n      \"book_id\": \"12\",\n      \"reason\": \"Rubén Darío explores themes of imagination, art, and the complexities of existence in this collection of prose and poetry.\",\n      \"quote\": \"Azul...\"\n    },\n    {\n      \"book_id\": \"95\",\n      \"reason\": \"Rubén Darío's work showcases the poet's exploration of aesthetic themes through a collection of poems.\",\n      \"quote\": \"Prosas Profanas\"\n    },\n    {\n      \"book_id\": \"103\",\n      \"reason\": \"Rubén Darío presents a collection of poems reflecting his celebrated lyrical style.\",\n      \"quote\": \"Lira Póstuma\"\n    }\n  ]\n}"
+  },
+  {
+   "question": "Una novela del autor de Cien años de soledad",
+   "language": "es",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 0,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53208,
+   "cached_tokens": 0,
+   "model_text": "{\"picks\":[]}"
+  },
+  {
+   "question": "A biography of Steve Jobs",
+   "language": "en",
+   "kind": "trap",
+   "expected": [],
+   "missing_from_catalog": [],
+   "quoted_picks": [],
+   "knowledge_picks": [],
+   "proposed": 0,
+   "quotes_proposed": 0,
+   "drops": {},
+   "prompt_tokens": 53202,
+   "cached_tokens": 0,
+   "model_text": "{\n  \"picks\": []\n}"
+  }
+ ],
+ "totals_by_kind": {
+  "knowledge": {
+   "questions": 7,
+   "answerable": 7,
+   "unanswerable": 0,
+   "recommends_it": {
+    "hits": 7,
+    "of": 7,
+    "rate": 1.0
+   },
+   "with_a_checked_quote": {
+    "hits": 2,
+    "of": 7,
+    "rate": 0.286
+   },
+   "only_from_knowledge": 5,
+   "silent_when_nothing_fits": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 3,
+    "quote_not_in_summary": 1,
+    "passed_rate": 0.667
+   },
+   "drops": {
+    "quote_not_in_summary": 1
+   },
+   "prompt_tokens_per_question": 53210
+  },
+  "mood": {
+   "questions": 5,
+   "answerable": 5,
+   "unanswerable": 0,
+   "recommends_it": {
+    "hits": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "with_a_checked_quote": {
+    "hits": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "only_from_knowledge": 0,
+   "silent_when_nothing_fits": {
+    "hits": 0,
+    "of": 0,
+    "rate": null
+   },
+   "quotes_checked": {
+    "proposed": 9,
+    "quote_not_in_summary": 0,
+    "passed_rate": 1.0
+   },
+   "drops": {},
+   "prompt_tokens_per_question": 53205
+  },
+  "trap": {
+   "questions": 6,
+   "answerable": 4,
+   "unanswerable": 2,
+   "recommends_it": {
+    "hits": 3,
+    "of": 4,
+    "rate": 0.75
+   },
+   "with_a_checked_quote": {
+    "hits": 3,
+    "of": 4,
+    "rate": 0.75
+   },
+   "only_from_knowledge": 0,
+   "silent_when_nothing_fits": {
+    "hits": 2,
+    "of": 2,
+    "rate": 1.0
+   },
+   "quotes_checked": {
+    "proposed": 7,
+    "quote_not_in_summary": 4,
+    "passed_rate": 0.429
+   },
+   "drops": {
+    "quote_not_in_summary": 4
+   },
+   "prompt_tokens_per_question": 53207
+  }
+ }
+}
