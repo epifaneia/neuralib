@@ -20,6 +20,11 @@ class PublicPagesTests(TestCase):
         response = self.client.get(reverse("catalog"), {"query": "herbert", "field": "writer"})
         self.assertEqual([b.title for b in response.context["books"]], ["Dune"])
 
+    def test_catalog_search_by_words_in_the_summary(self):
+        make_book(title="Moby Dick", writer="Herman Melville", description="A captain hunts a white whale across the sea.")
+        response = self.client.get(reverse("catalog"), {"query": "white whale", "field": "description"})
+        self.assertEqual([b.title for b in response.context["books"]], ["Moby Dick"])
+
     def test_catalog_search_by_isbn(self):
         response = self.client.get(reverse("catalog"), {"query": "9780441", "field": "isbn"})
         self.assertEqual([b.title for b in response.context["books"]], ["Dune"])

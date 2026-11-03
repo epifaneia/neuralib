@@ -76,20 +76,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "django_library.wsgi.application"
 
-# Postgres everywhere: semantic search stores its vectors with pgvector.
+# Postgres everywhere, as in production. Migration 0003 is from the vector-search version and still
+# creates the pgvector extension, so the server must have it (Neon's does; so does the CI image).
 if not os.environ.get("DATABASE_URL"):
     raise ImproperlyConfigured(
-        "Set DATABASE_URL to a Postgres database with pgvector (Neon's free plan works). See .env.example.")
+        "Set DATABASE_URL to a Postgres database with pgvector available (Neon's free plan works). See .env.example.")
 DATABASES = {
     "default": dj_database_url.config(conn_max_age=600, conn_health_checks=True, ssl_require=ON_HOST)
 }
 
-# Semantic search: Gemini embeddings. Without a key the catalog still works, by keyword only.
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-EMBEDDING_MODEL = "gemini-embedding-001"
-# Each search spends one call of the free quota; these caps keep the demo inside it.
-SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_VISITOR_PER_DAY", "30"))
-SEMANTIC_SEARCHES_PER_DAY = int(os.environ.get("SEMANTIC_SEARCHES_PER_DAY", "500"))
 # The librarian. With GEMINI_API_KEY set it answers with the site's key, within these caps;
 # without it, each reader brings their own key, which stays in their browser.
 LIBRARIAN_MODEL = "gemini-3.5-flash-lite"

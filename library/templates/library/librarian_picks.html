@@ -1,4 +1,4 @@
-{# The librarian's checked answer. Needs: cards (book, reason, quote, knowledge), dropped, knowledge_failed. #}
+{# The librarian's checked answer. Needs: cards (book, reason, quote), dropped. #}
 {% if cards %}
     <div class="list-group mb-2">
         {% for card in cards %}
@@ -6,14 +6,13 @@
                 {% if card.book.image_url %}<img src="{{ card.book.image_url }}" alt="" width="64" class="flex-shrink-0 align-self-start">{% endif %}
                 <div class="flex-grow-1">
                     <h2 class="h6 mb-2">{{ card.book.title }} <span class="text-muted fw-normal">· {{ card.book.writer }}</span></h2>
-                    {% if card.reason %}
+                    {% if card.quote %}
                         <p class="small text-uppercase text-success fw-semibold mb-1">From its summary</p>
                         <p class="mb-1">{{ card.reason }}</p>
                         <blockquote class="small text-muted border-start ps-2 mb-2">“{{ card.quote }}”</blockquote>
-                    {% endif %}
-                    {% if card.knowledge %}
-                        <p class="small text-uppercase text-secondary fw-semibold mb-1">What the librarian also knows</p>
-                        <p class="mb-1">{{ card.knowledge }}</p>
+                    {% else %}
+                        <p class="small text-uppercase text-secondary fw-semibold mb-1">What the librarian knows</p>
+                        <p class="mb-1">{{ card.reason }}</p>
                         <p class="small text-muted mb-2">From the model's general knowledge; not checked against the catalog.</p>
                     {% endif %}
                     <a href="{% url 'catalog' %}?query={{ card.book.title|urlencode }}&amp;field=title" class="small">In the catalog</a>
@@ -28,6 +27,4 @@
 {% if dropped %}
     <p class="small text-muted mb-1">The check removed {{ dropped }} suggestion{{ dropped|pluralize }}: not in the list, without a reason, or with a quote that is not in the book's summary.</p>
 {% endif %}
-{% if knowledge_failed %}
-    <p class="small text-muted mb-1">The general-knowledge pass could not run this time; these come from the summaries only.</p>
-{% endif %}
+

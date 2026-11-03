@@ -13,7 +13,7 @@ urlpatterns = [
     path("add_review/", views.add_review, name="add_review"),
     path("books/<int:book_id>/review/", views.review_book, name="review_book"),
     path("librarian/", views.ask_librarian, name="librarian"),
-    path("librarian/candidates/", views.librarian_candidates, name="librarian_candidates"),
+    path("librarian/request/", views.librarian_request, name="librarian_request"),
     path("librarian/answer/", views.librarian_answer, name="librarian_answer"),
     path("accounts/ai-key/", views.ai_key, name="ai_key"),
 ]

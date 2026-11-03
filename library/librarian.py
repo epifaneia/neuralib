@@ -1,72 +1,61 @@
 """The librarian: recommends books for a question, and only books in the catalog.
 
-Models are used for two things here, in two separate passes over the same question:
-- From the summaries: the model reads the summaries of the books closest in meaning and, for
-  each pick, copies the excerpt that supports it. Code checks that the excerpt is really in
-  that book's summary; a pick whose quote is not there does not reach the page.
-- From general knowledge: the model sees only titles and authors of a longer list and answers
-  from what it knows about those books (plots, characters, reputation), which may go beyond
-  any summary. Code checks the ids; what the model says is shown as its knowledge, unchecked.
+The whole catalog fits in the model's context (about 300 books, each summary cut to SUMMARY_MAX
+characters), so nothing is retrieved: the model reads every book and answers in one call. For each
+pick it says where its reason comes from:
+- From the summary: it copies, word for word, the excerpt that supports it. Code checks that the
+  excerpt is really in that book's summary; a pick whose quote is not there does not reach the page.
+- From what it knows about the book (plot, ending, length, reputation) beyond its summary: no
+  quote. Code checks the id; what the model says is shown as its knowledge, unchecked.
 
 The five steps, and where the model is:
 1. The question comes in: logged-in readers, at most QUESTION_MAX characters.
-2. Retrieval: the books closest in meaning (pgvector).
-3. ★ The model picks, twice. Its answers are JSON whose book ids are an enum of the listed
-   books, so each list is closed before it starts writing.
-4. Guardrail: code keeps only picks whose id was listed, that come with a reason, are not
-   repeated, are at most MAX_PICKS and, from the summaries, quote their summary word for word.
+2. Context: the whole catalog, by code, always in the same order. If the catalog outgrew the
+   context, this is where a search would come back in.
+3. The answer is JSON whose book ids are an enum of the catalog, so the list is closed before
+   the model starts writing.
+4. ★ The model picks, once.
+5. Guardrail: code keeps only picks whose id is in the catalog, that come with a reason, are not
+   repeated, are at most MAX_PICKS and, when they quote, quote their summary word for word.
    What was dropped is counted.
-5. The answer: one card per book with what each pass said, and a log line.
 
-The prompts and the checks live here, on the server, whichever key pays for the calls: with the
+The prompt and the checks live here, on the server, whichever key pays for the call: with the
 site's key the server calls Gemini; with a reader's own key the browser does, and sends the
-model's raw answers back here to be checked.
+model's raw answer back here to be checked.
 """
 import json
 import re
 
-from pgvector.django import CosineDistance
-
 from .models import Book
 
-SUMMARY_CANDIDATES = 12
-KNOWLEDGE_CANDIDATES = 40
 MAX_PICKS = 3
 QUESTION_MAX = 500
 SUMMARY_MAX = 600
 QUOTE_MIN = 20
 
-_LANGUAGE = "Write in the language of the question, with its usual spelling and accents."
-SUMMARY_INSTRUCTIONS = (
+INSTRUCTIONS = (
     "You are the librarian of Neuralib, a small catalog of public-domain books. Recommend at most "
-    f"{MAX_PICKS} books for the reader's question, choosing only from the books listed below, by their id, "
-    "and using only what their summaries say. For each one, give the reason in one or two sentences and "
-    "copy, word for word, the excerpt of that book's summary that supports it. The reason must say only "
-    "what that excerpt says: if a book fits for something its summary does not say, leave it out, because "
-    "another pass covers what you know beyond the summaries. If none fits, return an empty list. "
-    f"{_LANGUAGE} Copy the excerpt exactly as it is written, in its own language."
-)
-KNOWLEDGE_INSTRUCTIONS = (
-    "You are the librarian of Neuralib, a small catalog of public-domain books. The list below gives only "
-    "titles and authors. Using what you know about these books (their plots, characters, settings and "
-    f"reputation), recommend at most {MAX_PICKS} for the reader's question, choosing only from the list, "
-    "by their id. For each one, say in one or two sentences what you know about it that makes it fit. "
-    f"Leave out books you do not know. If none fits, return an empty list. {_LANGUAGE}"
+    f"{MAX_PICKS} books for the reader's question, choosing only from the books listed below, by their id. "
+    "For each one, give the reason in one or two sentences, and say where it comes from. If the book's "
+    "summary says why it fits, copy in `quote`, word for word, the excerpt of that summary that says it, "
+    "and let the reason say only what that excerpt says. If it fits for something you know about the book "
+    "that its summary does not say (its plot, its ending, its length, its reputation), leave `quote` empty "
+    "and say in the reason what you know. Leave out books you do not know. If none fits, return an empty "
+    "list. Write in the language of the question, with its usual spelling and accents. Copy an excerpt "
+    "exactly as it is written, in its own language."
 )
 
 
-def candidates(vector, count):
-    """The books closest in meaning to the question's vector."""
-    return list(Book.objects.filter(embedding__isnull=False)
-                .annotate(distance=CosineDistance("embedding", vector))
-                .order_by("distance")[:count])
+def catalog():
+    """Every book, always in the same order: the model's whole context."""
+    return list(Book.objects.order_by("pk"))
 
 
 def _summary(book):
     return book.description if len(book.description) <= SUMMARY_MAX else book.description[:SUMMARY_MAX] + "…"
 
 
-def _summary_entry(book):
+def _entry(book):
     lines = [f"id {book.pk}: {book.title}, by {book.writer}"]
     if book.genre:
         lines.append(f"Category: {book.genre}")
@@ -76,33 +65,20 @@ def _summary_entry(book):
     return "\n".join(lines)
 
 
-def _body(instructions, listing, question, books, with_quote):
-    properties = {"book_id": {"type": "STRING", "enum": [str(b.pk) for b in books]}, "reason": {"type": "STRING"}}
-    if with_quote:
-        properties["quote"] = {"type": "STRING"}
-    schema = {
-        "type": "OBJECT",
-        "properties": {"picks": {"type": "ARRAY", "maxItems": MAX_PICKS, "items": {
-            "type": "OBJECT", "properties": properties, "required": list(properties)}}},
-        "required": ["picks"],
-    }
+def request(question, books):
+    """The generateContent body: the instructions, the catalog first and the question last."""
+    item = {"type": "OBJECT",
+            "properties": {"book_id": {"type": "STRING", "enum": [str(b.pk) for b in books]},
+                           "reason": {"type": "STRING"}, "quote": {"type": "STRING"}},
+            "required": ["book_id", "reason", "quote"]}
+    schema = {"type": "OBJECT", "properties": {"picks": {"type": "ARRAY", "maxItems": MAX_PICKS, "items": item}},
+              "required": ["picks"]}
+    listing = "\n\n".join(_entry(b) for b in books)
     return {
-        "systemInstruction": {"parts": [{"text": instructions}]},
+        "systemInstruction": {"parts": [{"text": INSTRUCTIONS}]},
         "contents": [{"role": "user", "parts": [{"text": f"Books:\n\n{listing}\n\nQuestion: {question}"}]}],
         "generationConfig": {"responseMimeType": "application/json", "responseSchema": schema, "temperature": 0.2},
     }
-
-
-def summary_request(question, books):
-    """Pass 1: the summaries, and an excerpt of the right one for each pick."""
-    listing = "\n\n".join(_summary_entry(b) for b in books)
-    return _body(SUMMARY_INSTRUCTIONS, listing, question, books, with_quote=True)
-
-
-def knowledge_request(question, books):
-    """Pass 2: titles and authors only; the model answers from what it knows."""
-    listing = "\n".join(f"id {b.pk}: {b.title}, by {b.writer}" for b in books)
-    return _body(KNOWLEDGE_INSTRUCTIONS, listing, question, books, with_quote=False)
 
 
 _QUOTE_MARKS = str.maketrans({"“": '"', "”": '"', "«": '"', "»": '"', "‘": "'", "’": "'", "—": "-", "–": "-"})
@@ -119,48 +95,53 @@ def quote_in_summary(quote, summary):
     return len(quote) >= QUOTE_MIN and quote in _normalize(summary)
 
 
-def _check(model_text, books, with_quote):
-    """Picks that pass, and how many were dropped. An answer that is not the JSON asked for counts as one dropped."""
-    by_id = {str(b.pk): b for b in books}
+def raw_picks(model_text):
+    """The list of picks the model proposed, or None if its answer is not the JSON asked for."""
     try:
-        raw = json.loads(model_text).get("picks", [])
-        if not isinstance(raw, list):
-            raise ValueError
+        picks = json.loads(model_text).get("picks", [])
     except (ValueError, AttributeError):
-        return [], 1
-    picks, seen, dropped = [], set(), 0
+        return None
+    return picks if isinstance(picks, list) else None
+
+
+def verdicts(model_text, books):
+    """Each proposed pick with what the check makes of it: (item, book, reason, quote, why_dropped or None)."""
+    raw = raw_picks(model_text)
+    if raw is None:
+        return None
+    by_id, seen, kept, out = {str(b.pk): b for b in books}, set(), 0, []
     for item in raw:
         item = item if isinstance(item, dict) else {}
-        book_id = str(item.get("book_id", ""))
+        book = by_id.get(str(item.get("book_id", "")))
         reason = item.get("reason").strip() if isinstance(item.get("reason"), str) else ""
         quote = item.get("quote").strip() if isinstance(item.get("quote"), str) else ""
-        book = by_id.get(book_id)
-        quoted = not with_quote or (book is not None and quote_in_summary(quote, book.description))
-        if book and reason and quoted and book_id not in seen and len(picks) < MAX_PICKS:
-            picks.append((book, reason, quote) if with_quote else (book, reason))
-            seen.add(book_id)
+        if book is None:
+            why = "not_listed"
+        elif not reason:
+            why = "no_reason"
+        elif quote and not quote_in_summary(quote, book.description):
+            why = "quote_not_in_summary"
+        elif book.pk in seen:
+            why = "repeated"
+        elif kept >= MAX_PICKS:
+            why = "over_limit"
         else:
-            dropped += 1
-    return picks, dropped
+            why = None
+            seen.add(book.pk)
+            kept += 1
+        out.append((book, reason, quote, why))
+    return out
 
 
-def check_summary_picks(model_text, books):
-    """Pass 1 → ([(book, reason, quote)], dropped)."""
-    return _check(model_text, books, with_quote=True)
+def check_picks(model_text, books):
+    """([(book, reason, quote or None)], dropped). An answer that is not the JSON asked for counts as one dropped."""
+    checked = verdicts(model_text, books)
+    if checked is None:
+        return [], 1
+    picks = [(book, reason, quote or None) for book, reason, quote, why in checked if why is None]
+    return picks, len(checked) - len(picks)
 
 
-def check_knowledge_picks(model_text, books):
-    """Pass 2 → ([(book, reason)], dropped)."""
-    return _check(model_text, books, with_quote=False)
-
-
-def cards(summary_picks, knowledge_picks):
-    """One card per book: what both passes agree on first, then the summaries' picks, then the knowledge's."""
-    known = {book.pk: reason for book, reason in knowledge_picks}
-    result = [{"book": book, "reason": reason, "quote": quote, "knowledge": known.get(book.pk)}
-              for book, reason, quote in summary_picks]
-    result.sort(key=lambda card: card["knowledge"] is None)
-    from_summaries = {card["book"].pk for card in result}
-    result += [{"book": book, "reason": None, "quote": None, "knowledge": reason}
-               for book, reason in knowledge_picks if book.pk not in from_summaries]
-    return result
+def cards(picks):
+    """One card per book, in the model's order; a card without a quote is the model's knowledge."""
+    return [{"book": book, "reason": reason, "quote": quote} for book, reason, quote in picks]

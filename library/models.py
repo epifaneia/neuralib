@@ -1,9 +1,6 @@
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from pgvector.django import HnswIndex, VectorField
-
-from .embeddings import DIMENSIONS
 
 
 class Book(models.Model):
@@ -26,16 +23,9 @@ class Book(models.Model):
     image_url = models.URLField(blank=True, null=True)
     read_online = models.URLField(blank=True, null=True)
     download_link = models.URLField(blank=True, null=True)
-    # Semantic search. The hash says what text the vector was made from, so only changed books are embedded again.
-    embedding = VectorField(dimensions=DIMENSIONS, null=True, blank=True, editable=False)
-    embedding_hash = models.CharField(max_length=64, blank=True, editable=False)
 
     class Meta:
         ordering = ["title"]
-        indexes = [
-            HnswIndex(name="book_embedding_hnsw", fields=["embedding"], m=16, ef_construction=64,
-                      opclasses=["vector_cosine_ops"]),
-        ]
 
     def __str__(self):
         return self.title
@@ -45,11 +35,9 @@ class LibrarianAnswer(models.Model):
     """One question to the librarian and what passed the check. No reader is stored."""
 
     question = models.TextField()
-    picks = models.JSONField(default=list, help_text="From the summaries: ids of the books recommended, in order.")
-    dropped = models.PositiveSmallIntegerField(default=0, help_text="From the summaries: picks the check removed (not listed, no reason, quote not in the summary, repeated or over the limit).")
-    knowledge_picks = models.JSONField(default=list, help_text="From general knowledge: ids of the books recommended, in order.")
-    knowledge_dropped = models.PositiveSmallIntegerField(default=0, help_text="From general knowledge: picks the check removed.")
-    knowledge_failed = models.BooleanField(default=False, help_text="The general-knowledge pass could not run.")
+    picks = models.JSONField(default=list, help_text="From their summaries, with a checked quote: ids of the books recommended, in order.")
+    dropped = models.PositiveSmallIntegerField(default=0, help_text="Picks the check removed (not in the catalog, no reason, quote not in the summary, repeated or over the limit).")
+    knowledge_picks = models.JSONField(default=list, help_text="From what the model knows, unchecked: ids of the books recommended, in order.")
     model = models.CharField(max_length=60)
     key = models.CharField(max_length=10, choices=[("site", "Site key"), ("reader", "Reader's own key")])
     created = models.DateTimeField(auto_now_add=True)

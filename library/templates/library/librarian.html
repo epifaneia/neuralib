@@ -5,14 +5,13 @@
 <div class="row justify-content-center">
     <div class="col-lg-9">
         <h1 class="h3">Ask the librarian</h1>
-        <p class="text-muted">Say what you feel like reading. The librarian answers twice, and only with books in this catalog:
-            once from the books' summaries, quoting the line that backs each pick (the code checks the quote is really there),
-            and once from what the model knows about the books beyond them.</p>
+        <p class="text-muted">Say what you feel like reading. The librarian reads the whole catalog and answers only with books in it.
+            When a book's summary says why it fits, it quotes the line, and the code checks the quote is really there;
+            when it fits for what the model knows about the book beyond its summary, the answer says so.</p>
 
         <form method="post" id="librarian-form" class="mb-3"
               data-site-key="{{ site_key|yesno:'true,false' }}"
-              data-embedding-model="{{ embedding_model }}" data-dimensions="{{ dimensions }}"
-              data-candidates-url="{% url 'librarian_candidates' %}" data-answer-url="{% url 'librarian_answer' %}">
+              data-request-url="{% url 'librarian_request' %}" data-answer-url="{% url 'librarian_answer' %}">
             {% csrf_token %}
             <label class="form-label" for="question">Your question</label>
             <textarea class="form-control mb-2" id="question" name="question" rows="3" maxlength="{{ question_max }}" required
@@ -34,7 +33,7 @@
         <div id="librarian-results">
             {% if cards is not None %}{% include "library/librarian_picks.html" %}{% endif %}
         </div>
-        <p class="small text-muted mt-4">Your question is sent to Google's Gemini API, with the summaries of the books that may fit; nothing else about you is.</p>
+        <p class="small text-muted mt-4">Your question is sent to Google's Gemini API, with the catalog's summaries; nothing else about you is.</p>
     </div>
 </div>
 {% endblock content %}

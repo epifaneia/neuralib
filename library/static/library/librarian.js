@@ -95,26 +95,13 @@
     var button = form.querySelector("button[type=submit]");
     button.disabled = true;
     results.textContent = "";
-    statusLine.textContent = "Looking through the catalog…";
-    var embeddingModel = form.dataset.embeddingModel;
-    // 1. The question's vector, from Google with the reader's key.
-    gemini(embeddingModel, "embedContent", {
-      model: "models/" + embeddingModel,
-      content: { parts: [{ text: question }] },
-      taskType: "RETRIEVAL_QUERY",
-      outputDimensionality: Number(form.dataset.dimensions)
-    }).then(function (answer) {
-      // 2. Neuralib finds the closest books and writes the request, with the closed list.
-      return neuralib(form.dataset.candidatesUrl, { question: question, vector: answer.embedding.values });
-    }).then(function (pending) {
-      statusLine.textContent = "Asking the librarian…";
-      // 3. The model picks twice, from Google with the reader's key: from the summaries and from what it knows.
-      //    The second pass may fail on its own; the first one is the answer.
-      var summary = gemini(pending.model, "generateContent", pending.summary_body).then(textOf);
-      var knowledge = gemini(pending.model, "generateContent", pending.knowledge_body).then(textOf, function () { return null; });
-      return Promise.all([summary, knowledge]).then(function (texts) {
-        // 4. Neuralib checks both against the same lists and returns what passed.
-        return neuralib(form.dataset.answerUrl, { token: pending.token, summary_text: texts[0], knowledge_text: texts[1] });
+    statusLine.textContent = "Asking the librarian…";
+    // 1. Neuralib writes the request, with the whole catalog and the closed list of ids.
+    neuralib(form.dataset.requestUrl, { question: question }).then(function (pending) {
+      // 2. The model picks, from Google with the reader's key.
+      return gemini(pending.model, "generateContent", pending.body).then(textOf).then(function (text) {
+        // 3. Neuralib checks the answer against the catalog and returns what passed.
+        return neuralib(form.dataset.answerUrl, { token: pending.token, text: text });
       });
     }).then(function (checked) {
       statusLine.textContent = "";

@@ -8,8 +8,8 @@ class SearchForm(forms.Form):
 
     FIELDS = (
         ("title", "Title"),
-        ("meaning", "Meaning (AI search)"),
         ("writer", "Writer"),
+        ("description", "Summary"),
         ("subjects", "Subject"),
         ("genre", "Category"),
         ("language", "Language"),
